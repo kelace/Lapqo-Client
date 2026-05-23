@@ -1,11 +1,7 @@
-import { useState } from "react";
-
-import { Button } from "@shared/ui/Button";
-
-import "./App.css";
+import { RouterProvider } from "@app/providers/router-provider/router-provider";
 
 function App() {
-  return <Button />;
+  return <RouterProvider />;
 }
 
 export default App;
