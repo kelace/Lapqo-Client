@@ -22,12 +22,13 @@
     "noFallthroughCasesInSwitch": true,
 
     "paths": {
+      "@/*": ["./src/*"],
       "@shared/*": ["./src/shared/*"],
       "@components/*": ["./src/components/*"],
       "@features/*": ["./src/features/*"],
       "@entities/*": ["./src/entities/*"],
       "@widgets/*": ["./src/widgets/*"],
-      // "@pages/*": ["src/components/pages/*"],
+      "@pages/*": ["./src/pages/*"],
       "@app/*": ["./src/app/*"]
     }
   },
