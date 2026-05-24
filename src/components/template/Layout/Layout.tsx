@@ -1,24 +1,26 @@
-import { NavLink, Outlet } from "react-router-dom";
-import { routes } from "@shared/config/routes";
+import { Sidebar } from "@/components/organisms/sidebar/Sidebar";
 
 export function Layout() {
   return (
-    <>
-      <header className="header">
-        <div className="header__container">
-          <nav className="nav" style={{ display: "flex", gap: "10px" }}>
-            <NavLink to={routes.home}>Home</NavLink>
-            <NavLink to={routes.users.base}>Users</NavLink>
-            {/* <NavLink to={routes.about}>About</NavLink> */}
-          </nav>
+    <div className="flex w-full h-screen mx-auto max-w-275">
+      <Sidebar />
+      <main className="flex-1 overflow-y-auto border-r ">
+        <div className="space-y-4">
+          {Array.from({ length: 30 }).map((_, index) => (
+            <div key={index} className="p-4 border shadow-sm rounded-xl">
+              <h3 className="mb-2 text-lg font-semibold">Post #{index + 1}</h3>
+
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Aspernatur, voluptatem.
+              </p>
+            </div>
+          ))}
         </div>
-      </header>
-      <main className="main">
-        <Outlet />
       </main>
-      <footer className="footer">
-        <div className="footer__container">footer</div>
-      </footer>
-    </>
+      <aside className="sticky top-0 h-screen w-[320px]">
+        <p>channel info pannel</p>
+      </aside>
+    </div>
   );
 }
