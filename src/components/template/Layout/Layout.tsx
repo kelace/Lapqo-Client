@@ -1,3 +1,4 @@
+import { ChannelInfoPanel } from "@/components/organisms/channel-info-pannel/ChannelInfoPannel";
 import { Sidebar } from "@/components/organisms/sidebar/Sidebar";
 
 export function Layout() {
@@ -19,7 +20,7 @@ export function Layout() {
         </div>
       </main>
       <aside className="sticky top-0 h-screen w-[320px]">
-        <p>channel info pannel</p>
+        <ChannelInfoPanel />
       </aside>
     </div>
   );
