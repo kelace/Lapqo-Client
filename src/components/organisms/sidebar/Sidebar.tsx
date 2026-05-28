@@ -8,6 +8,16 @@ import {
 import { SettingsBar } from "./ui/SettingsBar";
 import { FilterTabs } from "./ui/FilterTabs";
 import { ChannelItem } from "./ui/ChannelItem";
+import { useAuthStore } from "@/app/store/auth";
+
+const useLogout = () => {
+  const logout = useAuthStore((state) => state.logout);
+
+  return useQuery({
+    queryKey: ["logout"],
+    queryFn: logout,
+  });
+};
 
 export function Sidebar() {
   const channels = Array(5).fill({
@@ -15,6 +25,7 @@ export function Sidebar() {
     img: "https://github.com/shadcn.png",
     preview: "Tutorial #1 how drink beer without ...",
   });
+  const logout = useAuthStore((state) => state.logout);
 
   return (
     <aside className="flex flex-col overflow-hidden border-r border-neutral-400">
@@ -30,7 +41,7 @@ export function Sidebar() {
             <p className="text-[12px] text-neutral-400">@hyakkimaru</p>
           </div>
         </div>
-
+        <button onClick={logout}>вихід</button>
         <SettingsBar />
       </div>
       {/* Replies preview */}

@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar";
 import { Bell, Edit } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar";
 import { ChannelItem } from "../sidebar/ui/ChannelItem";
 import { InfoSection } from "./ui/InfoSection";
 
