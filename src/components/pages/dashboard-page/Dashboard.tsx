@@ -1,9 +1,11 @@
+import { ChannelInfoPanel } from "@/components/organisms/channel-info-pannel/ChannelInfoPannel";
 import { Sidebar } from "@/components/organisms/sidebar/Sidebar";
 
-export function Layout() {
+export function Dashboard() {
   return (
     <div className="flex w-full h-screen mx-auto max-w-275">
       <Sidebar />
+
       <main className="flex-1 overflow-y-auto border-r ">
         <div className="space-y-4">
           {Array.from({ length: 30 }).map((_, index) => (
@@ -19,7 +21,7 @@ export function Layout() {
         </div>
       </main>
       <aside className="sticky top-0 h-screen w-[320px]">
-        <p>channel info pannel</p>
+        <ChannelInfoPanel />
       </aside>
     </div>
   );

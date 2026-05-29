@@ -30,7 +30,6 @@ export function Sidebar() {
             <p className="text-[12px] text-neutral-400">@hyakkimaru</p>
           </div>
         </div>
-
         <SettingsBar />
       </div>
       {/* Replies preview */}
