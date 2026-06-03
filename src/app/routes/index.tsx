@@ -5,15 +5,8 @@ import { ProtectedRoute } from "@/app/routes/guards/ProtectedRouter";
 import { LoginPage } from "@/components/pages/login-page/LoginPage";
 import { RegisterPage } from "@/components/pages/register-page/RegisterPage";
 import { FeedPage } from "@/components/pages/feed-page/FeedPage";
-// import { UserPage } from "@/components/pages/user-profile-panel/UserProfilePanel";
-
-function BPage() {
-  return <div>This is name B PAGE</div>;
-}
-
-function NotFoundPage() {
-  return <div> Not FOUND PAGE</div>;
-}
+import { NotFoundPage } from "@/components/pages/not-found-page/NotFoundPage";
+import { FakePosts } from "@/shared/ui-custom/FakePosts";
 
 export const AppRouter = () => {
   return (
@@ -23,13 +16,12 @@ export const AppRouter = () => {
 
       <Route element={<ProtectedRoute />}>
         <Route path={routes.home} element={<AppLayout />}>
-          <Route index element={<FeedPage />} />
-          <Route path={routes.users.param} element={<BPage />} />
-          <Route path="/b" element={<BPage />} />
+          <Route path="/feed" element={<FeedPage />} />
+          <Route path={routes.users.param} element={<FakePosts />} />
+          <Route index element={<FakePosts />} />
         </Route>
       </Route>
 
-      {/* 404 */}
       <Route path={routes.notFound} element={<NotFoundPage />} />
     </Routes>
   );

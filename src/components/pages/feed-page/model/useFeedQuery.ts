@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getFeed } from "../api/getFeet";
+import { getFeed } from "../api/getFeed";
 
-export const useFeed = () => {
+export const useFeedQuery = () => {
   return useQuery({
     queryKey: ["feed"],
     queryFn: () => getFeed(),

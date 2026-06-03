@@ -1,5 +1,5 @@
-import { useAuthStore } from "@/app/store/auth";
-import { api } from "@/shared/api/axios";
+import { useUser } from "@/shared/hooks/query/useUser";
+import { useProfileUser } from "@/shared/hooks/useProfileUser";
 import {
   Avatar,
   AvatarBadge,
@@ -7,52 +7,10 @@ import {
   AvatarImage,
 } from "@/shared/ui/avatar";
 
-import { useQuery } from "@tanstack/react-query";
-import { jwtDecode } from "jwt-decode";
 import { Bell, Edit } from "lucide-react";
-import { useParams } from "react-router-dom";
-
-type User = {
-  id: string;
-  userName: string;
-  namePreview: string;
-  subscribersCount: number;
-  isSubscribed: boolean;
-};
-
-const getUser = async (useName: string): Promise<User> => {
-  const data = await api.get<User>(`/users/${useName}`);
-  return data.data;
-};
-
-export const useUser = (userName: string) => {
-  return useQuery({
-    queryKey: ["user", userName],
-    queryFn: () => getUser(userName),
-  });
-};
-
-type JWTPayload = {
-  name: string;
-};
 
 export function UserProfilePanel() {
-  const token = useAuthStore((state) => state.accessToken);
-  const me = token ? jwtDecode<JWTPayload>(token) : null;
-
-  const { id } = useParams();
-
-  const isSelfProfile = !id || id === me?.name;
-
-  const userName = isSelfProfile ? me?.name : id;
-
-  // if (!token) {
-  //   // користувач не залогінений
-  //   return null; // або loading / redirect
-  // }
-
-  if (!userName) return <div>User not found</div>;
-
+  const { userName } = useProfileUser();
   const { data: user } = useUser(userName);
 
   return (
@@ -85,22 +43,5 @@ export function UserProfilePanel() {
         </div>
       </div>
     </aside>
-  );
-}
-
-function FakePosts() {
-  return (
-    <div className="space-y-4">
-      {Array.from({ length: 30 }).map((_, index) => (
-        <div key={index} className="px-4 py-10 border shadow-sm rounded-xl">
-          <h3 className="mb-2 text-lg font-semibold">Post #{index + 1}</h3>
-
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur,
-            voluptatem.
-          </p>
-        </div>
-      ))}
-    </div>
   );
 }

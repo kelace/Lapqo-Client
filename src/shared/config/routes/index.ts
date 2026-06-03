@@ -4,8 +4,8 @@ export const routes = {
   register: "/register",
   users: {
     base: "/users",
-    param: "/users/:id",
-    detail: (id: string | number) => `/users/${id}`,
+    param: "/users/:name",
+    detail: (name: string) => `/users/${name}`,
   },
   notFound: "*",
 };

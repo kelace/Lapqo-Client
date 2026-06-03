@@ -9,37 +9,20 @@ import { SettingsBar } from "./ui/SettingsBar";
 import { FilterTabs } from "./ui/FilterTabs";
 import { ChannelItem } from "./ui/ChannelItem";
 import { SideLinks } from "./ui/SideLinks";
-import { jwtDecode } from "jwt-decode";
-import { useAuthStore } from "@/app/store/auth";
-import { useUser } from "@/components/pages/user-profile-panel/UserProfilePanel";
-
-type JWTPayload = {
-  name: string;
-};
+import { useCurrentUser } from "@/shared/hooks/useCurrentUser";
+import { useUser } from "@/shared/hooks/query/useUser";
 
 export function Sidebar() {
+  const { userName: me } = useCurrentUser();
+  const { data: user } = useUser(me);
+
   const channels = Array(5).fill({
-    name: "Drinking beer channel",
-    img: "https://github.com/shadcn.png",
-    preview: "Tutorial #1 how drink beer without ...",
+    name: "Discovery channel",
+    preview: "The World is Just Awesome",
   });
 
-  const token = useAuthStore((state) => state.accessToken);
-
-  if (!token) {
-    // користувач не залогінений
-    return null; // або loading / redirect
-  }
-
-  const payload = jwtDecode<JWTPayload>(token);
-  const userName = payload.name;
-
-  const { data: user } = useUser(userName);
-
-  console.log(user);
-
   return (
-    <aside className="flex flex-col h-screen gap-4 overflow-hidden border border-gray-400/20 bg-[#0d1426] p-5">
+    <aside className="flex flex-col h-screen gap-4 overflow-hidden border border-gray-400/20 bg-[#0d1426] p-5 min-w-[320px]">
       <div className="space-y-2.5 flex items-start justify-between">
         <div className="flex gap-3 ">
           <Avatar className="w-15 h-15">
@@ -65,7 +48,7 @@ export function Sidebar() {
           <AvatarGroup>
             {Array.from({ length: 4 }).map((_, index) => (
               <Avatar key={index} className="size-7">
-                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarImage src={undefined} />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             ))}
@@ -83,7 +66,6 @@ export function Sidebar() {
           Your channels
         </h3>
         {channels.map((ch, i) => (
-          // <li>{ch.name}</li>
           <ChannelItem
             key={i}
             name={ch.name}

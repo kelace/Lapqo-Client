@@ -1,6 +1,6 @@
 import { Sidebar } from "@/components/organisms/sidebar/Sidebar";
+import { UserProfilePanel } from "@/components/organisms/user-profile-panel/UserProfilePanel";
 import { Outlet } from "react-router-dom";
-import { UserProfilePanel } from "../../pages/user-profile-panel/UserProfilePanel";
 
 export function AppLayout() {
   return (
