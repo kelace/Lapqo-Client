@@ -6,37 +6,56 @@ export function SettingsBar() {
   const { theme, setTheme } = useTheme();
   const logout = useAuthStore((state) => state.logout);
 
+  const isDark = theme === "dark";
+
+  const buttons = (
+    isDark: boolean,
+    setTheme: (theme: string) => void,
+    logout: () => void,
+  ) => [
+    {
+      label: "Toggle theme",
+      icon: isDark ? Moon : Sun,
+      onClick: () => setTheme(isDark ? "light" : "dark"),
+    },
+    {
+      label: "Settings",
+      icon: Settings,
+    },
+    {
+      label: "Logout",
+      icon: LogOut,
+      onClick: logout,
+      danger: true,
+    },
+  ];
+
+  const items = buttons(isDark, setTheme, logout);
+
   return (
     <div
       className="
-      flex 
-      items-center 
-      gap-2 
-      bg-neutral-100 
-      rounded-lg 
-      px-3 py-2 
-      text-[13px] 
-      text-neutral-400"
+        flex items-center gap-1.5
+        bg-[#191837]
+        rounded-lg px-2 py-1.5
+        text-[#fafafa]
+      "
     >
-      <button
-        type="button"
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="cursor-pointer hover:text-red-500"
-        aria-label="Toggle theme"
-      >
-        {theme === "light" ? <Sun size={14} /> : <Moon size={14} />}
-      </button>
+      {/* Theme toggle */}
 
-      <Settings size={14} />
+      {items.map((btn) => {
+        const Icon = btn.icon;
 
-      <button
-        type="button"
-        onClick={logout}
-        className="cursor-pointer hover:text-red-500"
-        aria-label="Logout"
-      >
-        <LogOut size={14} />
-      </button>
+        return (
+          <button
+            key={btn.label}
+            className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-white/10 hover:text-white cursor-pointer transition-colors duration-200"
+            onClick={btn.onClick}
+          >
+            <Icon size={18} />
+          </button>
+        );
+      })}
     </div>
   );
 }

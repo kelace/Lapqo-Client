@@ -16,7 +16,7 @@ export function ChannelItem({
   unreadCount,
 }: ChannelItemProps) {
   return (
-    <div className="flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-neutral-100">
+    <li className="flex items-center gap-3 py-2 rounded-lg cursor-pointer hover:bg-neutral-100">
       <Avatar className="size-10">
         <AvatarImage src={avatar} />
         <AvatarFallback>{name[0]}</AvatarFallback>
@@ -41,6 +41,6 @@ export function ChannelItem({
           </span>
         </div>
       ) : null}
-    </div>
+    </li>
   );
 }

@@ -5,15 +5,19 @@ import { InfoSection } from "./ui/InfoSection";
 
 export function ChannelInfoPanel() {
   return (
-    <aside className="sticky top-0 h-screen w-[320px] flex flex-col overflow-y-auto border-l border-neutral-200 ">
+    <aside
+      className="sticky top-0 h-screen w-[320px] flex flex-col overflow-y-auto 
+    border border-gray-400/20 bg-[#0d1426] p-5
+    "
+    >
       {/* Header */}
-      <div className="flex-col gap-2 px-3 py-4 text-center border-b flexitems-center border-neutral-100">
+      <div className="flex-col gap-2 px-3 py-4 text-center flexitems-center border-b border-gray-400/20">
         <Avatar className="mx-auto mb-2 w-35 h-35">
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <div className="mb-2">
-          <p className="text-[15px] font-medium text-neutral-800">
+          <p className="text-[18px] font-medium ">
             The Bartender's Bible channel
           </p>
           <p className="text-[12px] text-neutral-400 mt-0.5">
@@ -21,10 +25,10 @@ export function ChannelInfoPanel() {
           </p>
         </div>
         <div className="flex gap-1.5 justify-center">
-          <button className="flex items-center gap-1 text-[12px] px-3 py-1.5 rounded-lg bg-blue-50 text-blue-600 font-medium hover:bg-blue-100 transition-colors cursor-pointer">
+          <button className="flex min-w-30 items-center gap-1 text-[14px] px-4 py-2 rounded-lg bg-[#5d2ac3] text-white font-medium  cursor-pointer">
             <Bell size={13} /> Subscribe
           </button>
-          <button className="flex items-center gap-1 text-[12px] px-3 py-1.5 rounded-lg border border-neutral-200 text-neutral-600 hover:bg-neutral-50 transition-colors cursor-pointer">
+          <button className="flex min-w-30 items-center justify-center gap-1 text-[14px] px-4 py-2 rounded-lg border border-gray-400/20  cursor-pointer">
             <Edit size={13} /> Write
           </button>
         </div>
