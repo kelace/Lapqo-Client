@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { routes } from "@/shared/config/routes";
 import type { FeedPost } from "../types";
-import { useToggleLikePost } from "../model/useLikePost";
+import { useToggleLikePost } from "../model/useToggleLikePost";
 
 type PostItemProps = {
   post: FeedPost;

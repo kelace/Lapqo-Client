@@ -1,7 +1,11 @@
 import { PostItem } from "./PostItem";
 import type { FeedPost } from "../types";
 
-export function FeedList({ posts }: { posts: FeedPost[] }) {
+type FeedListProps = {
+  posts: FeedPost[];
+};
+
+export function FeedList({ posts }: FeedListProps) {
   return (
     <ul className="divide-y">
       {posts.map((post) => (

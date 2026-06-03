@@ -5,11 +5,12 @@ import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
 import { Button } from "@/shared/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/ui/card";
+
 import {
   registerSchema,
   type RegisterForm,
-} from "./model/schema/register.schema";
-import { useRegister } from "./model/hooks/useRegister";
+} from "@/shared/schemas/register.schema";
+import { useRegister } from "@/shared/hooks/query/useRegister";
 
 export function RegisterPage() {
   const navigate = useNavigate();

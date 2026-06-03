@@ -1,8 +1,8 @@
-import { useFeed } from "./model/useFeed";
+import { useFeedQuery } from "./model/useFeedQuery";
 import { FeedList } from "./ui/FeedList";
 
 export function FeedPage() {
-  const { data, isLoading, isError } = useFeed();
+  const { data, isLoading, isError } = useFeedQuery();
 
   if (isLoading) {
     return (

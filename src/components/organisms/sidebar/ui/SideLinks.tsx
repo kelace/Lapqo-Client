@@ -3,8 +3,8 @@ import { Home, Rss } from "lucide-react";
 
 export function SideLinks() {
   const links = [
-    { to: "/b", label: "Index", icon: Home },
-    { to: "/", label: "Feed", icon: Rss },
+    { to: "/", label: "Index", icon: Home },
+    { to: "/feed", label: "Feed", icon: Rss },
   ];
 
   return (

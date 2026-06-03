@@ -1,7 +1,6 @@
 import { z } from "zod";
 
-export type RegisterForm = z.infer<typeof registerSchema>;
-
+// src/features/auth/model/schemas/register.schema.ts
 export const registerSchema = z
   .object({
     name: z.string().min(2, "Name is too short"),
@@ -13,3 +12,5 @@ export const registerSchema = z
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
+
+export type RegisterForm = z.infer<typeof registerSchema>;

@@ -7,9 +7,8 @@ import { Input } from "@/shared/ui/input";
 import { Button } from "@/shared/ui/button";
 import { Label } from "@/shared/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/ui/card";
-import { useLogin } from "@/components/pages/login-page/model/hooks/useLogin";
-import { loginSchema } from "./model/schema/login.schema";
-import type { LoginForm } from "./model/schema/login.schema";
+import { loginSchema, type LoginForm } from "@/shared/schemas/login.schema";
+import { useLogin } from "@/shared/hooks/query/useLogin";
 
 export function LoginPage() {
   const [show, setShow] = useState(false);
