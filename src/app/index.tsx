@@ -5,13 +5,19 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
 import App from "./App.tsx";
+import { ModalProvider } from "@/app/context/ModalContext";
+import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <QueryProvider>
-        <Toaster position="top-right" />
-        <App />
+        <BrowserRouter>
+          <ModalProvider>
+            <Toaster position="top-right" />
+            <App />
+          </ModalProvider>
+        </BrowserRouter>
       </QueryProvider>
     </ThemeProvider>
   </StrictMode>,

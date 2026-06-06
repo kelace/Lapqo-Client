@@ -6,7 +6,7 @@ import { LoginPage } from "@/components/pages/login-page/LoginPage";
 import { RegisterPage } from "@/components/pages/register-page/RegisterPage";
 import { FeedPage } from "@/components/pages/feed-page/FeedPage";
 import { NotFoundPage } from "@/components/pages/not-found-page/NotFoundPage";
-import { FakePosts } from "@/shared/ui-custom/FakePosts";
+import { FakePosts } from "@/shared/ui/FakePosts";
 
 export const AppRouter = () => {
   return (

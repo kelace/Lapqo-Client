@@ -1,15 +1,15 @@
+import { RightSidebar } from "@/components/organisms/right-sidebar/RightSidebar";
 import { Sidebar } from "@/components/organisms/sidebar/Sidebar";
-import { UserProfilePanel } from "@/components/organisms/user-profile-panel/UserProfilePanel";
 import { Outlet } from "react-router-dom";
 
 export function AppLayout() {
   return (
-    <div className="flex w-full h-screen mx-auto max-w-300 py-10 gap-4">
+    <div className="mx-auto flex h-screen w-full max-w-300 gap-4 py-10">
       <Sidebar />
-      <main className="flex-1 overflow-y-auto ">
+      <main className="flex-1 overflow-y-auto">
         <Outlet />
       </main>
-      <UserProfilePanel />
+      <RightSidebar />
     </div>
   );
 }

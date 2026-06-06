@@ -27,36 +27,26 @@ export function PostItem({ post }: PostItemProps) {
   });
 
   return (
-    <li className="px-5 py-6 hover:bg-muted/40 transition-colors bg-[#0e1527] border border-gray-400/20 rounded-lg  not-last:mb-4">
+    <li className="hover:bg-muted/40 bg-sidebar border-border-gray rounded-lg border px-5 py-6 transition-colors not-last:mb-4">
       <article className="flex flex-col gap-3">
         <header className="flex items-center gap-2">
-          <Link
-            to={routes.users.detail(post.authorUserName)}
-            className="font-semibold hover:underline"
-          >
+          <Link to={routes.users.detail(post.authorUserName)} className="font-semibold hover:underline">
             @{post.authorUserName}
           </Link>
-          <time
-            dateTime={post.createdAt}
-            className="text-sm text-muted-foreground"
-          >
+          <time dateTime={post.createdAt} className="text-muted-foreground text-sm">
             {formattedDate}
           </time>
         </header>
 
         <p className="text-sm leading-relaxed">{post.content}</p>
 
-        <footer className="flex items-center gap-1 text-muted-foreground">
+        <footer className="text-muted-foreground flex items-center gap-1">
           <button
-            className={`flex items-center gap-1 text-sm transition-colors hover:text-rose-500
-              ${post.likedByCurrentUser ? "text-rose-500" : ""}`}
+            className={`flex items-center gap-1 text-sm transition-colors hover:text-rose-500 ${post.likedByCurrentUser ? "text-rose-500" : ""}`}
             // aria-label={post.likedByCurrentUser ? "Зняти лайк" : "Лайкнути"}
             onClick={handleLike}
           >
-            <Heart
-              size={16}
-              className={post.likedByCurrentUser ? "fill-rose-500" : ""}
-            />
+            <Heart size={16} className={post.likedByCurrentUser ? "fill-rose-500" : ""} />
             <span>{post.likesCount}</span>
           </button>
         </footer>
