@@ -36,7 +36,7 @@ export function AppSidebar() {
         <Channels />
       </SidebarContent>
 
-      <SidebarFooter>
+      <SidebarFooter className="overflow-hidden">
         <div
           className={cn(
             "transition-all duration-300 ease-out",

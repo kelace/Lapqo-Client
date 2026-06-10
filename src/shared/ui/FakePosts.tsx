@@ -11,7 +11,7 @@ export function FakePosts() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 overflow-y-auto">
       <button type="button" onClick={() => handleOpen()}>
         Відкрити
       </button>

@@ -11,16 +11,17 @@ import { AppSidebar } from "@/components/organisms/app-sidebar/AppSidebar";
 
 export function AppLayout() {
   return (
-    <div className="flex min-h-screen justify-center">
-      <div className="h-screen w-full max-w-7xl overflow-hidden">
-        <SidebarProvider className="gap-4">
+    <div className="flex min-h-screen justify-center border">
+      <div className="h-screen w-full max-w-7xl">
+        <SidebarProvider>
           <AppSidebar />
-          {/* <SidebarMy /> */}
-          <SidebarInset className="flex-1 overflow-y-auto">
-            <SidebarTrigger />
+          <SidebarInset className="flex-1 px-4">
+            <SidebarTrigger className="lg:hidden" />
             <Outlet />
           </SidebarInset>
-          <RightSidebar />
+          <div className="hidden w-[300px] shrink-0 lg:block">
+            <RightSidebar />
+          </div>
         </SidebarProvider>
       </div>
     </div>
