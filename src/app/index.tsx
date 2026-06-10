@@ -5,8 +5,9 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
 import App from "./App.tsx";
-import { ModalProvider } from "@/app/context/ModalContext";
 import { BrowserRouter } from "react-router-dom";
+import { ModalProvider } from "./context/ModalProvider/ModalProvider.tsx";
+import { SidebarProvider } from "@/shared/shadcn/ui/sidebar.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

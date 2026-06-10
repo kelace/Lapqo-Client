@@ -1,12 +1,16 @@
-import { Avatar, AvatarBadge, AvatarFallback, AvatarGroup, AvatarImage } from "@/shared/shadcn/ui/avatar";
+import {
+  Avatar,
+  AvatarBadge,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarImage,
+} from "@/shared/shadcn/ui/avatar";
 import { SettingsBar } from "./ui/SettingsBar";
 import { FilterTabs } from "./ui/FilterTabs";
 import { ChannelItem } from "./ui/ChannelItem";
 import { SideLinks } from "./ui/SideLinks";
 import { useCurrentUser } from "@/shared/hooks/useCurrentUser";
 import { useUser } from "@/shared/hooks/query/useUser";
-import { useModalStack } from "@/app/context/ModalContext";
-import { useProfileUser } from "@/shared/hooks/useProfileUser";
 
 export function Sidebar() {
   const { userName: me } = useCurrentUser();
@@ -26,7 +30,9 @@ export function Sidebar() {
             <AvatarFallback>{user?.namePreview}</AvatarFallback>
           </Avatar>
           <div>
-            <p className="text-[14px] font-medium uppercase">{user?.userName}</p>
+            <p className="text-[14px] font-medium uppercase">
+              {user?.userName}
+            </p>
             <p className="text-text-gray y text-[12px]">@{user?.userName}</p>
           </div>
         </div>
@@ -36,9 +42,16 @@ export function Sidebar() {
       <SideLinks />
       {/* ChannelList */}
       <ul className="border-border-gray flex-1 overflow-y-auto rounded-lg border p-4">
-        <h3 className="text-text-gray mb-3 text-[11px] font-medium tracking-wide uppercase">Your channels</h3>
+        <h3 className="text-text-gray mb-3 text-[11px] font-medium tracking-wide uppercase">
+          Your channels
+        </h3>
         {channels.map((ch, i) => (
-          <ChannelItem key={i} name={ch.name} avatar={ch.img} lastMessage={ch.preview} />
+          <ChannelItem
+            key={i}
+            name={ch.name}
+            avatar={ch.img}
+            lastMessage={ch.preview}
+          />
         ))}
       </ul>
     </aside>

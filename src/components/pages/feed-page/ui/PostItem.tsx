@@ -27,13 +27,19 @@ export function PostItem({ post }: PostItemProps) {
   });
 
   return (
-    <li className="hover:bg-muted/40 bg-sidebar border-border-gray rounded-lg border px-5 py-6 transition-colors not-last:mb-4">
+    <li className="hover:bg-muted/40 border-border-gray rounded-lg border px-5 py-6 transition-colors not-last:mb-4">
       <article className="flex flex-col gap-3">
         <header className="flex items-center gap-2">
-          <Link to={routes.users.detail(post.authorUserName)} className="font-semibold hover:underline">
+          <Link
+            to={routes.users.detail(post.authorUserName)}
+            className="font-semibold hover:underline"
+          >
             @{post.authorUserName}
           </Link>
-          <time dateTime={post.createdAt} className="text-muted-foreground text-sm">
+          <time
+            dateTime={post.createdAt}
+            className="text-muted-foreground text-sm"
+          >
             {formattedDate}
           </time>
         </header>
@@ -46,7 +52,10 @@ export function PostItem({ post }: PostItemProps) {
             // aria-label={post.likedByCurrentUser ? "Зняти лайк" : "Лайкнути"}
             onClick={handleLike}
           >
-            <Heart size={16} className={post.likedByCurrentUser ? "fill-rose-500" : ""} />
+            <Heart
+              size={16}
+              className={post.likedByCurrentUser ? "fill-rose-500" : ""}
+            />
             <span>{post.likesCount}</span>
           </button>
         </footer>

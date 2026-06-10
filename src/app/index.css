@@ -13,6 +13,7 @@
   --text-gray: #737373;
   --text-primary: #000000;
 
+  --accent: #5d2ac3;
   --primary: #5d2ac3;
   --primary-hover: #4f22a8;
 
@@ -27,6 +28,7 @@
   --text-gray: #737373;
   --text-primary: #ffffff;
 
+  --accent: #5d2ac3;
   --primary: #5d2ac3;
   --primary-hover: #6b34d9;
 
@@ -37,6 +39,7 @@
 @theme {
   --color-background: var(--background);
   --color-sidebar: var(--sidebar);
+  --color-accent: var(--accent);
 
   --color-text: var(--text-gray);
   --color-text-primary: var(--text-primary);
