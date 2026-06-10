@@ -5,6 +5,8 @@ export function useProfileUser() {
   const { name } = useParams();
   const { userName: me } = useCurrentUser();
 
+  console.log(name);
+
   const userName = name ?? me;
   const isSelfProfile = userName === me;
 

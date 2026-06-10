@@ -6,17 +6,21 @@ export function FeedPage() {
 
   if (isLoading) {
     return (
-      <div className="p-8 text-center text-muted-foreground">Loading...</div>
+      <div className="text-muted-foreground p-8 text-center">Loading...</div>
     );
   }
 
   if (isError) {
     return (
-      <div className="p-8 text-center text-destructive">
+      <div className="text-destructive p-8 text-center">
         Failed to load feed. Please try again later.
       </div>
     );
   }
 
-  return <FeedList posts={data ?? []} />;
+  return (
+    <>
+      <FeedList posts={data ?? []} />
+    </>
+  );
 }

@@ -7,7 +7,7 @@ type FeedListProps = {
 
 export function FeedList({ posts }: FeedListProps) {
   return (
-    <ul className="divide-y">
+    <ul className="divide-y border">
       {posts.map((post) => (
         <PostItem key={post.id} post={post} />
       ))}

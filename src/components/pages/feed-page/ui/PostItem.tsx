@@ -27,7 +27,7 @@ export function PostItem({ post }: PostItemProps) {
   });
 
   return (
-    <li className="px-5 py-6 hover:bg-muted/40 transition-colors bg-[#0e1527] border border-gray-400/20 rounded-lg  not-last:mb-4">
+    <li className="hover:bg-muted/40 border-border-gray rounded-lg border px-5 py-6 transition-colors not-last:mb-4">
       <article className="flex flex-col gap-3">
         <header className="flex items-center gap-2">
           <Link
@@ -38,7 +38,7 @@ export function PostItem({ post }: PostItemProps) {
           </Link>
           <time
             dateTime={post.createdAt}
-            className="text-sm text-muted-foreground"
+            className="text-muted-foreground text-sm"
           >
             {formattedDate}
           </time>
@@ -46,10 +46,9 @@ export function PostItem({ post }: PostItemProps) {
 
         <p className="text-sm leading-relaxed">{post.content}</p>
 
-        <footer className="flex items-center gap-1 text-muted-foreground">
+        <footer className="text-muted-foreground flex items-center gap-1">
           <button
-            className={`flex items-center gap-1 text-sm transition-colors hover:text-rose-500
-              ${post.likedByCurrentUser ? "text-rose-500" : ""}`}
+            className={`flex items-center gap-1 text-sm transition-colors hover:text-rose-500 ${post.likedByCurrentUser ? "text-rose-500" : ""}`}
             // aria-label={post.likedByCurrentUser ? "Зняти лайк" : "Лайкнути"}
             onClick={handleLike}
           >
