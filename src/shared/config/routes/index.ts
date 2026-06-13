@@ -1,6 +1,7 @@
 export const routes = {
   home: "/",
   login: "/login",
+  feed: "/feed",
   register: "/register",
   users: {
     base: "/users",
