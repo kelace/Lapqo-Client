@@ -7,6 +7,11 @@ type JWTPayload = {
 
 export const useCurrentUser = () => {
   const token = useAuthStore((state) => state.accessToken);
+
+  // if (!token) {
+  //   return { userName: null, token: null };
+  // }
+
   const payload = token ? jwtDecode<JWTPayload>(token) : null;
 
   return {

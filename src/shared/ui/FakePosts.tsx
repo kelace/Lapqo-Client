@@ -1,6 +1,6 @@
 import { useModalStack } from "@/app/context/ModalProvider/useModalStack";
 import { useProfileUser } from "../hooks/useProfileUser";
-import { UserProfilePanel } from "@/components/organisms/user-profile-panel/UserProfilePanel";
+import { UserProfilePanel } from "@/components/widgets/user-profile-panel/UserProfilePanel";
 
 export function FakePosts() {
   const { openModal } = useModalStack();

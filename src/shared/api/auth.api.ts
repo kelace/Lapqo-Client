@@ -13,7 +13,7 @@ type LoginData = {
 
 export const authApi = {
   register: (data: RegistenData) => {
-    console.log("Registering user with data:", data);
+    // console.log("Registering user with data:", data);
     return api.post("/auth/register", data);
   },
   login: (data: LoginData) => api.post("/auth/login", data),

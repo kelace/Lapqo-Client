@@ -1,12 +1,12 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { routes } from "@shared/config/routes";
-import { AppLayout } from "@/components/template/AppLayout/AppLayout";
+import { AppLayout } from "@/components/widgets/layout/AppLayout";
 import { ProtectedRoute } from "@/app/routes/guards/ProtectedRouter";
 import { LoginPage } from "@/components/pages/login-page/LoginPage";
 import { RegisterPage } from "@/components/pages/register-page/RegisterPage";
 import { FeedPage } from "@/components/pages/feed-page/FeedPage";
 import { NotFoundPage } from "@/components/pages/not-found-page/NotFoundPage";
-import { FakePosts } from "@/shared/ui/FakePosts";
+import { UserPostsPage } from "@/components/pages/user-posts-page/UserPostsPage";
 
 export const AppRouter = () => {
   return (
@@ -16,9 +16,10 @@ export const AppRouter = () => {
 
       <Route element={<ProtectedRoute />}>
         <Route path={routes.home} element={<AppLayout />}>
-          <Route path="/feed" element={<FeedPage />} />
-          <Route path={routes.users.param} element={<FakePosts />} />
-          <Route index element={<FakePosts />} />
+          <Route index element={<Navigate to={routes.feed} replace />} />
+
+          <Route path={routes.feed} element={<FeedPage />} />
+          <Route path={routes.users.param} element={<UserPostsPage />} />
         </Route>
       </Route>
 
