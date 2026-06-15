@@ -14,9 +14,9 @@ import { useCurrentUser } from "./useCurrentUser";
 
 export function useProfileUser() {
   const { name } = useParams();
-  const { userName: me } = useCurrentUser();
+  const { data: me } = useCurrentUser();
 
-  console.log(name);
+  // console.log(name);
 
   const userName = name ?? me;
   const isSelfProfile = userName === me;

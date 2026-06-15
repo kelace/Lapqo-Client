@@ -14,7 +14,7 @@ import { UserBlock } from "./ui/UserBlock";
 import { Channels } from "./ui/Channels";
 
 export function AppSidebar() {
-  const { userName: me } = useCurrentUser();
+  const { data: me } = useCurrentUser();
   const { data: user } = useUser(me);
   const { state, isMobile } = useSidebar();
   const isDesktopCollapsed = state === "collapsed";
