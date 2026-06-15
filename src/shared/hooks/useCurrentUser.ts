@@ -3,6 +3,7 @@ import { jwtDecode } from "jwt-decode";
 
 type JWTPayload = {
   name: string;
+  sub: string;
 };
 
 export const useCurrentUser = () => {
@@ -16,7 +17,7 @@ export const useCurrentUser = () => {
 
   return {
     token,
-    userName: payload?.name,
+    data: payload?.name,
     payload,
   };
 };

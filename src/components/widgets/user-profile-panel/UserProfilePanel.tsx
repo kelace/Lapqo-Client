@@ -1,15 +1,27 @@
 import { Bell, Edit } from "lucide-react";
 import { useUser } from "@/shared/hooks/query/useUser";
-import {
-  Avatar,
-  AvatarBadge,
-  AvatarFallback,
-  AvatarImage,
-} from "@/shared/shadcn/ui/avatar";
+import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
+import { useSubscribeUser } from "@/components/features/subscription-user/model/useSubscribeUser";
+import { useUnsubscribeUser } from "@/components/features/subscription-user/model/useUnsubscribeUser";
 
 export function UserProfilePanel({ userName }: { userName?: string }) {
-  // const { userName } = useProfileUser();
+  // const { payload } = useCurrentUser();
   const { data: user } = useUser(userName);
+
+  const subscribeMutation = useSubscribeUser(user?.id ?? "", userName);
+  const unsubscribeUser = useUnsubscribeUser(user?.id ?? "", userName);
+
+  const isPending = subscribeMutation.isPending || unsubscribeUser.isPending;
+
+  const handleSubscribe = () => {
+    if (!user?.id) return;
+
+    if (user?.isSubscribed) {
+      unsubscribeUser.mutate();
+    } else {
+      subscribeMutation.mutate();
+    }
+  };
 
   return (
     <aside className="bg-sidebar sticky top-0 h-screen w-[320px] border">
@@ -30,7 +42,11 @@ export function UserProfilePanel({ userName }: { userName?: string }) {
 
           <div className="flex items-start justify-center gap-4">
             <div className="flex justify-center gap-1.5">
-              <button className="bg-primary flex min-w-30 cursor-pointer items-center justify-center gap-1 rounded-lg px-4 py-2 text-[14px] font-medium text-white">
+              <button
+                className="bg-primary flex min-w-30 cursor-pointer items-center justify-center gap-1 rounded-lg px-4 py-2 text-[14px] font-medium text-white"
+                disabled={isPending}
+                onClick={handleSubscribe}
+              >
                 <Bell size={13} /> {user?.isSubscribed ? "Following" : "Follow"}
               </button>
               <button className="flex min-w-30 cursor-pointer items-center justify-center gap-1 rounded-lg border border-gray-400/20 px-4 py-2 text-[14px]">
