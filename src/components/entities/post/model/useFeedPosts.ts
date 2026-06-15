@@ -3,7 +3,7 @@ import { getFeetPosts } from "../api/getFeetPosts";
 
 export const useFeedQuery = () => {
   return useQuery({
-    queryKey: ["feed"],
+    queryKey: ["posts", "feed"],
     queryFn: () => getFeetPosts(),
   });
 };

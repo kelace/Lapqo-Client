@@ -22,7 +22,7 @@ export function ToggleLikeButton({ postId, liked, likesCount }: Props) {
   return (
     <button
       className={cn(
-        "flex items-center gap-1 text-sm transition-colors hover:text-rose-500",
+        "flex cursor-pointer items-center gap-1 text-sm transition-colors hover:text-rose-500",
         liked && "text-rose-500",
       )}
       aria-label={liked ? "unlike" : "like"}
