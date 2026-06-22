@@ -1,4 +1,4 @@
-import { useProfileUser } from "@/shared/hooks/useProfileUser";
+import { useProfileUser } from "@/components/entities/user/model/useProfileUser";
 import { UserProfilePanel } from "../user-profile-panel/UserProfilePanel";
 
 export function RightSidebar() {

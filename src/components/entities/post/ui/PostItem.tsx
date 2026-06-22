@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { routes } from "@/shared/config/routes";
 import type { Post } from "../types";
-import { ToggleLikeButton } from "@/components/features/toggle-like-post/ui/ToggleLikeButton";
+import { PostLikeButton } from "@/components/features/post-like/ui/PostLikeButton";
 
 type Props = {
   post: Post;
@@ -37,7 +37,7 @@ export function PostItem({ post }: Props) {
 
         <footer className="text-muted-foreground flex items-center gap-1">
           {/* <PostActions post={post} /> */}
-          <ToggleLikeButton
+          <PostLikeButton
             postId={post.id}
             liked={post.likedByCurrentUser}
             likesCount={post.likesCount}
