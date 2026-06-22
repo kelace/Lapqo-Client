@@ -1,15 +1,4 @@
-import { UserPosts } from "@/components/widgets/user-post/ui/UserPosts";
-
-// export function UserPostsPage() {
-//   const { isSelfProfile } = useProfileUser();
-
-//   return (
-//     <>
-//       {isSelfProfile && <CreatePostForm />}
-//       <UserPosts />
-//     </>
-//   );
-// }
+import { UserPosts } from "@/components/widgets/user-posts/ui/UserPosts";
 
 export function UserPostsPage() {
   return <UserPosts />;

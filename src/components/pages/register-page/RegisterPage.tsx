@@ -4,25 +4,29 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/shared/shadcn/ui/label";
 import { Input } from "@/shared/shadcn/ui/input";
 import { Button } from "@/shared/shadcn/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/shared/shadcn/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/shared/shadcn/ui/card";
 
-import { registerSchema, type RegisterForm } from "@/shared/schemas/register.schema";
-import { useRegister } from "@/shared/hooks/query/useRegister";
+import {
+  registerSchema,
+  type RegisterForm,
+} from "@/shared/schemas/register.schema";
+import { useRegister } from "@/components/features/auth-register/model/useRegister";
 
 export function RegisterPage() {
-  const navigate = useNavigate();
   const register = useRegister();
 
   const form = useForm<RegisterForm>({
     resolver: zodResolver(registerSchema),
   });
 
+  // onSuccess треба винести в useRegister !
   const onSubmit = (data: RegisterForm) => {
-    register.mutate(data, {
-      onSuccess: () => {
-        navigate("/login");
-      },
-    });
+    register.mutate(data);
   };
 
   return (
@@ -44,25 +48,55 @@ function RegisterFormUI({ form, onSubmit }: { form: any; onSubmit: any }) {
           <div className="space-y-1">
             <Label htmlFor="name">Name</Label>
             <Input id="name" placeholder="Satanic" {...form.register("name")} />
-            {form.formState.errors.name && <p className="text-sm text-red-500">{form.formState.errors.name.message}</p>}
+            {form.formState.errors.name && (
+              <p className="text-sm text-red-500">
+                {form.formState.errors.name.message}
+              </p>
+            )}
           </div>
 
           <div className="space-y-1">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" placeholder="satanic@gmail.com" {...form.register("email")} />
-            {form.formState.errors.email && <p className="text-sm text-red-500">{form.formState.errors.email.message}</p>}
+            <Input
+              id="email"
+              placeholder="satanic@gmail.com"
+              {...form.register("email")}
+            />
+            {form.formState.errors.email && (
+              <p className="text-sm text-red-500">
+                {form.formState.errors.email.message}
+              </p>
+            )}
           </div>
 
           <div className="space-y-1">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" placeholder="••••••••" {...form.register("password")} />
-            {form.formState.errors.password && <p className="text-sm text-red-500">{form.formState.errors.password.message}</p>}
+            <Input
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              {...form.register("password")}
+            />
+            {form.formState.errors.password && (
+              <p className="text-sm text-red-500">
+                {form.formState.errors.password.message}
+              </p>
+            )}
           </div>
 
           <div className="space-y-1">
             <Label htmlFor="confirmPassword">Confirm password</Label>
-            <Input id="confirmPassword" type="password" placeholder="••••••••" {...form.register("confirmPassword")} />
-            {form.formState.errors.confirmPassword && <p className="text-sm text-red-500">{form.formState.errors.confirmPassword.message}</p>}
+            <Input
+              id="confirmPassword"
+              type="password"
+              placeholder="••••••••"
+              {...form.register("confirmPassword")}
+            />
+            {form.formState.errors.confirmPassword && (
+              <p className="text-sm text-red-500">
+                {form.formState.errors.confirmPassword.message}
+              </p>
+            )}
           </div>
 
           <Button type="submit" className="w-full">

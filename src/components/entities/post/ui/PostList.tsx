@@ -14,19 +14,3 @@ export function PostList({ posts }: Props) {
     </ul>
   );
 }
-
-// const { likeMutation, unlikeMutation } = useToggleLikePost();
-
-// const handleToggleLike = (id: string, liked: boolean) => {
-//   liked ? unlikeMutation.mutate(id) : likeMutation.mutate(id);
-// };
-
-// <PostItem post={post} onToggleLike={handleToggleLike} />;
-
-// features / toggle - like - post / ui / ToggleLikeButton.tsx;
-
-{
-  /* <PostItem post={post}>
-  <ToggleLikeButton post={post} />
-</PostItem>; */
-}

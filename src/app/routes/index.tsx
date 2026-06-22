@@ -1,12 +1,12 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { routes } from "@shared/config/routes";
-import { AppLayout } from "@/components/widgets/layout/AppLayout";
 import { ProtectedRoute } from "@/app/routes/guards/ProtectedRouter";
 import { LoginPage } from "@/components/pages/login-page/LoginPage";
 import { RegisterPage } from "@/components/pages/register-page/RegisterPage";
 import { FeedPage } from "@/components/pages/feed-page/FeedPage";
 import { NotFoundPage } from "@/components/pages/not-found-page/NotFoundPage";
 import { UserPostsPage } from "@/components/pages/user-posts-page/UserPostsPage";
+import { AppLayout } from "../layout/AppLayout";
 
 export const AppRouter = () => {
   return (

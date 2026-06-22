@@ -5,13 +5,13 @@ import {
   Sidebar,
   useSidebar,
 } from "@/shared/shadcn/ui/sidebar";
-import { useUser } from "@/shared/hooks/query/useUser";
-import { useCurrentUser } from "@/shared/hooks/useCurrentUser";
 import { SettingsBar } from "./ui/SettingsBar";
 import { SideLinks } from "./ui/SideLinks";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { UserBlock } from "./ui/UserBlock";
 import { Channels } from "./ui/Channels";
+import { useUser } from "@/components/entities/user/model/useUser";
+import { useCurrentUser } from "@/components/entities/user/model/useCurrentUser";
 
 export function AppSidebar() {
   const { data: me } = useCurrentUser();
