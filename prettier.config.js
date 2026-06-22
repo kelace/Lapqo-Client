@@ -1,18 +1,10 @@
 export default {
-  plugins: [
-    "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-tailwindcss",
-    "prettier-plugin-organize-attributes",
-    "prettier-plugin-packagejson",
-  ],
-
+  plugins: ["@ianvs/prettier-plugin-sort-imports"],
   printWidth: 80,
   tabWidth: 2,
   semi: true,
-  singleQuote: true,
+  singleQuote: false,
   trailingComma: "all",
-
-  importOrder: ["^react$", "<THIRD_PARTY_MODULES>", "^@/", "^[./]"],
-
-  importOrderSeparation: true,
+  importOrder: ["^react$", "<THIRD_PARTY_MODULES>", "^@/(.*)$", "^[./]"],
+  importOrderSeparation: false,
 };

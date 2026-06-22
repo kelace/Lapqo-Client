@@ -1,8 +1,8 @@
+import { useMutation } from "@tanstack/react-query";
+import type { AxiosError } from "axios";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/app/store/auth";
-import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import type { AxiosError } from "axios";
 import { authApi } from "@/components/entities/auth/api/auth.api";
 
 export const useLogin = () => {

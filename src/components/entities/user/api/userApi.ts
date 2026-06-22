@@ -1,4 +1,5 @@
 import { api } from "@/shared/api/axios";
+
 import type { User } from "../types";
 
 export const userApi = {

@@ -1,4 +1,5 @@
 import { useProfileOwner } from "@/components/entities/user/model/useProfileUser";
+
 import { UserProfilePanel } from "../user-profile-panel/UserProfilePanel";
 
 export function RightSidebar() {

@@ -1,6 +1,6 @@
-import { authApi } from "@/components/entities/auth/api/auth.api";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { authApi } from "@/components/entities/auth/api/auth.api";
 
 export const useRegister = () => {
   const navigate = useNavigate();

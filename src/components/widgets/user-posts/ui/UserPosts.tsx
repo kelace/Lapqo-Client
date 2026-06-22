@@ -2,10 +2,12 @@ import { PostEmpty } from "@/components/entities/post/ui/PostEmpty";
 import { PostError } from "@/components/entities/post/ui/PostError";
 import { PostList } from "@/components/entities/post/ui/PostList";
 import { PostLoading } from "@/components/entities/post/ui/PostLoading";
-import { RouteError } from "@/shared/ui/route-error/RouteError";
-import { useUserPosts } from "../model/useUserPosts";
-import { CreatePost } from "@/components/features/post-create/ui/CreatePost";
 import { useProfileOwner } from "@/components/entities/user/model/useProfileUser";
+import { CreatePost } from "@/components/features/post-create/ui/CreatePost";
+import { RouteError } from "@/shared/ui/route-error/RouteError";
+
+import { useUserPosts } from "../model/useUserPosts";
+
 import "./UserPosts.css";
 
 function QueryState<T>({

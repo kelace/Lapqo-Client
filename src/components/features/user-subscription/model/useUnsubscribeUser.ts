@@ -1,6 +1,6 @@
-import { userApi } from "@/components/entities/user/api/userApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { userApi } from "@/components/entities/user/api/userApi";
 
 export function useUnsubscribeUser(userId: string, userName?: string) {
   const queryClient = useQueryClient();
