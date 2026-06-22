@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useCurrentUser } from "./useCurrentUser";
+import { useAuthStore } from "@/app/store/auth";
 
-export function useProfileUser() {
+export function useProfileOwner() {
   const { name } = useParams();
-  const { data: me } = useCurrentUser();
+  const currentUser = useAuthStore((store) => store.currentUser);
 
-  const userName = name ?? me;
-  const isSelfProfile = userName === me;
+  const userName = name ?? currentUser?.name;
+  const isSelfProfile = userName === currentUser?.name;
 
   return {
     userName,

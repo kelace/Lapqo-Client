@@ -1,44 +1,35 @@
 import { create } from "zustand";
+import { jwtDecode } from "jwt-decode";
+import type { AuthState, JWTPayload, Me } from "./auth.types";
 
-type AuthState = {
-  accessToken: string | null;
-  refreshToken: string | null;
-  user: User | null;
-  setTokens: (access: string, refresh: string) => void;
-  setUser: (user: User | null) => void;
-  logout: () => void;
+const getInitialUser = (): Me | null => {
+  const token = localStorage.getItem("accessToken");
+  if (!token) return null;
+
+  const payload = jwtDecode<JWTPayload>(token);
+  return { id: payload.sub, name: payload.name };
 };
-
-type User = {
-  id: number;
-  name: string;
-};
-
+// ---------------------------------------
 export const useAuthStore = create<AuthState>((set) => ({
   accessToken: localStorage.getItem("accessToken"),
-  refreshToken: localStorage.getItem("refreshToken"),
 
-  user: null,
+  currentUser: getInitialUser(),
 
-  setTokens: (access, refresh) => {
-    localStorage.setItem("accessToken", access);
-    localStorage.setItem("refreshToken", refresh);
+  setAuth: (token) => {
+    localStorage.setItem("accessToken", token);
+    const payload = jwtDecode<JWTPayload>(token);
 
     set({
-      accessToken: access,
-      refreshToken: refresh,
+      accessToken: token,
+      currentUser: { id: payload.sub, name: payload.name },
     });
   },
 
-  setUser: (user: User | null) => set({ user }),
-
   logout: () => {
     localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
     set({
       accessToken: null,
-      refreshToken: null,
-      user: null,
+      currentUser: null,
     });
   },
 }));

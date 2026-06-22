@@ -6,7 +6,6 @@ import { useSubscribeUser } from "@/components/features/user-subscription/model/
 import { useUnsubscribeUser } from "@/components/features/user-subscription/model/useUnsubscribeUser";
 
 export function UserProfilePanel({ userName }: { userName?: string }) {
-  // const { payload } = useCurrentUser();
   const { data: user } = useUser(userName);
 
   const subscribeMutation = useSubscribeUser(user?.id ?? "", userName);
