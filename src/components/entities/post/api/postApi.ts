@@ -1,8 +1,5 @@
 import { api } from "@/shared/api/axios";
-
-type CreatePost = {
-  content: string;
-};
+import type { CreatePost, UpdatePost } from "../types";
 
 export const postApi = {
   create: async (data: CreatePost) => {
@@ -11,6 +8,12 @@ export const postApi = {
   },
   delete: async (id: string) => {
     const res = await api.delete(`/posts/${id}`);
+    return res.data;
+  },
+
+  // wait PATCH /posts/:id
+  update: async ({ id, data }: { id: string; data: UpdatePost }) => {
+    const res = await api.patch(`/posts/${id}`, data);
     return res.data;
   },
 
