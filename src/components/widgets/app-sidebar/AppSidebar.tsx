@@ -11,11 +11,11 @@ import { cn } from "@/shared/shadcn/lib/utils";
 import { UserBlock } from "./ui/UserBlock";
 import { Channels } from "./ui/Channels";
 import { useUser } from "@/components/entities/user/model/useUser";
-import { useCurrentUser } from "@/components/entities/user/model/useCurrentUser";
+import { useAuthStore } from "@/app/store/auth";
 
 export function AppSidebar() {
-  const { data: me } = useCurrentUser();
-  const { data: user } = useUser(me);
+  const currentUser = useAuthStore((store) => store.currentUser);
+  const { data: user } = useUser(currentUser?.name);
   const { state, isMobile } = useSidebar();
   const isDesktopCollapsed = state === "collapsed";
   const isCollapsed = isDesktopCollapsed && !isMobile;
@@ -24,7 +24,6 @@ export function AppSidebar() {
     <Sidebar
       collapsible="icon"
       variant="sidebar"
-      // style={{ position: "sticky" }}
       className="bg-sidebar sticky border"
     >
       <SidebarHeader className="mb-3 flex gap-3 border-b">
@@ -32,7 +31,7 @@ export function AppSidebar() {
       </SidebarHeader>
 
       <SidebarContent className="gap-5">
-        <SideLinks isCollapsed={isCollapsed} userName={me} />
+        <SideLinks isCollapsed={isCollapsed} userName={currentUser?.name} />
         <Channels />
       </SidebarContent>
 

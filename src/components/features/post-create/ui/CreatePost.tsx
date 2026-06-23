@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { ImagePlus, Send } from "lucide-react";
-
 import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
 import { Button } from "@/shared/shadcn/ui/button";
 import { Card, CardContent } from "@/shared/shadcn/ui/card";
 import { Textarea } from "@/shared/shadcn/ui/textarea";
+
 import { useCreatePost } from "../model/useCreatePost";
 
 export function CreatePost() {
