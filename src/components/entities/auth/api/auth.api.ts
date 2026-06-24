@@ -2,11 +2,11 @@ import { api } from "@/shared/api/axios";
 import type { LoginData, RegistenData } from "../types/auth.types";
 
 export const authApi = {
-  register: (data: RegistenData) => {
-    return api.post("/auth/register", data);
+  register: (credentials: RegistenData) => {
+    return api.post("/auth/register", credentials);
   },
-  login: (data: LoginData) => {
-    return api.post("/auth/login", data);
+  login: (credentials: LoginData) => {
+    return api.post("/auth/login", credentials);
   },
 };
 

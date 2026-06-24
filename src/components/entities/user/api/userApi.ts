@@ -1,5 +1,4 @@
 import { api } from "@/shared/api/axios";
-
 import type { User } from "../types";
 
 export const userApi = {
@@ -18,6 +17,3 @@ export const userApi = {
     return data;
   },
 };
-
-// У мене зараз використовується getUser як для пошуку користувача за ID та й для отримання Me
-// мені це не подобається...

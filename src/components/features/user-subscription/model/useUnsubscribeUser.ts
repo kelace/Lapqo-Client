@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { userApi } from "@/components/entities/user/api/userApi";
+import { userKeys } from "@/components/entities/user/keys/userKeys";
 
 export function useUnsubscribeUser(userId: string, userName?: string) {
   const queryClient = useQueryClient();
@@ -8,7 +9,9 @@ export function useUnsubscribeUser(userId: string, userName?: string) {
   return useMutation({
     mutationFn: () => userApi.unSubscribe(userId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["user", userName] });
+      queryClient.invalidateQueries({
+        queryKey: userKeys.byUserName(userName!),
+      });
     },
 
     onError: () => {

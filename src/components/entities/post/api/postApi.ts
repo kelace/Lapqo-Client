@@ -1,30 +1,34 @@
 import { api } from "@/shared/api/axios";
-import type { CreatePost, UpdatePost } from "../types";
+import type { PostContent, PostId, UpdatePostPayload } from "../types";
 
 export const postApi = {
-  create: async (data: CreatePost) => {
-    const res = await api.post("/posts", data);
-    return res.data;
-  },
-  delete: async (id: string) => {
-    const res = await api.delete(`/posts/${id}`);
-    return res.data;
+  getPost: async (id: PostId) => {
+    const { data } = await api.get(`/posts/${id}`);
+    return data;
   },
 
-  // wait PATCH /posts/:id
-  update: async ({ id, data }: { id: string; data: UpdatePost }) => {
-    const res = await api.patch(`/posts/${id}`, data);
-    return res.data;
+  create: async (newPost: PostContent) => {
+    const { data } = await api.post("/posts", newPost);
+    return data;
   },
 
-  like: async (postId: string) => {
-    const res = await api.post(`/posts/${postId}/like`);
-    return res.data;
+  delete: async (id: PostId) => {
+    const { data } = await api.delete(`/posts/${id}`);
+    return data;
   },
 
-  unLike: async (postId: string) => {
-    const res = await api.post(`/posts/${postId}/unlike`);
+  update: async ({ id, updates }: UpdatePostPayload) => {
+    const { data } = await api.patch(`/posts/${id}`, updates);
+    return data;
+  },
 
-    return res.data;
+  like: async (postId: PostId) => {
+    const { data } = await api.post(`/posts/${postId}/like`);
+    return data;
+  },
+
+  unLike: async (postId: PostId) => {
+    const { data } = await api.post(`/posts/${postId}/unlike`);
+    return data;
   },
 };

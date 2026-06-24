@@ -1,10 +1,11 @@
-import { Navigate, Route, Routes } from "react-router-dom";
 import { routes } from "@shared/config/routes";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "@/app/routes/guards/ProtectedRouter";
-import { LoginPage } from "@/components/pages/login-page/LoginPage";
-import { RegisterPage } from "@/components/pages/register-page/RegisterPage";
 import { FeedPage } from "@/components/pages/feed-page/FeedPage";
+import { LoginPage } from "@/components/pages/login-page/LoginPage";
 import { NotFoundPage } from "@/components/pages/not-found-page/NotFoundPage";
+import PostDetailPage from "@/components/pages/post-detail-page/ui/PostDetailPage";
+import { RegisterPage } from "@/components/pages/register-page/RegisterPage";
 import { UserPostsPage } from "@/components/pages/user-posts-page/UserPostsPage";
 import { AppLayout } from "../layout/AppLayout";
 
@@ -20,6 +21,7 @@ export const AppRouter = () => {
 
           <Route path={routes.feed} element={<FeedPage />} />
           <Route path={routes.users.param} element={<UserPostsPage />} />
+          <Route path="posts/:id" element={<PostDetailPage />} />
         </Route>
       </Route>
 
