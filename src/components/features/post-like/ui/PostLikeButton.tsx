@@ -22,7 +22,7 @@ export function PostLikeButton({ postId, liked, likesCount }: Props) {
   return (
     <button
       className={cn(
-        "flex cursor-pointer items-center gap-1 text-sm transition-colors hover:text-rose-500",
+        "flex cursor-pointer items-center gap-1 rounded-full bg-[#333d42] px-3 py-1 text-sm transition-colors hover:text-rose-500",
         liked && "text-rose-500",
       )}
       aria-label={liked ? "unlike" : "like"}

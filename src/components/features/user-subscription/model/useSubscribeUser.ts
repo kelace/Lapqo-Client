@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { userApi } from "@/components/entities/user/api/userApi";
+import { userKeys } from "@/components/entities/user/keys/userKeys";
 
 export const useSubscribeUser = (userId: string, userName?: string) => {
   const queryClient = useQueryClient();
@@ -10,7 +11,7 @@ export const useSubscribeUser = (userId: string, userName?: string) => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["user", userName],
+        queryKey: userKeys.byUserName(userName!),
       });
     },
 

@@ -4,9 +4,15 @@ export type Post = {
   authorUserName: string;
   content: string;
   createdAt: string;
+  commentsCount: number;
   likedByCurrentUser: boolean;
   likesCount: number;
 };
 
-export type CreatePost = Pick<Post, "content">;
-export type UpdatePost = Pick<Post, "content">;
+export type PostId = Post["id"];
+export type PostContent = Pick<Post, "content">;
+
+export type UpdatePostPayload = {
+  id: PostId;
+  updates: PostContent;
+};

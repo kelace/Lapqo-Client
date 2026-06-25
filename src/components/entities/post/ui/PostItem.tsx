@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { PostLikeButton } from "@/components/features/post-like/ui/PostLikeButton";
+import { Button } from "@/shared/shadcn/ui/button";
 import type { Post } from "../types";
 import { PostActions } from "./PostActions";
 import { PostContent } from "./PostContext";
@@ -8,8 +11,6 @@ import { PostMeta } from "./PostMeta";
 type Props = {
   post: Post;
 };
-
-// features/post-update/ui
 
 export function PostItem({ post }: Props) {
   const [isEditing, setIsEditing] = useState(false);
@@ -30,11 +31,22 @@ export function PostItem({ post }: Props) {
           onEditSuccess={() => setIsEditing(false)}
         />
         <footer className="text-muted-foreground flex items-center gap-1">
+          {/* <Link to={`/posts/${post.id}`}>post details</Link> */}
+
           <PostLikeButton
             postId={post.id}
             liked={post.likedByCurrentUser}
             likesCount={post.likesCount}
           />
+
+          {/* PostCommentButton */}
+          <Button variant="ghost" size="sm" asChild>
+            {/* to={routes.posts.detail(postId)} */}
+            <Link to={`/posts/${post.id}`}>
+              <MessageCircle className="h-4 w-4" />
+              {post.commentsCount}
+            </Link>
+          </Button>
         </footer>
       </article>
     </li>

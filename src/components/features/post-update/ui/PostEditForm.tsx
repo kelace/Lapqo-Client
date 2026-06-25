@@ -27,7 +27,7 @@ export function PostEditForm({
       return;
     }
     updatePost.mutate(
-      { id: postId, data: { content: trimmed } },
+      { id: postId, updates: { content: trimmed } },
       {
         onSuccess,
       },
