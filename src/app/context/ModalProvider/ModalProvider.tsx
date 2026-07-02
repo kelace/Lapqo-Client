@@ -1,12 +1,12 @@
 import { useCallback, useState } from "react";
+import { useKeyEscape } from "@/shared/hooks/useKeyEscape/useKeyEscape";
+import { useLockScroll } from "@/shared/hooks/useLockScroll/useLockScroll";
+import { Modal } from "@/shared/ui/modal/Modal";
 import {
   ModalContext,
   type ModalType,
   type OpenModalType,
 } from "./ModalContext";
-import { useLockScroll } from "@/shared/hooks/useLockScroll/useLockScroll";
-import { useKeyEscape } from "@/shared/hooks/useKeyEscape/useKeyEscape";
-import { Modal } from "@/shared/ui/modal/Modal";
 
 export function ModalProvider({ children }: { children: React.ReactNode }) {
   const [modals, setModals] = useState<ModalType[]>([]);

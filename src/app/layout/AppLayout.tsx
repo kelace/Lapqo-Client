@@ -1,11 +1,11 @@
-import { RightSidebar } from "@/components/widgets/right-sidebar/RightSidebar";
 import { Outlet } from "react-router-dom";
+import { AppSidebar } from "@/widgets/app-sidebar/AppSidebar";
+import { RightSidebar } from "@/widgets/right-sidebar/RightSidebar";
 import {
+  SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-  SidebarInset,
 } from "@/shared/shadcn/ui/sidebar";
-import { AppSidebar } from "@/components/widgets/app-sidebar/AppSidebar";
 
 export function AppLayout() {
   return (

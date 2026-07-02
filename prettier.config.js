@@ -5,6 +5,19 @@ export default {
   semi: true,
   singleQuote: false,
   trailingComma: "all",
-  importOrder: ["^react$", "<THIRD_PARTY_MODULES>", "^@/(.*)$", "^[./]"],
+  importOrder: [
+    "^react$",
+    "<THIRD_PARTY_MODULES>",
+
+    "^@/app(/.*)?$",
+    "^@/pages(/.*)?$",
+    "^@/widgets(/.*)?$",
+    "^@/features(/.*)?$",
+    "^@/entities(/.*)?$",
+    "^@/shared(/.*)?$",
+
+    "^[./]",
+  ],
   importOrderSeparation: false,
+  importOrderSortSpecifiers: true,
 };
