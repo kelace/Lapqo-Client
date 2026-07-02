@@ -7,6 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:json": "eslint . --format json --output-file reports/eslint.json",
+    "report": "node scripts/generate-eslint-report.js",
+    "typecheck": "tsc --noEmit",
+    "check": "node scripts/check.js",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -37,6 +41,7 @@
   "devDependencies": {
     "@babel/core": "^7.29.0",
     "@eslint/js": "^10.0.1",
+    "@feature-sliced/steiger-plugin": "^0.6.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@rolldown/plugin-babel": "^0.2.3",
     "@types/babel__core": "^7.20.5",
@@ -45,19 +50,24 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^10.4.1",
+    "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-boundaries": "^6.0.2",
+    "eslint-plugin-import-x": "^4.17.1",
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
+    "eslint-plugin-react-refresh": "^0.5.3",
     "globals": "^17.6.0",
+    "open": "^11.0.0",
     "prettier": "^3.8.3",
     "prettier-plugin-organize-attributes": "^1.0.0",
     "prettier-plugin-packagejson": "^3.0.2",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "sass-embedded": "^1.100.0",
+    "steiger": "^0.5.13",
     "typescript": "~6.0.2",
-    "typescript-eslint": "^8.60.1",
+    "typescript-eslint": "^8.62.1",
     "vite": "^8.0.12"
   }
 }
