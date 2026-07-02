@@ -1,8 +1,8 @@
 export const routes = {
   home: "/",
   login: "/login",
-  feed: "/feed",
   register: "/register",
+  feed: "/feed",
   posts: {
     base: "/posts",
     param: "/posts/:id",

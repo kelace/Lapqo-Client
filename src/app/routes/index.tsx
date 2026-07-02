@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "@/app/routes/guards/ProtectedRouter";
-import { FeedPage } from "@/pages/feed-page/FeedPage";
-import { LoginPage } from "@/pages/login-page/LoginPage";
-import { NotFoundPage } from "@/pages/not-found-page/NotFoundPage";
-import PostDetailPage from "@/pages/post-detail-page/ui/PostDetailPage";
-import { RegisterPage } from "@/pages/register-page/RegisterPage";
-import { UserPostsPage } from "@/pages/user-posts-page/UserPostsPage";
+import { FeedPage } from "@/pages/feed-page/ui";
+import { LoginPage } from "@/pages/login-page/ui";
+import { NotFoundPage } from "@/pages/not-found-page/ui";
+import { PostDetailPage } from "@/pages/post-detail-page/ui";
+import { RegisterPage } from "@/pages/register-page/ui";
+import { UserPostsPage } from "@/pages/user-posts-page/ui";
 import { routes } from "@/shared/config/routes";
 import { AppLayout } from "../layout/AppLayout";
 

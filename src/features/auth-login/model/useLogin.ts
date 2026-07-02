@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/app/store/auth";
 import { authApi } from "@/entities/auth/api/auth.api";
+import { routes } from "@/shared/config/routes";
 
 export const useLogin = () => {
   const setAuth = useAuthStore((state) => state.setAuth);
@@ -15,7 +16,7 @@ export const useLogin = () => {
     onSuccess: (data) => {
       const { token } = data.data;
       setAuth(token);
-      navigate("/"); // set up react router ?
+      navigate(routes.home);
     },
 
     onError: (error: AxiosError) => {
