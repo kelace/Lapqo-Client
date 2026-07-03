@@ -6,7 +6,6 @@ import { PostLoading } from "@/entities/post/ui/PostLoading";
 import { useProfileOwner } from "@/entities/user/model/useProfileUser";
 import { RouteError } from "@/shared/ui/route-error/RouteError";
 import { useUserPosts } from "../model/useUserPosts";
-import "./UserPosts.css";
 
 export function UserPosts() {
   const { userName, isSelfProfile } = useProfileOwner();

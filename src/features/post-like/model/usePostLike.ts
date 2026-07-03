@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postApi } from "@/entities/post/api/postApi";
 import type { Post } from "@/entities/post/types";
 
+// 256
 export const usePostLike = () => {
   const queryClient = useQueryClient();
 
@@ -9,12 +10,11 @@ export const usePostLike = () => {
     mutationFn: postApi.like,
     onMutate: async (postId: string) => {
       await queryClient.cancelQueries({ queryKey: ["posts"] });
-      const previousPosts = queryClient.getQueriesData({
-        queryKey: ["posts"],
-      });
+      const previousPosts = queryClient.getQueriesData({ queryKey: ["posts"] });
 
-      queryClient.setQueriesData<Post[]>({ queryKey: ["posts"] }, (old) =>
-        old?.map((post) => {
+      queryClient.setQueriesData<Post[]>({ queryKey: ["posts"] }, (old) => {
+        if (!Array.isArray(old)) return old;
+        return old?.map((post) => {
           return post.id === postId
             ? {
                 ...post,
@@ -22,8 +22,8 @@ export const usePostLike = () => {
                 likesCount: post.likesCount + 1,
               }
             : post;
-        }),
-      );
+        });
+      });
 
       return { previousPosts };
     },
@@ -50,17 +50,18 @@ export const usePostLike = () => {
       await queryClient.cancelQueries({ queryKey: ["posts"] });
       const previousPosts = queryClient.getQueriesData({ queryKey: ["posts"] });
 
-      queryClient.setQueriesData<Post[]>({ queryKey: ["posts"] }, (old) =>
-        old?.map((post) =>
-          post.id === postId
+      queryClient.setQueriesData<Post[]>({ queryKey: ["posts"] }, (old) => {
+        if (!Array.isArray(old)) return old;
+        return old?.map((post) => {
+          return post.id === postId
             ? {
                 ...post,
                 likedByCurrentUser: false,
                 likesCount: post.likesCount - 1,
               }
-            : post,
-        ),
-      );
+            : post;
+        });
+      });
 
       return { previousPosts };
     },

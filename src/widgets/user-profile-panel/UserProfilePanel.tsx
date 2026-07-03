@@ -1,7 +1,7 @@
 import { Bell, Edit } from "lucide-react";
-import { useUser } from "@/entities/user/model/useUser";
 import { useSubscribeUser } from "@/features/user-subscription/model/useSubscribeUser";
 import { useUnsubscribeUser } from "@/features/user-subscription/model/useUnsubscribeUser";
+import { useUser } from "@/entities/user/model/useUser";
 import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
 
 export function UserProfilePanel({ userName }: { userName?: string }) {

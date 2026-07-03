@@ -20,6 +20,10 @@ export default defineConfig([
 
     rules: {
       "import-x/no-unresolved": "error",
+      "no-warning-comments": [
+        "warn",
+        { terms: ["256", "fixme"], location: "anywhere" },
+      ],
     },
 
     languageOptions: {

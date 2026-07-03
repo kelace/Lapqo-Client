@@ -8,6 +8,7 @@ type Props = {
   likesCount: number;
 };
 
+// 256
 export function PostLikeButton({ postId, liked, likesCount }: Props) {
   const { likeMutation, unlikeMutation } = usePostLike();
 
