@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { routes } from "@/shared/config/routes";
+import { formatPostDate } from "@/shared/lib/createdAt";
 import type { Post } from "../types";
 
 type Props = {
@@ -7,13 +8,6 @@ type Props = {
 };
 
 export function PostMeta({ post }: Props) {
-  const formattedDate = new Date(post.createdAt).toLocaleDateString("uk-UA", {
-    day: "numeric",
-    month: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
   return (
     <div className="flex items-center gap-2">
       <Link
@@ -23,7 +17,7 @@ export function PostMeta({ post }: Props) {
         @{post.authorUserName}
       </Link>
       <time dateTime={post.createdAt} className="text-muted-foreground text-sm">
-        {formattedDate}
+        {formatPostDate(post.createdAt)}
       </time>
     </div>
   );
