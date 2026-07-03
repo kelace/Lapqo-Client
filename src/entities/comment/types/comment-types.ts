@@ -6,6 +6,8 @@ export type PostComment = {
   createdAt: string;
   parentCommentId: string | null;
   replies: Comment[];
+  authorUserName: string;
+  authorShortName: string;
 };
 
 export type CreateCommentPayload = {
