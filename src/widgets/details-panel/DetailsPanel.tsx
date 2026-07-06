@@ -1,7 +1,7 @@
 import { useProfileOwner } from "@/entities/user/model/useProfileUser";
 import { UserProfilePanel } from "../user-profile-panel/UserProfilePanel";
 
-export function RightSidebar() {
+export function DetailsPanel() {
   const { userName } = useProfileOwner();
 
   return (

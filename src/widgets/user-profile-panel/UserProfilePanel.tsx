@@ -23,12 +23,11 @@ export function UserProfilePanel({ userName }: { userName?: string }) {
   };
 
   return (
-    <aside className="bg-sidebar sticky top-0 h-screen w-[320px] border">
-      <div className="border-border-gray mx-auto h-screen max-w-5xl rounded-lg border p-6">
-        <div className="border-border-gray flex flex-col gap-6 border-b p-6">
+    <aside className="bg-sidebar sticky top-0 w-[320px]">
+      <div className="border-border-gray mx-auto max-w-5xl rounded-lg border p-6">
+        <div className="flex flex-col gap-6 p-6">
           <div className="flex flex-col items-center justify-center gap-4">
             <Avatar className="size-35">
-              {/* <AvatarImage src={user?.avatarUrl ?? undefined} /> */}
               <AvatarFallback className="text-2xl">
                 {user?.namePreview}
               </AvatarFallback>

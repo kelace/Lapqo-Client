@@ -20,11 +20,14 @@ export function UserPosts() {
   const hasPosts = posts?.length > 0;
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex-1 scrollbar-none overflow-y-auto">
+    <div className="relative flex flex-col">
+      <div className="mb-3 shrink-0 bg-[#0d1426]">
+        {isSelfProfile && <CreatePost />}
+      </div>
+
+      <div className="flex-1">
         {hasPosts ? <PostList posts={posts} /> : <PostEmpty />}
       </div>
-      <div className="hrink-0">{isSelfProfile && <CreatePost />}</div>
     </div>
   );
 }
