@@ -35,7 +35,7 @@ export function CreatePost() {
 
   return (
     <Card className="w-full border">
-      <CardContent className="pt-0">
+      <CardContent className="py-4">
         <form onSubmit={handleSubmit}>
           <div className="flex gap-3">
             <Avatar>

@@ -21,11 +21,7 @@ export function AppSidebar() {
   const isCollapsed = isDesktopCollapsed && !isMobile;
 
   return (
-    <Sidebar
-      collapsible="icon"
-      variant="sidebar"
-      className="bg-sidebar sticky border"
-    >
+    <Sidebar collapsible="icon" variant="sidebar" className="sticky">
       <SidebarHeader className="mb-3 flex gap-3 border-b">
         <UserBlock isCollapsed={isCollapsed} user={user} />
       </SidebarHeader>

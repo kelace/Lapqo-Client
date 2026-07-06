@@ -18,7 +18,6 @@ export const AppRouter = () => {
       <Route element={<ProtectedRoute />}>
         <Route path={routes.home} element={<AppLayout />}>
           <Route index element={<Navigate to={routes.feed} replace />} />
-
           <Route path={routes.feed} element={<FeedPage />} />
           <Route path={routes.users.param} element={<UserPostsPage />} />
           <Route path={routes.posts.param} element={<PostDetailPage />} />

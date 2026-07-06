@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { AppSidebar } from "@/widgets/app-sidebar/AppSidebar";
-import { RightSidebar } from "@/widgets/right-sidebar/RightSidebar";
+import { DetailsPanel } from "@/widgets/details-panel/DetailsPanel";
 import {
   SidebarInset,
   SidebarProvider,
@@ -9,19 +9,19 @@ import {
 
 export function AppLayout() {
   return (
-    <div className="flex min-h-screen justify-center">
-      <div className="flex h-screen w-full max-w-7xl">
-        <SidebarProvider>
+    <div className="h-screen w-full overflow-y-auto">
+      <SidebarProvider>
+        <div className="mx-auto flex w-full max-w-7xl">
           <AppSidebar />
-          <SidebarInset className="flex h-full flex-1 flex-col p-3">
+
+          <SidebarInset className="flex flex-1 flex-col p-3">
             <SidebarTrigger className="lg:hidden" />
-            <div className="h-full flex-1 overflow-hidden">
-              <Outlet />
-            </div>
+            <Outlet />
           </SidebarInset>
-          <RightSidebar />
-        </SidebarProvider>
-      </div>
+
+          <DetailsPanel />
+        </div>
+      </SidebarProvider>
     </div>
   );
 }
