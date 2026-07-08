@@ -7,7 +7,7 @@ import {
   SidebarTrigger,
 } from "@/shared/shadcn/ui/sidebar";
 
-export function AppLayout() {
+export function RootLayout() {
   return (
     <div className="h-screen w-full overflow-y-auto">
       <SidebarProvider>

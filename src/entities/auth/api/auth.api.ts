@@ -1,12 +1,23 @@
 import { api } from "@/shared/api/axios";
-import type { LoginData, RegistenData } from "../types/auth.types";
+import type {
+  LoginData,
+  LoginResponse,
+  RegistenData,
+  RegisterResponse,
+} from "../types/auth.types";
 
 export const authApi = {
-  register: (credentials: RegistenData) => {
-    return api.post("/auth/register", credentials);
+  register: async (credentials: RegistenData) => {
+    const { data } = await api.post<RegisterResponse>(
+      "/auth/register",
+      credentials,
+    );
+    return data;
   },
-  login: (credentials: LoginData) => {
-    return api.post("/auth/login", credentials);
+
+  login: async (credentials: LoginData) => {
+    const { data } = await api.post<LoginResponse>("/auth/login", credentials);
+    return data;
   },
 };
 

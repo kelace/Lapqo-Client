@@ -26,7 +26,7 @@ export function UserBlock({ user, isCollapsed }: UserBlockProps) {
       >
         <Avatar className="h-10 w-10">
           <AvatarImage src={undefined} />
-          <AvatarFallback>{user?.namePreview}</AvatarFallback>
+          <AvatarFallback>{user ? user.namePreview : "?"}</AvatarFallback>
         </Avatar>
 
         {!isCollapsed && (
@@ -35,13 +35,13 @@ export function UserBlock({ user, isCollapsed }: UserBlockProps) {
               {user?.userName}
             </p>
             <p className="text-muted-foreground text-[12px]">
-              @{user?.userName}
+              {user?.userName}
             </p>
           </div>
         )}
       </div>
 
-      {!isCollapsed && <SettingsBar isCollapsed={isCollapsed} />}
+      {!isCollapsed && <SettingsBar />}
     </div>
   );
 }

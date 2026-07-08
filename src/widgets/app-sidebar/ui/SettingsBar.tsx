@@ -1,18 +1,24 @@
-import { LogOut, Moon, Settings, Sun } from "lucide-react";
+import { LogOut, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useAuthStore } from "@/app/store/auth";
+import { useRequireAuth } from "@/shared/hooks/auth/use-require-auth";
 import { cn } from "@/shared/shadcn/lib/utils";
 
 type Props = {
   className?: string;
-  isCollapsed?: boolean;
 };
 
+//256
 export function SettingsBar({ className }: Props) {
   const { theme, setTheme } = useTheme();
   const logout = useAuthStore((state) => state.logout);
+  const { requireAuth } = useRequireAuth();
 
   const isDark = theme === "dark";
+
+  const handleClick = () => {
+    requireAuth(logout);
+  };
 
   const items = [
     {
@@ -21,13 +27,9 @@ export function SettingsBar({ className }: Props) {
       onClick: () => setTheme(isDark ? "light" : "dark"),
     },
     {
-      label: "Settings",
-      icon: Settings,
-    },
-    {
       label: "Logout",
       icon: LogOut,
-      onClick: logout,
+      onClick: handleClick,
       danger: true,
     },
   ];
@@ -45,8 +47,6 @@ export function SettingsBar({ className }: Props) {
             className={cn(
               "flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border transition-colors",
               "hover:bg-accent hover:text-white",
-
-              // item.danger && "text-white hover:bg-white hover:text-black",
             )}
           >
             <Icon size={18} />

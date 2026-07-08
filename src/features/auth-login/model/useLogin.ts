@@ -14,7 +14,7 @@ export const useLogin = () => {
     mutationFn: authApi.login,
 
     onSuccess: (data) => {
-      const { token } = data.data;
+      const { token } = data;
       setAuth(token);
       navigate(routes.home);
     },
