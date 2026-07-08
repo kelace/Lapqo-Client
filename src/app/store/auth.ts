@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import { jwtDecode } from "jwt-decode";
+import { create } from "zustand";
 import type { AuthState, JWTPayload, Me } from "./auth.types";
 
 const getInitialUser = (): Me | null => {

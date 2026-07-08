@@ -40,7 +40,7 @@ export function AppSidebar() {
               : "translate-y-full scale-95 opacity-0 duration-0",
           )}
         >
-          <SettingsBar className="flex-col" isCollapsed={isCollapsed} />
+          <SettingsBar className="flex-col" />
         </div>
       </SidebarFooter>
     </Sidebar>

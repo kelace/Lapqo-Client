@@ -1,4 +1,5 @@
 import { Heart } from "lucide-react";
+import { useRequireAuth } from "@/shared/hooks/auth/use-require-auth";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { usePostLike } from "../model/usePostLike";
 
@@ -12,11 +13,15 @@ type Props = {
 export function PostLikeButton({ postId, liked, likesCount }: Props) {
   const { likeMutation, unlikeMutation } = usePostLike();
 
+  const { requireAuth } = useRequireAuth();
+
   const handleLike = () => {
     if (liked) {
-      unlikeMutation.mutate(postId);
+      requireAuth(() => unlikeMutation.mutate(postId));
+      // unlikeMutation.mutate(postId);
     } else {
-      likeMutation.mutate(postId);
+      requireAuth(() => likeMutation.mutate(postId));
+      // likeMutation.mutate(postId);
     }
   };
 

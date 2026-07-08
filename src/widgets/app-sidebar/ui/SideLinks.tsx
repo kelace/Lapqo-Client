@@ -1,13 +1,13 @@
 import { Rss, User } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { routes } from "@/shared/config/routes";
+import { cn } from "@/shared/shadcn/lib/utils";
 import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuItem,
 } from "@/shared/shadcn/ui/sidebar";
-import { cn } from "@/shared/shadcn/lib/utils";
-import { routes } from "@/shared/config/routes";
 
 type Props = {
   isCollapsed: boolean;
@@ -15,13 +15,9 @@ type Props = {
 };
 
 export function SideLinks({ isCollapsed, userName }: Props) {
-  function getProfileRoute(userName?: string) {
-    return userName ? routes.users.detail(userName) : routes.home;
-  }
-
   const links = [
     {
-      to: getProfileRoute(userName),
+      to: userName ? routes.users.detail(userName) : routes.login,
       label: "Profile",
       icon: User,
     },

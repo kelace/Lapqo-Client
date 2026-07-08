@@ -14,4 +14,4 @@ export const routes = {
     detail: (name: string) => `/users/${name}`,
   },
   notFound: "*",
-};
+} as const;
