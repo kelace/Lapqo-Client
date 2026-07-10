@@ -3,16 +3,14 @@ import toast from "react-hot-toast";
 import { userApi } from "@/entities/user/api/userApi";
 import { userKeys } from "@/entities/user/keys/userKeys";
 
-export const useSubscribeUser = (userId: string, userName?: string) => {
+export const useSubscribeUser = (userId: string) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: () => userApi.subscribe(userId),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: userKeys.byUserName(userName!),
-      });
+      queryClient.invalidateQueries({ queryKey: userKeys.all });
     },
 
     onError: () => {

@@ -7,8 +7,8 @@ import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
 export function UserProfilePanel({ userName }: { userName?: string }) {
   const { data: user } = useUser(userName);
 
-  const subscribeMutation = useSubscribeUser(user?.id ?? "", userName);
-  const unsubscribeUser = useUnsubscribeUser(user?.id ?? "", userName);
+  const subscribeMutation = useSubscribeUser(user?.id ?? "");
+  const unsubscribeUser = useUnsubscribeUser(user?.id ?? "");
 
   const isPending = subscribeMutation.isPending || unsubscribeUser.isPending;
 
