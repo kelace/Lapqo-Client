@@ -8,9 +8,9 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/shared/shadcn/ui/sidebar";
-import { Channels } from "./ui/Channels";
 import { SettingsBar } from "./ui/SettingsBar";
 import { SideLinks } from "./ui/SideLinks";
+import { Subscriptions } from "./ui/Subscriptions";
 import { UserBlock } from "./ui/UserBlock";
 
 export function AppSidebar() {
@@ -28,7 +28,8 @@ export function AppSidebar() {
 
       <SidebarContent className="gap-5">
         <SideLinks isCollapsed={isCollapsed} userName={currentUser?.name} />
-        <Channels />
+
+        <Subscriptions />
       </SidebarContent>
 
       <SidebarFooter className="overflow-hidden">
