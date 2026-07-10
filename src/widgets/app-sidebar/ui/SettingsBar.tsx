@@ -16,9 +16,7 @@ export function SettingsBar({ className }: Props) {
 
   const isDark = theme === "dark";
 
-  const handleClick = () => {
-    requireAuth(logout);
-  };
+  const handleClick = () => requireAuth(logout);
 
   const items = [
     {

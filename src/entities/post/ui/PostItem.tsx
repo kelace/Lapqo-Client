@@ -31,8 +31,6 @@ export function PostItem({ post }: Props) {
           onEditSuccess={() => setIsEditing(false)}
         />
         <footer className="text-muted-foreground flex items-center gap-1">
-          {/* <Link to={`/posts/${post.id}`}>post details</Link> */}
-
           <PostLikeButton
             postId={post.id}
             liked={post.likedByCurrentUser}
