@@ -13,8 +13,10 @@ export function PostDetailPage() {
 
   return (
     <>
-      <div className="flex h-full flex-col">
-        <PostItem post={data} />
+      <div className="flex h-full flex-col gap-2">
+        <ul className="sticky top-0 z-2 bg-black">
+          <PostItem post={data} />
+        </ul>
         <section className="flex-1 scrollbar-none overflow-y-auto">
           <CommentForm postId={data.id} />
           <CommentList postId={data.id} />

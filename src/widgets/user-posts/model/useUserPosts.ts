@@ -1,17 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { postsKeys } from "@/entities/post/keys/postsKeys";
-import { getUserPosts } from "../api/getUserPosts";
+import { getUserActivity } from "../api/getUserPosts";
 
-// useGetUserPosts
+// useGetUserPosts | useUserActivity
 export const useUserPosts = (userName: string) => {
-  const query = useQuery({
+  return useQuery({
     queryKey: postsKeys.user(userName),
-    queryFn: () => getUserPosts(userName),
+    queryFn: () => getUserActivity(userName),
     enabled: !!userName,
+    select: (data) => {
+      const sorted = [...data].sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
+      const posts = sorted.filter((x) => x.type === "Post");
+      const comments = sorted.filter((x) => x.type === "Comments");
+      return { posts, comments };
+    },
   });
-
-  return {
-    ...query,
-    data: query.data ?? [],
-  };
 };

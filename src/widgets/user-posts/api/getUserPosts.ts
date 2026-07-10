@@ -1,16 +1,12 @@
-import type { Post } from "@/entities/post/types";
 import { api } from "@/shared/api/axios";
+import type { UserActivityItem } from "../types/intex";
 
-type UserActivityItem = {
-  createdAt: string;
-  item: Post;
-  type: string;
-};
-
-export const getUserPosts = async (userName: string): Promise<Post[]> => {
+export const getUserActivity = async (
+  userName: string,
+): Promise<UserActivityItem[]> => {
   const { data } = await api.get<UserActivityItem[]>(
     `/users/${userName}/posts`,
   );
 
-  return data.map((x) => x.item);
+  return data;
 };

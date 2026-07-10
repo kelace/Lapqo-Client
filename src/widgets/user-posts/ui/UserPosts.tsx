@@ -1,3 +1,4 @@
+import { CommentCarousel } from "@/widgets/comment-carousel/CommentCarousel";
 import { CreatePost } from "@/features/post-create/ui/CreatePost";
 import { PostEmpty } from "@/entities/post/ui/PostEmpty";
 import { PostError } from "@/entities/post/ui/PostError";
@@ -12,22 +13,28 @@ export function UserPosts() {
 
   if (!userName) return <RouteError />;
 
-  const { data: posts, isLoading, isError, error } = useUserPosts(userName);
+  const { data, isLoading, isError, error } = useUserPosts(userName);
+  const posts = data?.posts?.map((post) => post.item) ?? [];
+  const comments = data?.comments?.map((comment) => comment.item) ?? [];
 
   if (isLoading) return <PostLoading />;
   if (isError) return <PostError error={error} />;
 
-  const hasPosts = posts?.length > 0;
-
   return (
-    <div className="relative flex flex-col">
-      <div className="mb-3 shrink-0 bg-[#0d1426]">
-        {isSelfProfile && <CreatePost />}
-      </div>
+    <div className="flex flex-col gap-6">
+      {isSelfProfile && <CreatePost />}
 
-      <div className="flex-1">
-        {hasPosts ? <PostList posts={posts} /> : <PostEmpty />}
-      </div>
+      {comments.length > 0 && (
+        <section>
+          <CommentCarousel comments={comments} />
+        </section>
+      )}
+
+      <section>
+        <h2 className="mb-3 text-center text-lg font-semibold">User Posts</h2>
+
+        {posts.length > 0 ? <PostList posts={posts} /> : <PostEmpty />}
+      </section>
     </div>
   );
 }

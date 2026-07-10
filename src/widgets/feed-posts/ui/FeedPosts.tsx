@@ -7,6 +7,8 @@ import { useFeedQuery } from "../model/useFeedPosts";
 export function FeedPosts() {
   const { data: posts = [], isLoading, isError, error } = useFeedQuery();
 
+  console.log(posts);
+
   if (isLoading) return <PostLoading />;
 
   if (isError) return <PostError error={error} />;

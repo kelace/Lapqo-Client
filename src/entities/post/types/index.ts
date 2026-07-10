@@ -7,6 +7,7 @@ export type Post = {
   commentsCount: number;
   likedByCurrentUser: boolean;
   likesCount: number;
+  shortName: string;
 };
 
 export type PostId = Post["id"];
