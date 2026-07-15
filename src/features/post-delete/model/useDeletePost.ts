@@ -7,6 +7,7 @@ export const useDeletePost = () => {
 
   return useMutation({
     mutationFn: postApi.delete,
+
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: postsKeys.all });
     },
