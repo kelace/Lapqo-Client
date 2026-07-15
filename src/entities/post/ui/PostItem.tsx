@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PostLikeButton } from "@/features/post-like/ui/PostLikeButton";
+import { routes } from "@/shared/config/routes";
 import { Button } from "@/shared/shadcn/ui/button";
 import type { Post } from "../types";
 import { PostActions } from "./PostActions";
@@ -40,7 +41,7 @@ export function PostItem({ post }: Props) {
           {/* PostCommentButton */}
           <Button variant="ghost" size="sm" asChild>
             {/* to={routes.posts.detail(postId)} */}
-            <Link to={`/posts/${post.id}`}>
+            <Link to={routes.posts.detail(post.id)}>
               <MessageCircle className="h-4 w-4" />
               {post.commentsCount}
             </Link>

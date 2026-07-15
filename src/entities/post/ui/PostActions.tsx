@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MoreHorizontal, Pencil, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/app/store/auth";
 import { useDeletePost } from "@/features/post-delete/model/useDeletePost";
 import {
@@ -32,6 +33,13 @@ export function PostActions({ onEdit, post }: Props) {
   const currentUser = useAuthStore((store) => store.currentUser);
   const { mutate: deletePost, isPending } = useDeletePost();
   const isOwner = currentUser?.id === post.authorId;
+  const navigate = useNavigate();
+
+  const handleDelete = (id: string) => {
+    deletePost(id, {
+      onSuccess: () => navigate(-1),
+    });
+  };
 
   if (!isOwner) return null;
 
@@ -76,7 +84,8 @@ export function PostActions({ onEdit, post }: Props) {
             <AlertDialogAction
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
               onClick={() => {
-                deletePost(post.id);
+                //  deletePost(post.id);
+                handleDelete(post.id);
                 setDeleteDialogOpen(false);
               }}
             >
