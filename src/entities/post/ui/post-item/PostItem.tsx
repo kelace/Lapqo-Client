@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import { PostLikeButton } from "@/features/post-like/ui/PostLikeButton";
 import { routes } from "@/shared/config/routes";
 import { Button } from "@/shared/shadcn/ui/button";
-import type { Post } from "../types";
-import { PostActions } from "./PostActions";
-import { PostContent } from "./PostContext";
-import { PostMeta } from "./PostMeta";
+import type { Post } from "../../model/post.types";
+import { PostActions } from "./components/PostActions";
+import { PostContent } from "./components/PostContext";
+import { PostLikeButton } from "./components/PostLikeButton";
+import { PostMeta } from "./components/PostMeta";
 
 type Props = {
   post: Post;

@@ -4,7 +4,7 @@ import type {
   LoginResponse,
   RegistenData,
   RegisterResponse,
-} from "../types/auth.types";
+} from "../model/types";
 
 export const authApi = {
   register: async (credentials: RegistenData) => {

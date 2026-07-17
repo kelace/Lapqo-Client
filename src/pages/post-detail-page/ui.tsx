@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { CommentList } from "@/widgets/comment-list/ui/CommentList";
 import { CommentForm } from "@/features/comment-create/ui/CommentForm";
 import { useGetPost } from "@/entities/post/model/useGetPost";
-import { PostItem } from "@/entities/post/ui/PostItem";
+import { PostItem } from "@/entities/post/ui/post-item";
 
 export function PostDetailPage() {
   const { id } = useParams();

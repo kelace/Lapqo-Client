@@ -2,7 +2,8 @@ import { useState } from "react";
 import { MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/app/store/auth";
-import { useDeletePost } from "@/features/post-delete/model/useDeletePost";
+import type { Post } from "@/entities/post/model/post.types";
+import { useDeletePost } from "@/entities/post/model/useDeletePost";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,7 +22,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/shared/shadcn/ui/dropdown-menu";
-import type { Post } from "../types";
 
 type Props = {
   onEdit: () => void;

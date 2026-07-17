@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { postsKeys } from "@/entities/post/keys/postsKeys";
+import { postsKeys } from "@/entities/post/api";
 import { getUserActivity } from "../api/getUserPosts";
 
 // useGetUserPosts | useUserActivity
