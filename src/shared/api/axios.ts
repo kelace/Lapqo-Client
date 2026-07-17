@@ -6,10 +6,30 @@ type RefreshResponseDto = {
   token: string;
 };
 
+type PendingRequest = {
+  resolve: (accessToken: string) => void;
+  reject: (error: unknown) => void;
+};
+
 export const api = axios.create({
   baseURL: ENV.API_URL,
   withCredentials: true,
 });
+
+let isRefreshing = false;
+let pendingRequests: PendingRequest[] = [];
+
+const processQueue = (error: unknown, accessToken?: string) => {
+  pendingRequests.forEach(({ resolve, reject }) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(accessToken!);
+    }
+  });
+
+  pendingRequests = [];
+};
 
 // request interceptor
 api.interceptors.request.use((config) => {
@@ -24,20 +44,49 @@ api.interceptors.response.use(
   (response) => response,
 
   async (error) => {
-    const original = error.config;
+    const originalRequest = error.config;
 
-    if (error.response.status === 401 && !original._retry) {
-      original._retry = true;
+    if (!originalRequest) return Promise.reject(error);
+    if (error.response?.status !== 401) return Promise.reject(error);
+    if (originalRequest._retry) return Promise.reject(error);
 
+    if (originalRequest.url === "/auth/refresh") {
+      useAuthStore.getState().logout();
+      return Promise.reject(error);
+    }
+
+    if (isRefreshing) {
+      return new Promise((resolve, reject) => {
+        pendingRequests.push({
+          resolve: (accessToken) => {
+            originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+
+            resolve(api(originalRequest));
+          },
+          reject,
+        });
+      });
+    }
+
+    originalRequest._retry = true;
+    isRefreshing = true;
+
+    try {
+      // const { accessToken } = await refreshAccessToken();
       const { data } = await api.post<RefreshResponseDto>("/auth/refresh", {});
       const accessToken = data.token;
 
+      processQueue(null, accessToken);
       useAuthStore.getState().setAuth(accessToken);
-      original.headers.Authorization = `Bearer ${accessToken}`;
 
-      return api(original);
+      originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+
+      return api(originalRequest);
+    } catch (refreshError) {
+      processQueue(refreshError);
+      useAuthStore.getState().logout();
+
+      return Promise.reject(refreshError);
     }
-
-    return Promise.reject(error);
   },
 );
