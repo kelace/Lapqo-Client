@@ -1,7 +1,9 @@
-import { PostEmpty } from "@/entities/post/ui/PostEmpty";
-import { PostError } from "@/entities/post/ui/PostError";
-import { PostList } from "@/entities/post/ui/PostList";
-import { PostLoading } from "@/entities/post/ui/PostLoading";
+import {
+  PostEmpty,
+  PostError,
+  PostList,
+  PostLoading,
+} from "@/entities/post/ui/post-list";
 import { useFeedQuery } from "../model/useFeedPosts";
 
 export function FeedPosts() {

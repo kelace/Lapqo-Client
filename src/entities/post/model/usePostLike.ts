@@ -1,15 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postApi } from "@/entities/post/api/postApi";
 
-// import type { Post } from "@/entities/post/types";
-
 export const usePostLike = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: postApi.like,
-
-    onMutate: () => {},
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });

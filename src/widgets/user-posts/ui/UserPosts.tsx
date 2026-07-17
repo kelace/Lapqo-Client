@@ -1,9 +1,11 @@
 import { CommentCarousel } from "@/widgets/comment-carousel/CommentCarousel";
 import { CreatePost } from "@/features/post-create/ui/CreatePost";
-import { PostEmpty } from "@/entities/post/ui/PostEmpty";
-import { PostError } from "@/entities/post/ui/PostError";
-import { PostList } from "@/entities/post/ui/PostList";
-import { PostLoading } from "@/entities/post/ui/PostLoading";
+import {
+  PostEmpty,
+  PostError,
+  PostList,
+  PostLoading,
+} from "@/entities/post/ui/post-list";
 import { useProfileOwner } from "@/entities/user/model/useProfileUser";
 import { RouteError } from "@/shared/ui/route-error/RouteError";
 import { useUserPosts } from "../model/useUserPosts";

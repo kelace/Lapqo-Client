@@ -1,7 +1,7 @@
 import { Heart } from "lucide-react";
+import { usePostLike, usePostUnlike } from "@/entities/post/model/usePostLike";
 import { useRequireAuth } from "@/shared/hooks/auth/use-require-auth";
 import { cn } from "@/shared/shadcn/lib/utils";
-import { usePostLike, usePostUnlike } from "../model/usePostLike";
 
 type Props = {
   postId: string;
@@ -13,7 +13,7 @@ export function PostLikeButton({ postId, liked, likesCount }: Props) {
   const likeMutation = usePostLike();
   const unlikeMutation = usePostUnlike();
 
-  // const isPending = likeMutation.isPending || unlikeMutation.isPending;
+  const isPending = likeMutation.isPending || unlikeMutation.isPending;
 
   const { requireAuth } = useRequireAuth();
 
@@ -34,7 +34,7 @@ export function PostLikeButton({ postId, liked, likesCount }: Props) {
         liked && "text-rose-500",
       )}
       aria-label={liked ? "unlike" : "like"}
-      // disabled={isPending}
+      disabled={isPending}
       onClick={handleLike}
     >
       <Heart size={16} className={cn(liked && "fill-rose-500")} />

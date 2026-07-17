@@ -1,5 +1,5 @@
-import type { Post } from "../types";
-import { PostItem } from "./PostItem";
+import type { Post } from "../../model/post.types";
+import { PostItem } from "../post-item";
 
 type Props = {
   posts: Post[];

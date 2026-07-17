@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
+import type { Post } from "@/entities/post/model/post.types";
 import { routes } from "@/shared/config/routes";
 import { formatPostDate } from "@/shared/lib/createdAt";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/shadcn/ui/avatar";
-import type { Post } from "../types";
 
 type Props = {
   post: Post;
