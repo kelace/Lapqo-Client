@@ -34,6 +34,7 @@ const processQueue = (error: unknown, accessToken?: string) => {
 // request interceptor
 api.interceptors.request.use((config) => {
   const token = useAuthStore.getState().accessToken;
+  console.log("REQUEST TOKEN:", token);
   if (token) config.headers.Authorization = `Bearer ${token}`;
 
   return config;
@@ -44,6 +45,8 @@ api.interceptors.response.use(
   (response) => response,
 
   async (error) => {
+    console.log("interceptos response");
+
     const originalRequest = error.config;
 
     if (!originalRequest) return Promise.reject(error);
@@ -60,7 +63,6 @@ api.interceptors.response.use(
         pendingRequests.push({
           resolve: (accessToken) => {
             originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-
             resolve(api(originalRequest));
           },
           reject,
@@ -72,13 +74,20 @@ api.interceptors.response.use(
     isRefreshing = true;
 
     try {
-      // const { accessToken } = await refreshAccessToken();
       const { data } = await api.post<RefreshResponseDto>("/auth/refresh", {});
       const accessToken = data.token;
 
-      processQueue(null, accessToken);
+      // useAuthStore.getState().setAuth(accessToken);
+      console.log("NEW TOKEN:", accessToken);
       useAuthStore.getState().setAuth(accessToken);
+      console.log(
+        "STORE TOKEN AFTER SET:",
+        useAuthStore.getState().accessToken,
+      );
 
+      processQueue(null, accessToken);
+
+      originalRequest.headers = originalRequest.headers ?? {};
       originalRequest.headers.Authorization = `Bearer ${accessToken}`;
 
       return api(originalRequest);
@@ -87,6 +96,8 @@ api.interceptors.response.use(
       useAuthStore.getState().logout();
 
       return Promise.reject(refreshError);
+    } finally {
+      isRefreshing = false;
     }
   },
 );
