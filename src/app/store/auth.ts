@@ -24,7 +24,7 @@ const getStoredAccessToken = (): string | null => {
   return token;
 };
 
-// get current user
+// get initial value current user
 const getInitialUser = (): Me | null => {
   const token = getStoredAccessToken();
   if (!token) return null;
