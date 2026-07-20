@@ -16,23 +16,23 @@
 <h1>ESLint Report</h1>
 
 <p class="date">
-Generated: 03.07.2026, 20:43:04
+Generated: 20.07.2026, 20:07:47
 </p>
 
 <div class="stats">
 
     <div class="stat">
-        <h2>115</h2>
+        <h2>123</h2>
         <p>Checked files</p>
     </div>
 
     <div class="stat">
-        <h2>2</h2>
+        <h2>6</h2>
         <p>Files with errors</p>
     </div>
 
     <div class="stat">
-        <h2>2</h2>
+        <h2>6</h2>
         <p>Total errors</p>
     </div>
 
@@ -41,11 +41,123 @@ Generated: 03.07.2026, 20:43:04
         <div class="card">
 
             <div class="filename">
-                📄 usePostLike.ts
+                📄 useCreateComment.tsx
             </div>
 
             <div class="filepath">
-                src\features\post-like\model\usePostLike.ts
+                src/features/comment-create/model/useCreateComment.tsx
+            </div>
+    
+            <div class="error">
+
+                <div class="rule">
+                    no-warning-comments
+                </div>
+
+                <div class="line">
+                    Line 4:1
+                </div>
+
+                <div class="message">
+                    Unexpected '256' comment: '256'.
+                </div>
+
+            </div>
+      
+        </div>
+    
+        <div class="card">
+
+            <div class="filename">
+                📄 ui.tsx
+            </div>
+
+            <div class="filepath">
+                src/pages/login-page/ui.tsx
+            </div>
+    
+            <div class="error">
+
+                <div class="rule">
+                    import-x/no-unresolved
+                </div>
+
+                <div class="line">
+                    Line 1:27
+                </div>
+
+                <div class="message">
+                    Unable to resolve path to module '@/features/auth-login'.
+                </div>
+
+            </div>
+      
+        </div>
+    
+        <div class="card">
+
+            <div class="filename">
+                📄 LoginPage.tsx
+            </div>
+
+            <div class="filepath">
+                src/pages/login-page/ui/LoginPage.tsx
+            </div>
+    
+            <div class="error">
+
+                <div class="rule">
+                    import-x/no-unresolved
+                </div>
+
+                <div class="line">
+                    Line 1:27
+                </div>
+
+                <div class="message">
+                    Unable to resolve path to module '@/features/auth-login'.
+                </div>
+
+            </div>
+      
+        </div>
+    
+        <div class="card">
+
+            <div class="filename">
+                📄 ui.tsx
+            </div>
+
+            <div class="filepath">
+                src/pages/register-page/ui.tsx
+            </div>
+    
+            <div class="error">
+
+                <div class="rule">
+                    import-x/no-unresolved
+                </div>
+
+                <div class="line">
+                    Line 1:30
+                </div>
+
+                <div class="message">
+                    Unable to resolve path to module '@/features/auth-register'.
+                </div>
+
+            </div>
+      
+        </div>
+    
+        <div class="card">
+
+            <div class="filename">
+                📄 use-require-auth.tsx
+            </div>
+
+            <div class="filepath">
+                src/shared/hooks/auth/use-require-auth.tsx
             </div>
     
             <div class="error">
@@ -69,25 +181,25 @@ Generated: 03.07.2026, 20:43:04
         <div class="card">
 
             <div class="filename">
-                📄 PostLikeButton.tsx
+                📄 CommentCarousel.tsx
             </div>
 
             <div class="filepath">
-                src\features\post-like\ui\PostLikeButton.tsx
+                src/widgets/comment-carousel/CommentCarousel.tsx
             </div>
     
             <div class="error">
 
                 <div class="rule">
-                    no-warning-comments
+                    null
                 </div>
 
                 <div class="line">
-                    Line 11:1
+                    Line 2:1
                 </div>
 
                 <div class="message">
-                    Unexpected '256' comment: '256'.
+                    Unused eslint-disable directive (no problems were reported from 'import-x/no-unresolved').
                 </div>
 
             </div>

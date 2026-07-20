@@ -3,7 +3,6 @@ import { UserProfilePanel } from "@/widgets/user-profile-panel/UserProfilePanel"
 
 export function FakePosts() {
   const { openModal } = useModalStack();
-  // const { userName } = useProfileUser();
   const userName = "test";
 
   const handleOpen = () => {

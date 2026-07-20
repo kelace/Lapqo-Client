@@ -22,7 +22,7 @@ export default defineConfig([
       "import-x/no-unresolved": "error",
       "no-warning-comments": [
         "warn",
-        { terms: ["256", "fixme"], location: "anywhere" },
+        { terms: ["256", "fixme", "fsd"], location: "anywhere" },
       ],
     },
 

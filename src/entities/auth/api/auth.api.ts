@@ -19,11 +19,10 @@ export const authApi = {
     const { data } = await api.post<LoginResponse>("/auth/login", credentials);
     return data;
   },
+
+  revoke: () => api.post("/auth/revoke"),
 };
 
-// revoke: (refreshToken: string) => {
-//   return api.post("/auth/revoke", { refreshToken });
-// },
 // refresh: (refreshToken: string) => {
 //   return api.post("/auth/refresh", { refreshToken });
 // },

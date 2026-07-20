@@ -28,7 +28,6 @@ export function AppSidebar() {
 
       <SidebarContent className="gap-5">
         <SideLinks isCollapsed={isCollapsed} userName={currentUser?.name} />
-
         <Subscriptions />
       </SidebarContent>
 
@@ -41,7 +40,7 @@ export function AppSidebar() {
               : "translate-y-full scale-95 opacity-0 duration-0",
           )}
         >
-          <SettingsBar className="flex-col" />
+          <SettingsBar orientation="vertical" />
         </div>
       </SidebarFooter>
     </Sidebar>
