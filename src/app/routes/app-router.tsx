@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "@/app/routes/guards/ProtectedRouter";
 import { FeedPage } from "@/pages/feed-page/ui";
-import { LoginPage } from "@/pages/login-page/ui";
+import { LoginPage } from "@/pages/login-page/ui/LoginPage";
 import { NotFoundPage } from "@/pages/not-found-page/ui";
 import { PostDetailPage } from "@/pages/post-detail-page/ui";
 import { RegisterPage } from "@/pages/register-page/ui";

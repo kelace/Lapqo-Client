@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { routes } from "@/shared/config/routes";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/shadcn/ui/avatar";
 import { SettingsBar } from "./SettingsBar";
@@ -18,7 +20,8 @@ export function UserBlock({ user, isCollapsed }: UserBlockProps) {
         isCollapsed ? "justify-center" : "justify-between",
       )}
     >
-      <div
+      <Link
+        to={user?.userName ? routes.users.detail(user?.userName) : routes.login}
         className={cn(
           "flex items-center",
           isCollapsed ? "justify-center" : "gap-3",
@@ -34,12 +37,9 @@ export function UserBlock({ user, isCollapsed }: UserBlockProps) {
             <p className="truncate text-[14px] font-medium uppercase">
               {user?.userName}
             </p>
-            <p className="text-muted-foreground text-[12px]">
-              {user?.userName}
-            </p>
           </div>
         )}
-      </div>
+      </Link>
 
       {!isCollapsed && <SettingsBar />}
     </div>

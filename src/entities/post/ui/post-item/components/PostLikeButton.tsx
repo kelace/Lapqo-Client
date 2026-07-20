@@ -1,6 +1,6 @@
 import { Heart } from "lucide-react";
+import { useRequireAuth } from "@/entities/auth/lib/useRequiredAuth"; //fsd
 import { usePostLike, usePostUnlike } from "@/entities/post/model/usePostLike";
-import { useRequireAuth } from "@/shared/hooks/auth/use-require-auth";
 import { cn } from "@/shared/shadcn/lib/utils";
 
 type Props = {
