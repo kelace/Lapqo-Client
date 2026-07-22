@@ -1,5 +1,7 @@
 import type { PostComment } from "@/entities/comment";
-import type { Post } from "@/entities/post/types";
+import type { Post } from "@/entities/post/model/post.types";
+
+// import type { Post } from "@/entities/post/types";
 
 type PostActivityItem = {
   createdAt: string;

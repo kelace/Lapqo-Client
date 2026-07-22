@@ -1,5 +1,5 @@
 import { FeedPosts } from "@/widgets/feed-posts/ui/FeedPosts";
 
-export function FeedPage() {
+export function FeedPostsPage() {
   return <FeedPosts />;
 }

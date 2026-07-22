@@ -34,7 +34,6 @@ const processQueue = (error: unknown, accessToken?: string) => {
 // request interceptor
 api.interceptors.request.use((config) => {
   const token = useAuthStore.getState().accessToken;
-  console.log("REQUEST TOKEN:", token);
   if (token) config.headers.Authorization = `Bearer ${token}`;
 
   return config;
@@ -45,8 +44,6 @@ api.interceptors.response.use(
   (response) => response,
 
   async (error) => {
-    console.log("interceptos response");
-
     const originalRequest = error.config;
 
     if (!originalRequest) return Promise.reject(error);
@@ -77,14 +74,7 @@ api.interceptors.response.use(
       const { data } = await api.post<RefreshResponseDto>("/auth/refresh", {});
       const accessToken = data.token;
 
-      // useAuthStore.getState().setAuth(accessToken);
-      console.log("NEW TOKEN:", accessToken);
       useAuthStore.getState().setAuth(accessToken);
-      console.log(
-        "STORE TOKEN AFTER SET:",
-        useAuthStore.getState().accessToken,
-      );
-
       processQueue(null, accessToken);
 
       originalRequest.headers = originalRequest.headers ?? {};

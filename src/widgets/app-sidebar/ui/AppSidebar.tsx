@@ -6,29 +6,27 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  useSidebar,
 } from "@/shared/shadcn/ui/sidebar";
-import { SettingsBar } from "./ui/SettingsBar";
-import { SideLinks } from "./ui/SideLinks";
-import { Subscriptions } from "./ui/Subscriptions";
-import { UserBlock } from "./ui/UserBlock";
+import { useSidebarCollapsed } from "../lib/useSidebarCollapsed";
+import { SettingsBar } from "./SettingsBar";
+import { SidebarAccountPanel } from "./SidebarAccountPanel";
+import { SidebarNav } from "./SidebarNav";
+import { SubscriptionsList } from "./SubscriptionsList";
 
 export function AppSidebar() {
   const currentUser = useAuthStore((store) => store.currentUser);
   const { data: user } = useUser(currentUser?.name);
-  const { state, isMobile } = useSidebar();
-  const isDesktopCollapsed = state === "collapsed";
-  const isCollapsed = isDesktopCollapsed && !isMobile;
+  const isCollapsed = useSidebarCollapsed();
 
   return (
     <Sidebar collapsible="icon" variant="sidebar" className="sticky">
       <SidebarHeader className="mb-3 flex gap-3 border-b">
-        <UserBlock isCollapsed={isCollapsed} user={user} />
+        <SidebarAccountPanel isCollapsed={isCollapsed} user={user} />
       </SidebarHeader>
 
       <SidebarContent className="gap-5">
-        <SideLinks isCollapsed={isCollapsed} userName={currentUser?.name} />
-        <Subscriptions />
+        <SidebarNav isCollapsed={isCollapsed} userName={currentUser?.name} />
+        <SubscriptionsList isCollapsed={isCollapsed} />
       </SidebarContent>
 
       <SidebarFooter className="overflow-hidden">
