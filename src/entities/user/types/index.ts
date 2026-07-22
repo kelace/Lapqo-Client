@@ -5,9 +5,3 @@ export type User = {
   subscribersCount: number;
   isSubscribed: boolean;
 };
-
-export type Subscribe = {
-  id: string;
-  userName: string;
-  namePreview: string;
-};

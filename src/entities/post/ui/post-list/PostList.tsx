@@ -1,5 +1,5 @@
 import type { Post } from "../../model/post.types";
-import { PostItem } from "../post-item";
+import { PostCard } from "../post-card/PostCard";
 
 type Props = {
   posts: Post[];
@@ -7,9 +7,11 @@ type Props = {
 
 export function PostList({ posts }: Props) {
   return (
-    <ul className="space-y-3 py-3">
+    <ul className="space-y-4 py-3">
       {posts.map((post) => (
-        <PostItem key={post.id} post={post} />
+        <li key={post.id}>
+          <PostCard post={post} />
+        </li>
       ))}
     </ul>
   );

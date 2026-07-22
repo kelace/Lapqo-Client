@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { routes } from "@/shared/config/routes";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/shadcn/ui/avatar";
+import { getUserProfileRoute } from "../lib/getUserProfileRoute";
 import { SettingsBar } from "./SettingsBar";
 
-type UserBlockProps = {
+type Props = {
   user?: {
     namePreview?: string;
     userName?: string;
@@ -12,16 +12,17 @@ type UserBlockProps = {
   isCollapsed: boolean;
 };
 
-export function UserBlock({ user, isCollapsed }: UserBlockProps) {
+export function SidebarAccountPanel({ user, isCollapsed }: Props) {
   return (
     <div
       className={cn(
-        "flex w-full items-center",
+        "flex items-center",
+        "w-full",
         isCollapsed ? "justify-center" : "justify-between",
       )}
     >
       <Link
-        to={user?.userName ? routes.users.detail(user?.userName) : routes.login}
+        to={getUserProfileRoute(user?.userName)}
         className={cn(
           "flex items-center",
           isCollapsed ? "justify-center" : "gap-3",

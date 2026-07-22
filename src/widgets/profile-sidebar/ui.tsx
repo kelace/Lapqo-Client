@@ -1,26 +1,12 @@
-import { Bell, Edit } from "lucide-react";
-import { useSubscribeUser } from "@/features/user-subscription/model/useSubscribeUser";
-import { useUnsubscribeUser } from "@/features/user-subscription/model/useUnsubscribeUser";
+import { Edit } from "lucide-react";
+import { SubscribeButton } from "@/features/user-subscription/ui/subscribe-button";
 import { useUser } from "@/entities/user/model/useUser";
 import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
 
-export function UserProfilePanel({ userName }: { userName?: string }) {
+export function ProfileSidebar({ userName }: { userName?: string }) {
   const { data: user } = useUser(userName);
 
-  const subscribeMutation = useSubscribeUser(user?.id ?? "");
-  const unsubscribeUser = useUnsubscribeUser(user?.id ?? "");
-
-  const isPending = subscribeMutation.isPending || unsubscribeUser.isPending;
-
-  const handleSubscribe = () => {
-    if (!user?.id) return;
-
-    if (user?.isSubscribed) {
-      unsubscribeUser.mutate();
-    } else {
-      subscribeMutation.mutate();
-    }
-  };
+  if (!user) return null;
 
   return (
     <aside className="bg-sidebar border-border-gray sticky top-0 h-screen w-[320px] border">
@@ -40,13 +26,10 @@ export function UserProfilePanel({ userName }: { userName?: string }) {
 
           <div className="flex items-start justify-center gap-4">
             <div className="flex justify-center gap-1.5">
-              <button
-                className="bg-primary flex min-w-30 cursor-pointer items-center justify-center gap-1 rounded-lg px-4 py-2 text-[14px] font-medium text-white"
-                disabled={isPending}
-                onClick={handleSubscribe}
-              >
-                <Bell size={13} /> {user?.isSubscribed ? "Following" : "Follow"}
-              </button>
+              <SubscribeButton
+                userId={user.id}
+                isSubscribed={user.isSubscribed}
+              />
               <button className="flex min-w-30 cursor-pointer items-center justify-center gap-1 rounded-lg border border-gray-400/20 px-4 py-2 text-[14px]">
                 <Edit size={13} /> Write
               </button>

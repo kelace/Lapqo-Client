@@ -4,10 +4,10 @@ import {
   PostList,
   PostLoading,
 } from "@/entities/post/ui/post-list";
-import { useFeedQuery } from "../model/useFeedPosts";
+import { useGetFeedPosts } from "../model/useGetFeedPosts";
 
 export function FeedPosts() {
-  const { data: posts = [], isLoading, isError, error } = useFeedQuery();
+  const { data: posts = [], isLoading, isError, error } = useGetFeedPosts();
 
   if (isLoading) return <PostLoading />;
 
@@ -23,3 +23,8 @@ export function FeedPosts() {
     </div>
   );
 }
+
+// infinite query,
+// pagination,
+// loading more,
+// intersection observer.

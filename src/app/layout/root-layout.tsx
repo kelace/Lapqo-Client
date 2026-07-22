@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import { AppSidebar } from "@/widgets/app-sidebar/AppSidebar";
-import { DetailsPanel } from "@/widgets/details-panel/DetailsPanel";
+import { AppSidebar } from "@/widgets/app-sidebar";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/shared/shadcn/ui/sidebar";
+import { ProfileSidebarSlot } from "./profile-sidebar-slot";
 
 export function RootLayout() {
   return (
@@ -19,7 +19,7 @@ export function RootLayout() {
             <Outlet />
           </SidebarInset>
 
-          <DetailsPanel />
+          <ProfileSidebarSlot />
         </div>
       </SidebarProvider>
     </div>

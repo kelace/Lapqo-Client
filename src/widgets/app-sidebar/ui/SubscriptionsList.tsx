@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useGetSubscribes } from "@/entities/user/model/useGetSubscribes";
+import { useGetSubscribes } from "@/entities/subscription/model/useGetSubscribes";
 import { routes } from "@/shared/config/routes";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
@@ -8,18 +8,17 @@ import {
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuItem,
-  useSidebar,
 } from "@/shared/shadcn/ui/sidebar";
 
-export function Subscriptions() {
+type Props = {
+  isCollapsed: boolean;
+};
+
+// а це може бути features ?
+export function SubscriptionsList({ isCollapsed }: Props) {
   const { data: subscriptions, isLoading } = useGetSubscribes();
-  const { state } = useSidebar();
 
-  const isCollapsed = state === "collapsed";
-
-  if (isLoading) {
-    return null; // або Skeleton
-  }
+  if (isLoading) return null; // або Skeleton
 
   return (
     <SidebarGroup>
@@ -30,18 +29,19 @@ export function Subscriptions() {
       <SidebarMenu className="flex flex-col gap-2">
         {subscriptions?.map((sub) => (
           <SidebarMenuItem
-            className="flex items-center justify-center border p-2"
             key={sub.id}
+            className="flex items-center justify-center border p-2"
           >
             <Link
               to={routes.users.detail(sub.userName)}
               className={cn(
-                "flex w-full items-center gap-2 rounded-lg",
+                "flex items-center gap-2",
+                "w-full",
+                "rounded-lg",
                 isCollapsed ? "justify-center" : "justify-start",
               )}
             >
               <Avatar>
-                {/* <AvatarImage src={undefined} /> */}
                 <AvatarFallback>{sub.namePreview}</AvatarFallback>
               </Avatar>
 

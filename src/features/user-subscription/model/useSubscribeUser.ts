@@ -1,15 +1,17 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { userApi } from "@/entities/user/api/userApi";
-import { userKeys } from "@/entities/user/keys/userKeys";
+import { subscribeApi } from "@/entities/subscription/api/subscribeApi";
+import { subscriptionKeys } from "@/entities/subscription/api/subscribeKeys";
+import { userKeys } from "@/entities/user/api/userKeys";
 
 export const useSubscribeUser = (userId: string) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: () => userApi.subscribe(userId),
+    mutationFn: () => subscribeApi.subscribe(userId),
 
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: subscriptionKeys.all });
       queryClient.invalidateQueries({ queryKey: userKeys.all });
     },
 
