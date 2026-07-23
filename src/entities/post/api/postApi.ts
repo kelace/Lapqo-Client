@@ -1,12 +1,8 @@
 import { api } from "@/shared/api/axios";
-import type {
-  PostContent,
-  PostId,
-  UpdatePostPayload,
-} from "../model/post.types";
+import type { PostContent, PostId, UpdatePostPayload } from "../model/types";
 
 export const postApi = {
-  getPost: async (id: PostId) => {
+  getPostById: async (id: PostId) => {
     const { data } = await api.get(`/posts/${id}`);
     return data;
   },

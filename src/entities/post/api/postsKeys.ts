@@ -1,6 +1,6 @@
 export const postsKeys = {
-  all: ["posts"] as const, // ✔
-  byId: (id: string) => ["posts", id] as const, // ✔
-  feed: () => ["posts", "feed"] as const, // ✔
-  user: (name: string) => ["posts", "user", name] as const, // ✔
+  all: ["posts"] as const,
+  feed: () => [...postsKeys.all, "feed"] as const,
+  byId: (id: string) => [...postsKeys.all, id] as const,
+  user: (name: string) => [...postsKeys.all, "user", name] as const,
 };

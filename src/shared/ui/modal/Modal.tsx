@@ -1,7 +1,7 @@
 // import { useFocusTrap } from "@shared/hooks/useFocusTrap/useFocusTrap";
 import { useRef } from "react";
+import { useFocusTrap } from "@/shared/hooks/use-focus-trap/use-focus-trap";
 import { Portal } from "../portal/Portal";
-import { useFocusTrap } from "@/shared/hooks/useFocusTrap/useFocusTrap";
 import style from "./Modal.module.scss";
 
 type ModalProps = {

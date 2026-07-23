@@ -25,3 +25,10 @@
 entities — усе про конкретну сутність (Post, User).
 features — дії користувача (create, edit, login, follow).
 widgets — великі блоки сторінки (feed, sidebar, profile).
+
+---
+
+entities — доменні сутності (Post, User)
+features — дії користувача (like, create post, follow user)
+widgets — великі UI-блоки сторінки
+pages — композиція віджетів

@@ -1,17 +1,21 @@
 import { api } from "@/shared/api/axios";
-import type { CreateCommentPayload, PostComment } from "../types/comment-types";
+import type {
+  CreatePostCommentPayload,
+  PostComment,
+} from "../types/comment-types";
 
 export const commentApi = {
-  getComments: async (postId: string) => {
+  getPostComments: async (postId: string) => {
     const { data } = await api.get<PostComment[]>(`/posts/${postId}/comments`);
     return data;
   },
 
-  createComment: async ({
-    postId,
-    content,
-  }: CreateCommentPayload): Promise<PostComment> => {
-    const { data } = await api.post(`/posts/${postId}/comments`, { content });
+  createPostComment: async (
+    payload: CreatePostCommentPayload,
+  ): Promise<PostComment> => {
+    const { data } = await api.post(`/posts/${payload.postId}/comments`, {
+      content: payload.content,
+    });
     return data;
   },
 };

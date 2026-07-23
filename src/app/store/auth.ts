@@ -1,6 +1,8 @@
 import { jwtDecode } from "jwt-decode";
 import { create } from "zustand";
-import type { AuthState, JWTPayload, Me } from "./auth.types";
+import type { AuthState, JWTPayload, Me } from "./types";
+
+// import type { AuthState, JWTPayload, Me } from "./auth.types";
 
 // JWT parce get {id, currentUser}
 const parseCurrentUser = (accessToken: string): Me => {

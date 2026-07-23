@@ -1,12 +1,15 @@
-import { useModalStack } from "@/app/context/ModalProvider/useModalStack";
-import { UserProfilePanel } from "@/widgets/user-profile-panel/UserProfilePanel";
+// import { useModalStack } from "@/app/context/ModalProvider/useModalStack";
+// import { UserProfilePanel } from "@/widgets/user-profile-panel/UserProfilePanel";
+
+import { useModalStack } from "@/app/providers/modal-provider";
+import { ProfileSidebar } from "@/widgets/profile-sidebar/ui";
 
 export function FakePosts() {
   const { openModal } = useModalStack();
   const userName = "test";
 
   const handleOpen = () => {
-    openModal(() => <UserProfilePanel userName={userName} />);
+    openModal(() => <ProfileSidebar userName={userName} />);
   };
 
   return (
