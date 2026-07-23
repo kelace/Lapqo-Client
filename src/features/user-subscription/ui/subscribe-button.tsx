@@ -1,6 +1,6 @@
 import { Bell } from "lucide-react";
-import { useSubscribeUser } from "../model/useSubscribeUser";
-import { useUnsubscribeUser } from "../model/useUnsubscribeUser";
+import { useSubscribeUser } from "../model/use-subscribe-user";
+import { useUnsubscribeUser } from "../model/use-unsubscribe-user";
 
 type Props = {
   userId: string;

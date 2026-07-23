@@ -1,5 +1,4 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { ProtectedRoute } from "@/app/routes/guards/ProtectedRouter";
 import { LoginPage, RegisterPage } from "@/pages/auth";
 import { FeedPostsPage } from "@/pages/feed-posts-page/ui";
 import { NotFoundPage } from "@/pages/not-found-page/ui";
@@ -7,6 +6,7 @@ import { PostDetailPage } from "@/pages/post-detail-page/ui";
 import { UserPostsPage } from "@/pages/user-posts-page/ui";
 import { routes } from "@/shared/config/routes";
 import { RootLayout } from "../layout/root-layout";
+import { ProtectedRoute } from "./guards/protected-route";
 
 export const AppRouter = () => {
   return (

@@ -1,10 +1,10 @@
-import { CommentForm } from "@/features/comment-create/ui/CommentForm";
+import { CommentForm } from "@/features/comment-create/ui/comment-form";
 import { PostComments } from "@/entities/comment/ui/post-comments";
-import { useGetPost } from "@/entities/post/model/useGetPost";
-import { PostCard } from "@/entities/post/ui/post-card/PostCard";
+import { usePostById } from "@/entities/post/model/use-post-by-Id";
+import { PostCard } from "@/entities/post/ui/post-card/post-card";
 
 export function PostDetail({ postId }: { postId: string }) {
-  const { data, isLoading, isError } = useGetPost(postId!);
+  const { data, isLoading, isError } = usePostById(postId!);
 
   if (isLoading) return <div> PostLoading...</div>;
   if (isError || !data) return <div>PostError</div>;

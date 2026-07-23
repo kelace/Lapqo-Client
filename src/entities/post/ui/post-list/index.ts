@@ -1,4 +1,4 @@
-export { PostList } from "./PostList";
-export { PostError } from "./states/PostError";
-export { PostEmpty } from "./states/PostEmpty";
-export { PostLoading } from "./states/PostLoading";
+export { PostError } from "./states/post-error";
+export { PostEmpty } from "./states/post-empty";
+export { PostLoading } from "./states/post-loading";
+export { PostList } from "./post-list";
