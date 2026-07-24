@@ -1,4 +1,3 @@
-//256
-export * from "./model/types";
-export * from "./api/commentApi";
-export * from "./model/use-post-comments";
+export { commentKeys } from "./api/comment-keys";
+export { commentApi } from "./api/commentApi";
+export type { PostComment } from "./model/types";

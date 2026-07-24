@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { PostDetail } from "@/widgets/post-detail/ui/post-detail";
+import { PostDetail } from "@/widgets/post-detail/ui";
 
 export function PostDetailPage() {
   const { id } = useParams();

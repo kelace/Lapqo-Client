@@ -1,7 +1,7 @@
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
-import { ModalProvider } from "./modal-provider";
-import { QueryProvider } from "./query-provider";
+import { ModalProvider } from "../modal-provider/modal-provider";
+import { QueryProvider } from "../query-provider/query-provider";
 
 type Props = {
   children: React.ReactNode;

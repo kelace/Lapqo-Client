@@ -1,11 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom"; //256 react-router
 import { AppSidebar } from "@/widgets/app-sidebar";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/shared/shadcn/ui/sidebar";
-import { ProfileSidebarSlot } from "./profile-sidebar-slot";
+import { ProfileSidebarSlot } from "../profile-sidebar-slot/profile-sidebar-slot";
 
 export function RootLayout() {
   return (

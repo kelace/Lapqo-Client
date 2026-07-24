@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Check, X } from "lucide-react";
+import { useUpdatePost } from "@/entities/post/model/use-update-post";
 import { Button } from "@/shared/shadcn/ui/button";
 import { Textarea } from "@/shared/shadcn/ui/textarea";
-import { useUpdatePost } from "../model/use-update-post";
 
 interface PropsEditForm {
   initialContent: string;
@@ -18,20 +18,40 @@ export function PostEditForm({
   onSuccess,
 }: PropsEditForm) {
   const [content, setContent] = useState(initialContent);
+
   const updatePost = useUpdatePost();
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const trimmed = content.trim();
-    if (!trimmed || trimmed === initialContent) {
+    const isUnchanged = trimmed === initialContent;
+
+    if (!trimmed || isUnchanged) {
       onCancel();
       return;
     }
-    updatePost.mutate(
-      { id: postId, updates: { content: trimmed } },
-      {
-        onSuccess,
-      },
-    );
+
+    try {
+      await updatePost.mutateAsync({
+        id: postId,
+        updates: { content: trimmed },
+      });
+
+      onSuccess();
+    } catch (error) {
+      // toast
+      console.error(error);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Escape") {
+      onCancel();
+      return;
+    }
+
+    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+      void handleSave();
+    }
   };
 
   return (
@@ -41,10 +61,7 @@ export function PostEditForm({
         onChange={(e) => setContent(e.target.value)}
         className="min-h-20 resize-none text-sm leading-relaxed"
         autoFocus
-        onKeyDown={(e) => {
-          if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) handleSave();
-          if (e.key === "Escape") onCancel();
-        }}
+        onKeyDown={handleKeyDown}
       />
       <div className="flex justify-end gap-1">
         <Button

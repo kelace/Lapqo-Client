@@ -9,7 +9,8 @@ type Props = {
 export function CommentItem({ comment }: Props) {
   return (
     <div className="flex gap-3 border p-2">
-      <Avatar className="size-9 shrink-0">
+      <Avatar className="size-8 shrink-0">
+        {/* <AvatarImage src={noavatar} /> */}
         <AvatarFallback>{comment.authorShortName}</AvatarFallback>
       </Avatar>
 
