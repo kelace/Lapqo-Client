@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useSubscribes } from "@/entities/subscription/model/use-subscribes";
+import { useSubscribes } from "@/entities/subscribe";
 import { routes } from "@/shared/config/routes";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";

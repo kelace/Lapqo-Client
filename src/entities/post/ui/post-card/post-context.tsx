@@ -1,6 +1,5 @@
-// import { PostEditForm } from "@/features/post-update/ui/PostEditForm";
-import { PostEditForm } from "@/features/post-update/ui/post-edit-form";
 import type { Post } from "@/entities/post/model/types";
+import { PostEditForm } from "../post-edit-form/post-edit-form";
 
 type PropsContext = {
   isEditing: boolean;

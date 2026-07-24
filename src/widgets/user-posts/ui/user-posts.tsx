@@ -1,11 +1,6 @@
 import { CreatePost } from "@/features/post-create/ui/post-create";
 import { CommentCarousel } from "@/entities/comment/ui/comment-carousel";
-import {
-  PostEmpty,
-  PostError,
-  PostList,
-  PostLoading,
-} from "@/entities/post/ui/post-list";
+import { PostEmpty, PostError, PostList, PostLoading } from "@/entities/post";
 import { useActiveProfile } from "@/entities/user/model/use-active-profile";
 import { RouteError } from "@/shared/ui/route-error/route-error";
 import { useUserPosts } from "../model/use-user-posts";

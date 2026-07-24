@@ -1,8 +1,5 @@
 import { api } from "@/shared/api/axios";
-import type {
-  CreatePostCommentPayload,
-  PostComment,
-} from "../types/comment-types";
+import type { CreatePostCommentPayload, PostComment } from "../model/types";
 
 export const commentApi = {
   getPostComments: async (postId: string) => {

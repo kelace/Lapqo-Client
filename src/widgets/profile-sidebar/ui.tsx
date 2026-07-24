@@ -1,5 +1,5 @@
-import { Edit } from "lucide-react";
-import { SubscribeButton } from "@/features/user-subscription/ui/subscribe-button";
+import { Edit, PawPrint } from "lucide-react";
+import { SubscribeButton } from "@/features/subscribe-user/ui/subscribe-button";
 import { useUserByUsername } from "@/entities/user/model/use-user-by-username";
 import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
 
@@ -15,9 +15,9 @@ export function ProfileSidebar({ userName }: { userName?: string }) {
       <div className="mx-auto max-w-5xl rounded-lg p-6">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center justify-center gap-4">
-            <Avatar className="size-35">
+            <Avatar className="size-30">
               <AvatarFallback className="text-2xl">
-                {user ? user.namePreview : ".!."}
+                {user ? user.namePreview : <PawPrint size="30" />}
               </AvatarFallback>
             </Avatar>
             {isLoading ? "loading…" : user ? user.userName : "Laboq"}

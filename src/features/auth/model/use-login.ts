@@ -3,7 +3,7 @@ import type { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/app/store/auth";
-import { authApi } from "@/entities/auth/api/authApi";
+import { authApi } from "@/entities/auth";
 import { routes } from "@/shared/config/routes";
 
 export const useLogin = () => {

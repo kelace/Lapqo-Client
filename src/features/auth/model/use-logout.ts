@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useAuthStore } from "@/app/store/auth";
-import { authApi } from "@/entities/auth/api/authApi";
+import { authApi } from "@/entities/auth";
 
 export function useLogout() {
   const logout = useAuthStore((state) => state.logout);

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import type { Post } from "@/entities/post/model/types";
+// eslint-disable-next-line import-x/no-unresolved
+import noavatar from "@/shared/assets/images/noavatar.webp";
 import { routes } from "@/shared/config/routes";
 import { formatPostDate } from "@/shared/lib/createdAt";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/shadcn/ui/avatar";
@@ -14,8 +16,8 @@ export function PostMeta({ post }: Props) {
   return (
     <div className="flex items-center gap-3">
       <Link to={userLink}>
-        <Avatar className="h-10 w-10">
-          <AvatarImage src={undefined} />
+        <Avatar className="size-8">
+          <AvatarImage src={noavatar} />
           <AvatarFallback>{post.shortName}</AvatarFallback>
         </Avatar>
       </Link>
