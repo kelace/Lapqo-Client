@@ -21,11 +21,12 @@ export function PostEditForm({
 
   const updatePost = useUpdatePost();
 
-  const handleSave = async () => {
-    const trimmed = content.trim();
-    const isUnchanged = trimmed === initialContent;
+  const trimmedContent = content.trim();
+  const canSave =
+    trimmedContent.length > 0 && trimmedContent !== initialContent;
 
-    if (!trimmed || isUnchanged) {
+  const handleSave = async () => {
+    if (!canSave) {
       onCancel();
       return;
     }
@@ -33,12 +34,10 @@ export function PostEditForm({
     try {
       await updatePost.mutateAsync({
         id: postId,
-        updates: { content: trimmed },
+        content: trimmedContent,
       });
-
       onSuccess();
     } catch (error) {
-      // toast
       console.error(error);
     }
   };
@@ -55,31 +54,34 @@ export function PostEditForm({
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="relative flex flex-col gap-2">
       <Textarea
+        disabled={updatePost.isPending}
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="min-h-20 resize-none text-sm leading-relaxed"
+        className="relative min-h-20 resize-none pr-24 pb-12 text-sm leading-relaxed"
         autoFocus
         onKeyDown={handleKeyDown}
       />
-      <div className="flex justify-end gap-1">
+      <div className="absolute right-2 bottom-2 flex gap-1">
         <Button
           variant="ghost"
           size="icon"
-          className="h-7 w-7"
+          className="h-7 w-7 cursor-pointer rounded-full hover:bg-red-500/20 hover:text-red-500"
           onClick={onCancel}
-        >
-          <X className="h-3.5 w-3.5" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-7 w-7 hover:text-green-500"
-          onClick={handleSave}
           disabled={updatePost.isPending}
         >
-          <Check className="h-3.5 w-3.5" />
+          <X className="h-4 w-4" />
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-7 w-7 cursor-pointer rounded-full hover:bg-green-500/20 hover:text-green-500"
+          onClick={handleSave}
+          disabled={!canSave || updatePost.isPending}
+        >
+          <Check className="h-4 w-4" />
         </Button>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { api } from "@/shared/api/axios";
-import type { PostContent, PostId, UpdatePostPayload } from "../model/types";
+import type { PostContent, PostId } from "../model/types";
 
 export const postApi = {
   getPostById: async (id: PostId) => {
@@ -17,8 +17,12 @@ export const postApi = {
     return data;
   },
 
-  update: async ({ id, updates }: UpdatePostPayload) => {
-    const { data } = await api.patch(`/posts/${id}`, updates);
+  update: async ({ id, content }: { id: string; content: string }) => {
+    const { data } = await api.patch("/posts", JSON.stringify(content), {
+      params: { id },
+      headers: { "Content-Type": "application/json" },
+    });
+
     return data;
   },
 
