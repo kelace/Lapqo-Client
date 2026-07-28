@@ -1,56 +1,47 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { PostEmpty, PostError, PostList, PostLoading } from "@/entities/post";
-import { Button } from "@/shared/shadcn/ui/button";
 import { useFeedPosts } from "../model/use-feed-posts";
 
 export function FeedPosts() {
-  const [page, setPage] = useState(0);
-  const { data: posts = [], isLoading, isError, error } = useFeedPosts(page);
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    status,
+    error,
+  } = useFeedPosts();
 
-  if (isLoading) return <PostLoading />;
+  if (status === "pending") return <PostLoading />;
 
-  if (isError) return <PostError error={error} />;
-
+  if (status === "error") return <PostError error={error} />;
+  const posts = data?.pages.flat() ?? [];
   const hasPosts = posts?.length > 0;
 
   return (
     <div className="flex h-full flex-col">
-      <nav
-        aria-label="Pagination"
-        className="relative mt-6 flex items-center gap-4"
-      >
-        <Button
-          variant="outline"
-          onClick={() => setPage((p) => Math.max(p - 1, 0))}
-          disabled={page === 0}
-          className="cursor-pointer"
-        >
-          <ChevronLeft className="size-4" />
-          Previous
-        </Button>
-
-        <span className="text-muted-foreground absolute top-0 right-0 min-w-20 text-center text-sm font-medium">
-          Page {page + 1}
-        </span>
-
-        <Button
-          variant="outline"
-          onClick={() => setPage((p) => p + 1)}
-          disabled={!posts || posts.length < 20}
-          className="cursor-pointer"
-        >
-          Next
-          <ChevronRight className="size-4" />
-        </Button>
-      </nav>
-
       <div className="flex-1 scrollbar-none overflow-y-auto">
         {hasPosts ? <PostList posts={posts} /> : <PostEmpty />}
       </div>
 
-      {/* Якщо йде фонове оновлення (placeholderData) — показуємо ледь помітний індикатор */}
-      {/* {isPlaceholderData && <span style={{ opacity: 0.5 }}>Оновлення...</span>} */}
+      <footer className="mt-6 flex justify-center">
+        <button
+          onClick={() => fetchNextPage()}
+          disabled={!hasNextPage || isFetchingNextPage}
+          className="border-border bg-background hover:bg-accent hover:text-accent-foreground mx-auto flex cursor-pointer items-center gap-2 rounded-lg border px-5 py-2 text-sm font-medium transition-all disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {isFetchingNextPage ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Loading...
+            </>
+          ) : hasNextPage ? (
+            "Load more posts"
+          ) : (
+            "You've reached the end"
+          )}
+        </button>
+      </footer>
     </div>
   );
 }
