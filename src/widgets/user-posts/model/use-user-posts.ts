@@ -10,19 +10,13 @@ export const useUserPosts = (userName: string) => {
     queryKey: postsKeys.user(userName),
     queryFn: () => getUserActivity(userName),
     enabled: !!userName,
-    select: (data) => {
-      const sorted = [...data].sort(
-        (a, b) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-      );
-
-      return {
-        posts: sorted.filter((x) => x.type === "Post").map((x) => x.item),
-
-        comments: sorted
-          .filter((x) => x.type === "Comments")
-          .map((x) => x.item),
-      };
-    },
+    select: (data) =>
+      [...data]
+        .filter((x) => x.type === "Post")
+        .sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+        )
+        .map((x) => x.item),
   });
 };

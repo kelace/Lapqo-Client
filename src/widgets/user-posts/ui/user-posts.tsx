@@ -1,5 +1,4 @@
 import { CreatePost } from "@/features/post-create/ui/post-create";
-import { CommentCarousel } from "@/entities/comment/ui/comment-carousel";
 import { PostEmpty, PostError, PostList, PostLoading } from "@/entities/post";
 import { useActiveProfile } from "@/entities/user/model/use-active-profile";
 import { RouteError } from "@/shared/ui/route-error/route-error";
@@ -20,16 +19,9 @@ export function UserPosts() {
     <div className="flex flex-col gap-6">
       {isOwnProfile && <CreatePost />}
 
-      {data?.comments.length ? (
-        <section>
-          <CommentCarousel comments={data.comments} />
-        </section>
-      ) : null}
-
       <section>
         <h2 className="mb-3 text-center text-lg font-semibold">User Posts</h2>
-
-        {data?.posts.length ? <PostList posts={data.posts} /> : <PostEmpty />}
+        {data?.length ? <PostList posts={data} /> : <PostEmpty />}
       </section>
     </div>
   );
