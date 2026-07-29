@@ -8,5 +8,6 @@ export const getFeedPosts = async (
   const response = await api.get<Post[]>("/feed", {
     params: { page, pageSize },
   });
+
   return response.data;
 };
