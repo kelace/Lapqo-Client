@@ -15,6 +15,8 @@ export function usePostComments(postId: string) {
       return allPages.length;
     },
 
+    enabled: !!postId,
+
     initialPageParam: 0,
     // select: (data) => data.pages.flat(),
   });

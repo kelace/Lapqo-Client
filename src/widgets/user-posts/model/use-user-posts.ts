@@ -1,22 +1,23 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { postsKeys } from "@/entities/post/api/postsKeys";
 import { getUserActivity } from "../api/get-user-activity";
 
 //  useUserActivity
 // useUserPosts() => Post[]
 // useUserComments() => Comment[]
+const PAGE_SIZE = 10;
+
 export const useUserPosts = (userName: string) => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: postsKeys.user(userName),
-    queryFn: () => getUserActivity(userName),
+    queryFn: ({ pageParam = 0 }) =>
+      getUserActivity(userName, pageParam, PAGE_SIZE),
+    initialPageParam: 0,
     enabled: !!userName,
-    select: (data) =>
-      [...data]
-        .filter((x) => x.type === "Post")
-        .sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-        )
-        .map((x) => x.item),
+    getNextPageParam: (lastPage, _allPages, lastPageParam) => {
+      if (lastPage.length < PAGE_SIZE) return undefined;
+      return lastPageParam + 1; //
+    },
+    select: (data) => data.pages.flatMap((page) => page),
   });
 };
