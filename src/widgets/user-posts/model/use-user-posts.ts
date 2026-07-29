@@ -2,7 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { postsKeys } from "@/entities/post/api/postsKeys";
 import { getUserActivity } from "../api/get-user-activity";
 
-// useGetUserPosts | useUserActivity
+//  useUserActivity
+// useUserPosts() => Post[]
+// useUserComments() => Comment[]
 export const useUserPosts = (userName: string) => {
   return useQuery({
     queryKey: postsKeys.user(userName),
