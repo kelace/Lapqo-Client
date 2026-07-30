@@ -48,8 +48,9 @@ export function PostEditForm({
       return;
     }
 
-    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
-      void handleSave();
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSave();
     }
   };
 

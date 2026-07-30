@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MoreHorizontal, Pencil, Trash2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/app/store/auth";
 import {
   AlertDialog,
@@ -33,12 +33,9 @@ export function PostActions({ onEdit, post }: Props) {
   const currentUser = useAuthStore((store) => store.currentUser);
   const { mutate: deletePost, isPending } = useDeletePost();
   const isOwner = currentUser?.id === post.authorId;
-  const navigate = useNavigate();
 
   const handleDelete = (id: string) => {
-    deletePost(id, {
-      onSuccess: () => navigate(-1),
-    });
+    deletePost(id);
   };
 
   if (!isOwner) return null;

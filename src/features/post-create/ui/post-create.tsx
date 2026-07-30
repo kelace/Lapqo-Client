@@ -1,23 +1,50 @@
 import { useState } from "react";
-import { Send } from "lucide-react";
+import { Loader2, PawPrint, Send } from "lucide-react";
+import toast from "react-hot-toast";
 import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
 import { Button } from "@/shared/shadcn/ui/button";
 import { Card, CardContent } from "@/shared/shadcn/ui/card";
 import { Textarea } from "@/shared/shadcn/ui/textarea";
+import { getCounterColor, MAX_LENGTH, validatePostContent } from "../lib/utils";
 import { useCreatePost } from "../model/use-create-post";
 
 export function CreatePost() {
   const [value, setValue] = useState("");
-  const { mutate: createPost, isPending } = useCreatePost();
+  const [validationError, setValidationError] = useState<string | null>(null);
+  const {
+    mutate: createPost,
+    isPending,
+    error: serverError,
+    reset: resetMutation,
+  } = useCreatePost();
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value);
+    const text = e.target.value.slice(0, MAX_LENGTH);
+
+    setValue(text);
+    setValidationError(null);
+    if (serverError) resetMutation();
   };
 
   const submit = () => {
-    if (!value.trim()) return;
-    createPost({ content: value.trim() });
-    setValue("");
+    const validation = validatePostContent(value);
+    if (!validation.valid) {
+      setValidationError(validation.error!);
+      return;
+    }
+    createPost(
+      { content: value.trim() },
+      {
+        onSuccess: () => {
+          setValue("");
+          setValidationError(null);
+          toast.success("Post created.");
+        },
+        onError: () => {
+          toast.error("Failed to create post.");
+        },
+      },
+    );
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -25,7 +52,6 @@ export function CreatePost() {
     submit();
   };
 
-  // useful for textarea
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -33,33 +59,68 @@ export function CreatePost() {
     }
   };
 
+  const length = value.length;
+  const isValid = validatePostContent(value).valid;
+  const canSubmit = isValid && !isPending;
+
+  const displayError =
+    validationError ||
+    (serverError instanceof Error ? serverError.message : null);
+
   return (
     <Card className="w-full border bg-black">
       <CardContent className="py-4">
         <form onSubmit={handleSubmit}>
           <div className="flex gap-3">
             <Avatar>
-              <AvatarFallback>H</AvatarFallback>
+              {/* <AvatarImage src={user.avatarUrl} alt={user.userName} /> */}
+              <AvatarFallback>
+                <PawPrint className="h-4 w-4" />
+              </AvatarFallback>
             </Avatar>
-            <div className="relative flex-1">
+            <div className="flex-1">
               <Textarea
                 placeholder="Share something..."
                 rows={1}
-                className="min-h-12 resize-none py-2 pr-24 pl-4"
+                maxLength={MAX_LENGTH}
+                className={`min-h-12 resize-none p-3 focus-visible:ring-0 focus-visible:ring-offset-0`}
                 value={value}
                 onChange={onChange}
                 onKeyDown={handleKeyDown}
                 disabled={isPending}
+                aria-label="Post content"
+                aria-describedby="char-counter"
               />
-              <Button
-                type="submit"
-                variant="ghost"
-                size="icon"
-                className="absolute right-2 bottom-2 border"
-                disabled={!value.trim() || isPending}
-              >
-                <Send className="h-5 w-5" />
-              </Button>
+              <div className="flex items-center justify-end gap-2 pt-3">
+                <span
+                  id="char-counter"
+                  className={`text-xs font-medium tabular-nums transition-colors ${getCounterColor(length)}`}
+                  aria-live="polite"
+                >
+                  {length}/{MAX_LENGTH}
+                </span>
+
+                <Button
+                  type="submit"
+                  size="sm"
+                  disabled={!canSubmit}
+                  className="h-8 cursor-pointer gap-2"
+                  aria-label="Send post"
+                >
+                  {isPending ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" />
+                      <span>Post</span>
+                    </>
+                  )}
+                </Button>
+              </div>
+
+              {displayError && (
+                <p className="text-sm text-red-500">{displayError}</p>
+              )}
             </div>
           </div>
         </form>

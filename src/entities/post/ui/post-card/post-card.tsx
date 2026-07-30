@@ -17,7 +17,7 @@ export function PostCard({ post }: Props) {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <article className="hover:bg-muted/40 border-border-gray rounded-lg border px-5 py-6 transition-colors">
+    <article className="hover:bg-muted/40 rounded-lg border border-gray-400 px-5 py-6 wrap-break-word transition-colors">
       <div className="flex flex-col gap-3">
         <header className="flex items-center justify-between gap-2">
           <PostMeta post={post} />
