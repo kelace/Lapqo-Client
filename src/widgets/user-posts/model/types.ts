@@ -1,9 +1,7 @@
 import type { PostComment } from "@/entities/comment";
 import type { Post } from "@/entities/post/model/types";
 
-// import type { Post } from "@/entities/post/types";
-
-type PostActivityItem = {
+export type PostActivityItem = {
   createdAt: string;
   type: "Post";
   item: Post;
