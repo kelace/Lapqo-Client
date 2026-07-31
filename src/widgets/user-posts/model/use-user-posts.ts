@@ -5,6 +5,7 @@ import { getUserActivity } from "../api/get-user-activity";
 //  useUserActivity
 // useUserPosts() => Post[]
 // useUserComments() => Comment[]
+
 const PAGE_SIZE = 10;
 
 export const useUserPosts = (userName: string) => {

@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { Loader2, PawPrint, Send } from "lucide-react";
 import toast from "react-hot-toast";
+import {
+  getCounterColor,
+  MAX_LENGTH,
+  validatePostContent,
+} from "@/entities/post/libs/utils";
 import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
 import { Button } from "@/shared/shadcn/ui/button";
 import { Card, CardContent } from "@/shared/shadcn/ui/card";
 import { Textarea } from "@/shared/shadcn/ui/textarea";
-import { getCounterColor, MAX_LENGTH, validatePostContent } from "../lib/utils";
+// import { getCounterColor, MAX_LENGTH, validatePostContent } from "../lib/utils";
 import { useCreatePost } from "../model/use-create-post";
 
 export function CreatePost() {
@@ -29,7 +34,7 @@ export function CreatePost() {
   const submit = () => {
     const validation = validatePostContent(value);
     if (!validation.valid) {
-      setValidationError(validation.error!);
+      setValidationError(validation.error ?? "Invalid content");
       return;
     }
     createPost(

@@ -9,7 +9,6 @@ import { useUserPosts } from "../model/use-user-posts";
 
 export function UserPosts() {
   const { profileUserName, isOwnProfile } = useActiveProfile();
-
   if (!profileUserName) return <RouteError />;
 
   const {

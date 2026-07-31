@@ -1,34 +1,22 @@
-### SHARED
-
-### ENTITIES
-
-- єдина сутність (Post, type.post, getPost)
-- dumb compoents
-
-### FEATURES
-
-### WIDGETS
-
-- незалежна частина на сторінки.
-- композиція кілька блоків (entities/features)
-- sidebar, header, footer, user-posts(posts-list + comments-list)
-
-### PAGES
-
-Це базові запити ? () - це entites
-Це описує конкретну сутність (одна єдиниця Post, User, Comment) - це entites
-Це дамб-компонент ? - це entities
-Це мутація даних ? (delte, edit, update) - це features
-Це якась дія користувача ? (like, register, theme-toggle) - це features
-Це смарт компонент ? - це widgets
-
-entities — усе про конкретну сутність (Post, User).
-features — дії користувача (create, edit, login, follow).
-widgets — великі блоки сторінки (feed, sidebar, profile).
+app/ → Bootstrap, providers, router
+pages/ → Route components (compose widgets)
+widgets/ → Composed blocks (entities + features)
+features/ → User actions (UI + logic + API)
+entities/ → Business models (UI + store + API + types)
+shared/ → Reusable infrastructure (no business logic!)
 
 ---
 
-entities — доменні сутності (Post, User)
-features — дії користувача (like, create post, follow user)
-widgets — великі UI-блоки сторінки
-pages — композиція віджетів
+## Segments
+
+ui/ — components
+model/ — store, slices, reducers, selectors
+api/ — queries, mutations, endpoints
+lib/ — helper functions specific to this slice
+types/ — TypeScript types for this entity/feature
+
+## FSD Layers (Corrected Reference)
+
+### `shared`
+
+EN: Reusable infrastructure code with zero business logic. UI-kit, utilities, hooks, constants, assets, API client configuration, global types, base styles.

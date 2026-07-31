@@ -3,8 +3,13 @@ import { Check, X } from "lucide-react";
 import { useUpdatePost } from "@/entities/post/model/use-update-post";
 import { Button } from "@/shared/shadcn/ui/button";
 import { Textarea } from "@/shared/shadcn/ui/textarea";
+import {
+  getCounterColor,
+  MAX_LENGTH,
+  validatePostContent,
+} from "../../libs/utils";
 
-interface PropsEditForm {
+export interface PostEditFormProps {
   initialContent: string;
   postId: string;
   onCancel: () => void;
@@ -16,75 +21,127 @@ export function PostEditForm({
   postId,
   onCancel,
   onSuccess,
-}: PropsEditForm) {
+}: PostEditFormProps) {
   const [content, setContent] = useState(initialContent);
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   const updatePost = useUpdatePost();
+  const isPending = updatePost.isPending;
 
   const trimmedContent = content.trim();
-  const canSave =
-    trimmedContent.length > 0 && trimmedContent !== initialContent;
+  const length = trimmedContent.length;
+  const hasChanges =
+    trimmedContent.length > 0 && trimmedContent !== initialContent.trim();
+  const isSaveDisabled = !hasChanges || isPending;
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
+    if (validationError) setValidationError(null);
+  };
 
   const handleSave = async () => {
-    if (!canSave) {
+    if (!hasChanges) {
       onCancel();
       return;
     }
 
+    const text = trimmedContent.slice(0, MAX_LENGTH);
+    const validation = validatePostContent(text);
+
+    if (!validation.valid) {
+      setValidationError(validation.error ?? "Invalid content");
+      return;
+    }
+
     try {
-      await updatePost.mutateAsync({
-        id: postId,
-        content: trimmedContent,
-      });
+      await updatePost.mutateAsync({ id: postId, content: text });
+      setValidationError(null);
       onSuccess();
     } catch (error) {
-      console.error(error);
+      console.error("Failed to update post:", error);
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Escape") {
+      e.preventDefault();
       onCancel();
       return;
     }
 
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSave();
+      if (!isSaveDisabled) {
+        handleSave();
+      }
     }
   };
 
-  return (
-    <div className="relative flex flex-col gap-2">
-      <Textarea
-        disabled={updatePost.isPending}
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        className="relative min-h-20 resize-none pr-24 pb-12 text-sm leading-relaxed"
-        autoFocus
-        onKeyDown={handleKeyDown}
-      />
-      <div className="absolute right-2 bottom-2 flex gap-1">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-7 w-7 cursor-pointer rounded-full hover:bg-red-500/20 hover:text-red-500"
-          onClick={onCancel}
-          disabled={updatePost.isPending}
-        >
-          <X className="h-4 w-4" />
-        </Button>
+  const serverErrorMessage =
+    updatePost.error instanceof Error ? updatePost.error.message : null;
+  const displayError = validationError ?? serverErrorMessage;
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-7 w-7 cursor-pointer rounded-full hover:bg-green-500/20 hover:text-green-500"
-          onClick={handleSave}
-          disabled={!canSave || updatePost.isPending}
-        >
-          <Check className="h-4 w-4" />
-        </Button>
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="relative">
+        <Textarea
+          id="post-edit-content"
+          name="post-edit-content"
+          disabled={isPending}
+          value={content}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          className={`min-h-12 resize-none p-3 pb-10 focus-visible:ring-0 focus-visible:ring-offset-0`}
+          autoFocus
+          maxLength={MAX_LENGTH}
+          aria-label="Edit post content"
+          aria-describedby={displayError ? "post-edit-error" : "char-counter"}
+          aria-invalid={!!displayError}
+        />
+
+        <div className="absolute right-2 bottom-1 flex items-center gap-2">
+          <span
+            id="char-counter"
+            className={`text-xs font-medium tabular-nums transition-colors ${getCounterColor(length)}`}
+          >
+            {length}/{MAX_LENGTH}
+          </span>
+
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="h-7 w-7 cursor-pointer rounded-full hover:bg-red-500/20 hover:text-red-500"
+            onClick={onCancel}
+            disabled={isPending}
+            aria-label="Cancel editing"
+          >
+            <X className="h-4 w-4" />
+          </Button>
+
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="h-7 w-7 cursor-pointer rounded-full hover:bg-green-500/20 hover:text-green-500"
+            onClick={handleSave}
+            disabled={isSaveDisabled}
+            aria-label="Save changes"
+          >
+            {isPending ? (
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+            ) : (
+              <Check className="h-4 w-4" />
+            )}
+          </Button>
+        </div>
       </div>
+
+      {displayError && (
+        <p id="post-edit-error" className="text-sm text-red-500" role="alert">
+          {displayError}
+        </p>
+      )}
     </div>
   );
 }
