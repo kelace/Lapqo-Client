@@ -60,7 +60,7 @@ export function PostActions({ onEdit, post }: Props) {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             className="text-destructive focus:text-destructive"
-            onClick={() => setDeleteDialogOpen(true)} // <- відкриваємо діалог, не видаляємо
+            onClick={() => setDeleteDialogOpen(true)}
           >
             <Trash2 className="mr-2 h-3.5 w-3.5" />
             Delete
@@ -81,7 +81,6 @@ export function PostActions({ onEdit, post }: Props) {
             <AlertDialogAction
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
               onClick={() => {
-                //  deletePost(post.id);
                 handleDelete(post.id);
                 setDeleteDialogOpen(false);
               }}
