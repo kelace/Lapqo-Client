@@ -37,13 +37,13 @@ export function ConfirmModal({
       <div className="flex border-t">
         <button
           onClick={onConfirm}
-          className="hover:bg-silver-500 flex-1 cursor-pointer bg-red-700 py-4 text-sm font-medium transition-colors"
+          className="flex-1 cursor-pointer border-r bg-gray-900 py-4 text-sm font-medium transition-colors duration-300 hover:bg-gray-700"
         >
           {confirmText}
         </button>
         <button
           onClick={onCancel}
-          className="hover:bg-muted flex-1 cursor-pointer border-r py-4 text-sm font-medium transition-colors"
+          className="flex-1 cursor-pointer border-r bg-gray-900 py-4 text-sm font-medium transition-colors duration-300 hover:bg-gray-700"
         >
           {cancelText}
         </button>

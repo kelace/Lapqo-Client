@@ -11,16 +11,21 @@ import { useSidebarCollapsed } from "../lib/use-sidebar-collapsed";
 import { SidebarAccountPanel } from "./account-panel";
 import { SidebarNav } from "./navigation";
 import { SettingsBar } from "./settings-bar";
+import { SidebarLogin } from "./sidebar-login";
 import { SubscriptionsList } from "./subscriptions-list";
 
 export function AppSidebar() {
   const authUser = useAuthStore((store) => store.currentUser);
   const userName = authUser?.name;
-  const { data: user } = useUserByUsername(userName);
+  const { data: user, isLoading } = useUserByUsername(userName);
   const isCollapsed = useSidebarCollapsed();
 
+  const isAuthenticated = useAuthStore((s) => Boolean(s.accessToken));
+  if (!isAuthenticated) return <SidebarLogin />;
+  if (isLoading) return <div>Loading...</div>; // Skeleton
+
   return (
-    <Sidebar collapsible="icon" variant="sidebar" className="sticky">
+    <Sidebar collapsible="icon" variant="sidebar" className="sticky border">
       <SidebarHeader className="mb-3 flex gap-3 border-b">
         <SidebarAccountPanel isCollapsed={isCollapsed} user={user} />
       </SidebarHeader>

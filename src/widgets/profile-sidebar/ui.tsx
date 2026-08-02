@@ -1,51 +1,56 @@
-import { Edit, PawPrint } from "lucide-react";
-import { SubscribeButton } from "@/features/subscribe-user/ui/subscribe-button";
+import { PawPrint } from "lucide-react";
+import { useActiveProfile } from "@/entities/user";
 import { useUserByUsername } from "@/entities/user/model/use-user-by-username";
 import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
+import { ProfileAction } from "./ui/profile-action";
+import { ProfileSkeleton } from "./ui/profile-skeleton";
 
 export function ProfileSidebar({ userName }: { userName?: string }) {
   const { data: user, isLoading } = useUserByUsername(userName);
+  const { isOwnProfile } = useActiveProfile();
 
-  // if (!userName) {
-  //   return <div>Користувача не вказано</div>;
-  // }
+  if (isLoading) return <ProfileSkeleton />;
+
+  if (!user) return null;
+
+  const subscribersCount = user.subscribersCount ?? 0;
 
   return (
-    <aside className="bg-sidebar border-border-gray sticky top-0 h-screen w-[320px] border">
-      <div className="mx-auto max-w-5xl rounded-lg p-6">
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col items-center justify-center gap-4">
-            <Avatar className="size-30">
-              <AvatarFallback className="text-2xl">
-                {user ? user.namePreview : <PawPrint size="30" />}
-              </AvatarFallback>
-            </Avatar>
-            {isLoading ? "loading…" : user ? user.userName : "Laboq"}
-            <p className="text-muted-foreground mt-1 text-sm">
-              Followers {user?.subscribersCount}
-            </p>
-          </div>
+    <aside className="bg-background/60 sticky top-0 h-screen w-80 overflow-y-auto border backdrop-blur-xl">
+      <div className="flex flex-col items-center gap-8 p-8 pt-12">
+        <div className="relative">
+          <Avatar className="ring-background size-32 shadow-2xl ring-[6px] transition-transform duration-300 hover:scale-105">
+            <AvatarFallback className="from-primary/20 via-primary/10 to-background text-primary bg-linear-to-br text-3xl font-bold">
+              {user.namePreview ?? <PawPrint className="size-8 opacity-70" />}
+            </AvatarFallback>
+          </Avatar>
 
-          <div className="flex items-start justify-center gap-4">
-            <div className="flex justify-center gap-1.5">
-              {user ? (
-                <SubscribeButton
-                  userId={user.id}
-                  isSubscribed={user.isSubscribed}
-                />
-              ) : (
-                <button
-                  disabled
-                  className="min-w-30 cursor-not-allowed rounded-lg border border-gray-400/20 px-4 py-2 text-[14px] opacity-50"
-                >
-                  Subscribe
-                </button>
-              )}
-              <button className="flex min-w-30 cursor-pointer items-center justify-center gap-1 rounded-lg border border-gray-400/20 px-4 py-2 text-[14px]">
-                <Edit size={13} /> Write
-              </button>
-            </div>
-          </div>
+          {isOwnProfile && (
+            <span className="bg-primary text-primary-foreground ring-background absolute -right-1 -bottom-1 flex h-6 items-center gap-1 rounded-full px-2.5 text-xs font-bold shadow-lg ring-[3px]">
+              <PawPrint className="size-4" />
+              you
+            </span>
+          )}
+        </div>
+
+        <div className="flex flex-col items-center gap-1.5 text-center">
+          <h1 className="text-xl font-bold uppercase">{user.userName}</h1>
+          <p className="text-muted-foreground text-sm font-medium">
+            <span className="text-foreground font-semibold tabular-nums">
+              {subscribersCount}
+            </span>{" "}
+            <span className="text-muted-foreground/70">
+              {subscribersCount === 1 ? "subscriber" : "subscribers"}
+            </span>
+          </p>
+        </div>
+
+        <div className="w-full">
+          <ProfileAction
+            isOwnProfile={isOwnProfile}
+            userId={user.id}
+            isSubscribed={user.isSubscribed}
+          />
         </div>
       </div>
     </aside>

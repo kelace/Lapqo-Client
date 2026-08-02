@@ -46,7 +46,6 @@ export function UserPosts() {
       {isOwnProfile && <CreatePost />}
 
       <section>
-        <h2 className="mb-3 text-center text-lg font-semibold">User Posts</h2>
         {posts?.length ? <PostList posts={posts} /> : <PostEmpty />}
 
         <div ref={loadMoreRef} style={{ height: 50, textAlign: "center" }}>
