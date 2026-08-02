@@ -1,20 +1,10 @@
-export type ModalContextType = {
-  openModal: (
-    render: (id: string) => React.ReactNode,
-    options?: OpenModalType,
-  ) => string;
-  closeModal: (id: string) => void;
-};
-
-export type OpenModalType = {
+export type OpenModalOptions = {
   closeOnEscape?: boolean;
   closeOnOverlayClick?: boolean;
+  position?: "center" | "top";
 };
 
-export type ModalType = {
-  id: string;
-  content: React.ReactNode;
-  closeOnEscape: boolean;
-  closeOnOverlayClick: boolean;
-  isTopmost?: boolean;
+export type ModalContextType = {
+  openModal: (content: React.ReactNode, options?: OpenModalOptions) => string;
+  closeModal: (id: string) => void;
 };
