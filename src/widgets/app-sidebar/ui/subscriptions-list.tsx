@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Users } from "lucide-react";
+import { NavLink } from "react-router-dom";
 import { useSubscribes } from "@/entities/subscribe";
 import { routes } from "@/shared/config/routes";
 import { cn } from "@/shared/shadcn/lib/utils";
@@ -18,35 +19,44 @@ type Props = {
 export function SubscriptionsList({ isCollapsed }: Props) {
   const { data: subscriptions, isLoading } = useSubscribes();
 
-  if (isLoading) return null; // або Skeleton
-
   return (
     <SidebarGroup>
-      <SidebarGroupLabel className="text-[11px] font-medium tracking-wide uppercase">
-        Your subscriptions
+      <SidebarGroupLabel className="mb-4 bg-gray-500 text-[11px] font-medium tracking-wide uppercase">
+        <Users /> <span className="truncate pl-2">Your subscriptions</span>
       </SidebarGroupLabel>
+
+      {isLoading && <div>Loading...</div>}
+      {!isLoading && subscriptions?.length === 0 && (
+        <div className="text-muted-foreground text-center text-sm">
+          No subscriptions
+        </div>
+      )}
 
       <SidebarMenu className="flex flex-col gap-2">
         {subscriptions?.map((sub) => (
           <SidebarMenuItem
             key={sub.id}
-            className="flex items-center justify-center border p-2"
+            className="2 flex items-center justify-center"
           >
-            <Link
+            <NavLink
               to={routes.users.detail(sub.userName)}
-              className={cn(
-                "flex items-center gap-2",
-                "w-full",
-                "rounded-lg",
-                isCollapsed ? "justify-center" : "justify-start",
-              )}
+              className={({ isActive }) =>
+                cn(
+                  "flex items-center gap-2 p-2",
+                  "w-full",
+                  "rounded-lg",
+                  isCollapsed ? "justify-center" : "justify-start",
+                  isActive
+                    ? "bg-accent text-white"
+                    : "text hover:bg-hover hover:text-white",
+                )
+              }
             >
               <Avatar>
                 <AvatarFallback>{sub.namePreview}</AvatarFallback>
               </Avatar>
-
               {!isCollapsed && <span>{sub.userName}</span>}
-            </Link>
+            </NavLink>
           </SidebarMenuItem>
         ))}
       </SidebarMenu>

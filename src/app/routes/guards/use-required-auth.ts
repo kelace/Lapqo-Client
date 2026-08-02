@@ -9,9 +9,9 @@ export function useRequireAuth() {
   return () => {
     if (!isAuthenticated) {
       navigate(routes.login);
-      return true; // block action
+      return true;
     }
 
-    return false; // allow action
+    return false;
   };
 }

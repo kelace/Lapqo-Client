@@ -1,10 +1,7 @@
-// import { useFocusTrap } from "@shared/hooks/useFocusTrap/useFocusTrap";
 import { useRef } from "react";
 import { useFocusTrap } from "@/shared/hooks/use-focus-trap/use-focus-trap";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { Portal } from "../portal/Portal";
-
-// import style from "./Modal.module.scss";
 
 type ModalProps = {
   children: React.ReactNode;
@@ -44,7 +41,7 @@ export function Modal({
           className={cn(
             "relative z-10 flex justify-center overflow-hidden",
             "w-[90%] max-w-lg",
-            "origin-top", // ← точка трансформації зверху
+            "origin-top",
             "animate-[modal-open_0.2s_ease-out_both]",
             position === "top" ? "origin-top" : "origin-center",
           )}
@@ -60,27 +57,3 @@ export function Modal({
     </Portal>
   );
 }
-
-// .modal {
-//   position: fixed;
-//   inset: 0;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   z-index: 999;
-
-//   &Overlay {
-//     position: absolute;
-//     inset: 0;
-//     background: rgba(0, 0, 0, 0.5);
-//   }
-
-//   &Content {
-//     position: relative;
-//     // max-width: 320px;
-//     width: 90%;
-//     overflow: hidden;
-//     display: flex;
-//     justify-content: center;
-//   }
-// }

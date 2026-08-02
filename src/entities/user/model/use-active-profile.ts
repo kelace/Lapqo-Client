@@ -6,10 +6,14 @@ export function useActiveProfile() {
   const currentUser = useAuthStore((store) => store.currentUser);
 
   const profileUserName = name ?? currentUser?.name;
-  const isOwnProfile = profileUserName === currentUser?.name;
+
+  const isOwnProfile = Boolean(
+    currentUser && profileUserName === currentUser.name,
+  );
 
   return {
     profileUserName,
     isOwnProfile,
+    isLoggedIn: Boolean(currentUser),
   };
 }
