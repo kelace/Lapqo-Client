@@ -1,3 +1,4 @@
+import { SearchButton } from "@/features/search-feed/ui";
 import { PostEmpty, PostError, PostList, PostLoading } from "@/entities/post";
 import { useIntersctionObserver } from "@/shared/hooks/use-intersction-observer/use-intersction-observer";
 import { useFeedPosts } from "../model/use-feed-posts";
@@ -26,10 +27,10 @@ export function FeedPosts() {
 
   return (
     <div className="flex h-full flex-col">
+      <SearchButton />
       <div className="flex-1 scrollbar-none overflow-y-auto">
         {hasPosts ? <PostList posts={posts} /> : <PostEmpty />}
       </div>
-
       <div ref={loadMoreRef} style={{ height: 50, textAlign: "center" }}>
         {isFetchingNextPage && "Loading..."}
       </div>

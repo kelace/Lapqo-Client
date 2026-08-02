@@ -68,3 +68,15 @@ body {
   font-family: "Inter", sans-serif;
   scrollbar-gutter: stable;
 }
+
+@keyframes modal-open {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
