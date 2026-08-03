@@ -8,6 +8,7 @@ import { PostActions } from "./post-actions";
 import { PostContext } from "./post-context";
 import { PostLikeButton } from "./post-like-button";
 import { PostMeta } from "./post-meta";
+import { Item, ItemContent, ItemFooter } from "@/shared/shadcn/ui/item";
 
 type Props = {
   post: Post;
@@ -17,9 +18,10 @@ export function PostCard({ post }: Props) {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <article className="hover:bg-muted/40 rounded-lg border border-gray-400 px-5 py-6 wrap-break-word transition-colors">
-      <div className="flex flex-col gap-3">
-        <header className="flex items-center justify-between gap-2">
+    <article>
+      <Item variant="outline">
+        <ItemContent>
+          <header className="flex items-center justify-between gap-2">
           <PostMeta post={post} />
 
           {!isEditing && (
@@ -33,22 +35,24 @@ export function PostCard({ post }: Props) {
           onEditCancel={() => setIsEditing(false)}
           onEditSuccess={() => setIsEditing(false)}
         />
+        <ItemFooter>
+          <footer className="text-muted-foreground flex items-center gap-1">
+            <PostLikeButton
+              postId={post.id}
+              liked={post.likedByCurrentUser}
+              likesCount={post.likesCount}
+            />
 
-        <footer className="text-muted-foreground flex items-center gap-1">
-          <PostLikeButton
-            postId={post.id}
-            liked={post.likedByCurrentUser}
-            likesCount={post.likesCount}
-          />
-
-          <Button variant="ghost" size="sm" asChild>
-            <Link to={routes.posts.detail(post.id)}>
-              <MessageCircle className="h-4 w-4" />
-              {post.commentsCount}
-            </Link>
-          </Button>
-        </footer>
-      </div>
+            <Button variant="ghost" size="sm" asChild>
+              <Link to={routes.posts.detail(post.id)}>
+                <MessageCircle className="h-4 w-4" />
+                {post.commentsCount}
+              </Link>
+            </Button>
+          </footer>
+        </ItemFooter>
+        </ItemContent>
+      </Item>
     </article>
   );
 }

@@ -1,5 +1,7 @@
 import type { Post } from "@/entities/post/model/types";
 import { PostEditForm } from "../post-edit-form/post-edit-form";
+import {  ItemContent, ItemTitle, ItemDescription } from "@/shared/shadcn/ui/item";
+
 
 type PropsContext = {
   isEditing: boolean;
@@ -24,6 +26,12 @@ export function PostContext({
       />
     );
   }
-
-  return <p className="text-sm leading-relaxed">{post.content}</p>;
+  
+    return (
+      <ItemContent>
+        <ItemDescription>
+          <p className="text-sm leading-relaxed">{post.content}</p>
+        </ItemDescription>
+      </ItemContent>
+    );
 }
