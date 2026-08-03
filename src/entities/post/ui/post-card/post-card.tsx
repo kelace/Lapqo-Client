@@ -19,7 +19,7 @@ export function PostCard({ post }: Props) {
 
   return (
     <article>
-      <Item variant="outline">
+      <Item variant="muted" >
         <ItemContent>
           <header className="flex items-center justify-between gap-2">
           <PostMeta post={post} />
