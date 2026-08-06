@@ -4,7 +4,7 @@ import { Logo } from '@/shared/ui/logo/logo';
 export function Header(){
     return(
         <header className="bg-muted p-4 max-md:hidden">
-            <div className='flex max-w-7xl w-full mx-auto justify-between items-center'>
+            <div className='flex w-full mx-auto justify-between items-center'>
                 <div>
                 <Link to="/" >
                     <Logo/>
