@@ -1,4 +1,5 @@
-import { SearchButton } from "@/features/search-feed/ui";
+// import { SearchButton } from "@/features/search-feed/ui";
+import { SearchFeedDialog } from "@/features/search-feed/ui/SearchFeedDialog";
 import { PostEmpty, PostError, PostList, PostLoading } from "@/entities/post";
 import { useIntersctionObserver } from "@/shared/hooks/use-intersction-observer/use-intersction-observer";
 import { useFeedPosts } from "../model/use-feed-posts";
@@ -27,7 +28,7 @@ export function FeedPosts() {
 
   return (
     <div className="flex h-full flex-col">
-      <SearchButton />
+      <SearchFeedDialog />
       <div className="flex-1 scrollbar-none overflow-y-auto">
         {hasPosts ? <PostList posts={posts} /> : <PostEmpty />}
       </div>
