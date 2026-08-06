@@ -45,8 +45,14 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  --color-white: var(--color-white);
 }
  
+:root {
+  --color-white: #ffff;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -57,8 +63,8 @@
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(45.521% 0.21672 290.062);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(75.428% 0.18066 127.102);
+  --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
@@ -91,7 +97,7 @@
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(45.521% 0.21672 290.062);
   --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  --secondary: oklch(75.428% 0.18066 127.102);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);

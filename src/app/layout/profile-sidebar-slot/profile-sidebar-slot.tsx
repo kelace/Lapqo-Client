@@ -11,7 +11,7 @@ export function ProfileSidebarSlot() {
   if (!isAuthenticated) return null;
 
   return (
-    <div className="hidden w-75 shrink-0 lg:block">
+    <div className="hidden shrink-0 lg:block">
       <ProfileSidebar userName={profileUserName} />
     </div>
   );

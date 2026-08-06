@@ -2,6 +2,7 @@ import { SearchButton } from "@/features/search-feed/ui";
 import { PostEmpty, PostError, PostList, PostLoading } from "@/entities/post";
 import { useIntersctionObserver } from "@/shared/hooks/use-intersction-observer/use-intersction-observer";
 import { useFeedPosts } from "../model/use-feed-posts";
+import { Search } from 'lucide-react';
 
 export function FeedPosts() {
   const {
@@ -27,9 +28,14 @@ export function FeedPosts() {
 
   return (
     <div className="flex h-full flex-col">
-      <SearchButton />
       <div className="flex-1 scrollbar-none overflow-y-auto">
-        {hasPosts ? <PostList posts={posts} /> : <PostEmpty />}
+        <div className="bg-muted p-3 text-muted-foreground flex justify-end">
+          {/* <SearchButton /> */}
+          <Search className="" />
+        </div>
+        <div className="bg-card">
+          {hasPosts ? <PostList posts={posts} /> : <PostEmpty />}
+        </div>
       </div>
       <div ref={loadMoreRef} style={{ height: 50, textAlign: "center" }}>
         {isFetchingNextPage && "Loading..."}
