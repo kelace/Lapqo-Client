@@ -13,9 +13,9 @@ export function RootLayout() {
     <div className="h-screen w-full overflow-y-auto">
       <Header/>
       <SidebarProvider>
-        <div className="mx-auto flex w-full max-w-7xl mt-5">
+        <div className="mx-auto flex w-full mt-5">
           <AppSidebar />
-
+          
           <SidebarInset className="flex min-w-0 flex-1 flex-col p-3 pt-0">
             <SidebarTrigger className="lg:hidden" />
             <Outlet />
