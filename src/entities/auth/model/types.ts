@@ -5,7 +5,7 @@ export type RegistenData = {
 };
 
 export type LoginData = {
-  email: string;
+  emailOrUserName: string;
   password: string;
 };
 

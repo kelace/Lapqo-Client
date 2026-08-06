@@ -36,13 +36,13 @@ export function LoginForm() {
             <Input
               id="email"
               placeholder="satanic@gmail.com"
-              {...form.register("email")}
+              {...form.register("emailOrUserName")}
             />
             <FieldError
-              errors={[form.formState.errors.email]}
+              errors={[form.formState.errors.emailOrUserName]}
               className="text-red-500"
             >
-              {form.formState.errors.email?.message}
+              {form.formState.errors.emailOrUserName?.message}
             </FieldError>
           </Field>
 
