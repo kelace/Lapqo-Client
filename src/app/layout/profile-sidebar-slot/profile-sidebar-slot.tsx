@@ -1,6 +1,7 @@
 import { useAuthStore } from "@/app/store/auth";
 import { ProfileSidebar } from "@/widgets/profile-sidebar/ui";
 import { useActiveProfile } from "@/entities/user/model/use-active-profile";
+import { SidebarLogin } from "@/widgets/app-sidebar/ui/sidebar-login";
 
 // ProfileSidebar
 export function ProfileSidebarSlot() {
@@ -8,7 +9,7 @@ export function ProfileSidebarSlot() {
 
   const isAuthenticated = useAuthStore((s) => Boolean(s.accessToken));
 
-  if (!isAuthenticated) return null;
+  if (!isAuthenticated) return <SidebarLogin />;
 
   return (
     <div className="hidden shrink-0 lg:block">

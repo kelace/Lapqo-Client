@@ -12,6 +12,7 @@ export function RootLayout() {
   return (
     <div className="h-screen w-full overflow-y-auto">
       <Header/>
+      
       <SidebarProvider>
         <div className="mx-auto flex w-full mt-5">
           <AppSidebar />

@@ -21,14 +21,17 @@ export function AppSidebar() {
   const isCollapsed = useSidebarCollapsed();
 
   const isAuthenticated = useAuthStore((s) => Boolean(s.accessToken));
-  if (!isAuthenticated) return <SidebarLogin />;
-  if (isLoading) return <div>Loading...</div>; // Skeleton
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <Sidebar collapsible="icon" variant="sidebar" className="sticky border">
-      <SidebarHeader className="mb-3 flex gap-3 border-b">
-        <SidebarAccountPanel isCollapsed={isCollapsed} user={user} />
-      </SidebarHeader>
+      {isAuthenticated ? (
+      <div>
+        <SidebarHeader className="mb-3 flex gap-3 border-b">
+          <SidebarAccountPanel isCollapsed={isCollapsed} user={user} />
+        </SidebarHeader>
+      </div>
+      ) : null}
 
       <SidebarContent className="gap-5">
         <SidebarNav isCollapsed={isCollapsed} userName={userName} />

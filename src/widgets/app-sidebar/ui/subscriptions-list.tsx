@@ -10,6 +10,16 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from "@/shared/shadcn/ui/sidebar";
+import { 
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemGroup,
+  ItemMedia,
+  ItemSeparator,
+  ItemTitle,
+ } from "@/shared/shadcn/ui/item";
 
 type Props = {
   isCollapsed: boolean;
@@ -41,7 +51,7 @@ export function SubscriptionsList({ isCollapsed }: Props) {
               to={routes.users.detail(sub.userName)}
               className={({ isActive }) =>
                 cn(
-                  "flex items-center gap-2 p-2",
+                  "flex items-center gap-2",
                   "w-full",
                   "rounded-lg",
                   isCollapsed ? "justify-center" : "justify-start",
@@ -51,10 +61,17 @@ export function SubscriptionsList({ isCollapsed }: Props) {
                 )
               }
             >
-              <Avatar>
-                <AvatarFallback>{sub.namePreview}</AvatarFallback>
-              </Avatar>
-              {!isCollapsed && <span>{sub.userName}</span>}
+              <Item>
+                <ItemMedia>
+                  <Avatar>
+                    <AvatarFallback>{sub.namePreview}</AvatarFallback>
+                  </Avatar>
+                </ItemMedia>
+                <ItemContent>
+                  <ItemTitle>{!isCollapsed && <span>{sub.userName}</span>}</ItemTitle>
+                  <ItemDescription>{!isCollapsed && <span>{sub.previewContent}</span>}</ItemDescription>
+                </ItemContent>
+              </Item>
             </NavLink>
           </SidebarMenuItem>
         ))}
