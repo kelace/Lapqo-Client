@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { CreatePost } from "@/features/post-create/ui/post-create";
+import { SearchUserPosts } from "@/features/search-user-posts/ui/search-user-posts";
 import { PostEmpty, PostError, PostList, PostLoading } from "@/entities/post";
 import { useActiveProfile } from "@/entities/user/model/use-active-profile";
 import { useIntersctionObserver } from "@/shared/hooks/use-intersction-observer/use-intersction-observer";
@@ -9,6 +10,8 @@ import { useUserPosts } from "../model/use-user-posts";
 
 export function UserPosts() {
   const { profileUserName, isOwnProfile } = useActiveProfile();
+  console.log(profileUserName);
+
   if (!profileUserName) return <RouteError />;
 
   const {
@@ -44,6 +47,7 @@ export function UserPosts() {
   return (
     <div className="flex flex-col gap-6">
       {isOwnProfile && <CreatePost />}
+      {!isOwnProfile && <SearchUserPosts />}
 
       <section>
         {posts?.length ? <PostList posts={posts} /> : <PostEmpty />}
