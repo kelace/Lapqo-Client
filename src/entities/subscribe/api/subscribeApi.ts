@@ -9,7 +9,6 @@ export const subscribeApi = {
 
   subscribe: async (userId: string) => {
     const { data } = await api.post(`/subscriptions/${userId}`);
-    console.log(userId);
     return data;
   },
 

@@ -1,7 +1,7 @@
 import { z as zod } from "zod";
 
 export const loginSchema = zod.object({
-  email: zod.email({ message: "Invalid email" }),
+  emailOrUserName: zod.email({ message: "Invalid email" }),
   password: zod.string().min(6, { message: "Min 6 characters" }),
 });
 
