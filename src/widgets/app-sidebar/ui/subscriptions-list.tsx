@@ -21,7 +21,7 @@ export function SubscriptionsList({ isCollapsed }: Props) {
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel className="mb-4 bg-gray-500 text-[11px] font-medium tracking-wide uppercase">
+      <SidebarGroupLabel className="mb-4 rounded-none border-b tracking-wide uppercase">
         <Users /> <span className="truncate pl-2">Your subscriptions</span>
       </SidebarGroupLabel>
 
@@ -58,8 +58,8 @@ export function SubscriptionsList({ isCollapsed }: Props) {
                     "flex w-full items-center gap-2 rounded-lg p-2 transition-colors",
                     isCollapsed ? "justify-center" : "justify-start",
                     isActive
-                      ? "bg-accent text-white"
-                      : "hover:bg-hover hover:text-white",
+                      ? "bg-accent text-accent-foreground"
+                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
                   )
                 }
               >

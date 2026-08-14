@@ -39,7 +39,7 @@ export function LogoutButton() {
         "h-8 w-8",
         "rounded-md border",
         "cursor-pointer",
-        "hover:bg-accent hover:text-white",
+        "hover:bg-accent",
         "transition-colors",
       )}
     >

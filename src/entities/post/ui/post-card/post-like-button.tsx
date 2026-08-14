@@ -5,6 +5,7 @@ import {
   usePostUnlike,
 } from "@/entities/post/model/use-post-like";
 import { cn } from "@/shared/shadcn/lib/utils";
+import { Button } from "@/shared/shadcn/ui/button";
 
 type Props = {
   postId: string;
@@ -30,17 +31,26 @@ export function PostLikeButton({ postId, liked, likesCount }: Props) {
   };
 
   return (
-    <button
-      className={cn(
-        "flex cursor-pointer items-center gap-1 rounded-full bg-[#333d42] px-3 py-1 text-sm transition-colors hover:text-rose-500",
-        liked && "text-rose-500",
-      )}
+    <Button
+      variant="ghost"
+      size="sm"
       aria-label={liked ? "unlike" : "like"}
       disabled={isPending}
       onClick={handleLike}
+      className={cn(
+        "h-8 gap-1.5 rounded-lg px-2.5",
+        "text-muted-foreground",
+        "transition-all duration-200",
+        "cursor-pointer hover:bg-rose-500/10 hover:text-rose-500",
+        "active:scale-95",
+        liked && ["text-rose-500", "hover:bg-rose-500/15 hover:text-rose-600"],
+      )}
     >
-      <Heart size={16} className={cn(liked && "fill-rose-500")} />
-      <span>{likesCount}</span>
-    </button>
+      <Heart
+        size={16}
+        className={cn("transition-all duration-200", liked && "fill-current")}
+      />
+      <span className="text-xs font-medium tabular-nums">{likesCount}</span>
+    </Button>
   );
 }

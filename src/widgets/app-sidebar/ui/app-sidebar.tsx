@@ -13,7 +13,6 @@ import { SidebarCopyright } from "./copyright";
 import { LoginPromo } from "./login-promo";
 import { SidebarNav } from "./navigation";
 import { SettingsBar } from "./settings-bar";
-// import { SidebarLogin } from "./sidebar-login";
 import { SubscriptionsList } from "./subscriptions-list";
 
 export function AppSidebar() {
@@ -27,7 +26,11 @@ export function AppSidebar() {
   if (isLoading) return <div>Loading...</div>; // Skeleton
 
   return (
-    <Sidebar collapsible="icon" variant="sidebar" className="sticky border">
+    <Sidebar
+      collapsible="icon"
+      variant="sidebar"
+      className="surface sticky top-4 h-[calc(100vh-2rem)]"
+    >
       <SidebarHeader className="mb-3 flex gap-3 border-b">
         {isAuthenticated ? (
           <SidebarAccountPanel isCollapsed={isCollapsed} user={user} />

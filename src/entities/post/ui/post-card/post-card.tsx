@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { MessageCircle } from "lucide-react";
-import { Link } from "react-router-dom";
-import { routes } from "@/shared/config/routes";
-import { Button } from "@/shared/shadcn/ui/button";
 import type { Post } from "../../model/types";
 import { PostActions } from "./post-actions";
+import { PostCommentButton } from "./post-comment-button";
 import { PostContext } from "./post-context";
 import { PostLikeButton } from "./post-like-button";
 import { PostMeta } from "./post-meta";
@@ -17,7 +14,7 @@ export function PostCard({ post }: Props) {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <article className="hover:bg-muted/40 rounded-lg border border-gray-400 px-5 py-6 wrap-break-word transition-colors">
+    <article className="hover:bg-muted/40 surface px-5 py-6 wrap-break-word transition-colors">
       <div className="flex flex-col gap-3">
         <header className="flex items-center justify-between gap-2">
           <PostMeta post={post} />
@@ -40,13 +37,10 @@ export function PostCard({ post }: Props) {
             liked={post.likedByCurrentUser}
             likesCount={post.likesCount}
           />
-
-          <Button variant="ghost" size="sm" asChild>
-            <Link to={routes.posts.detail(post.id)}>
-              <MessageCircle className="h-4 w-4" />
-              {post.commentsCount}
-            </Link>
-          </Button>
+          <PostCommentButton
+            postId={post.id}
+            commentsCount={post.commentsCount}
+          />
         </footer>
       </div>
     </article>

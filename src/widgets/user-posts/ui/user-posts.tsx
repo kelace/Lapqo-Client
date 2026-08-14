@@ -45,7 +45,7 @@ export function UserPosts() {
   if (status === "error") return <PostError error={error} />;
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-2">
       {isOwnProfile && <CreatePost />}
       {!isOwnProfile && <SearchUserPosts />}
 

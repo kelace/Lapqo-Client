@@ -36,7 +36,7 @@ export function SearchUserPosts() {
   const navitate = useNavigate();
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col">
       <SearchButton
         onClick={() => setOpen(true)}
         placeholder="Search posts..."

@@ -21,22 +21,29 @@ export function SidebarNav({ isCollapsed, userName }: Props) {
 
   return (
     <SidebarGroup>
-      <SidebarMenu className="flex flex-col gap-1">
+      <SidebarMenu className="relative flex flex-col gap-1">
         {links.map(({ to, label, icon: Icon }) => (
           <SidebarMenuItem key={to}>
             <NavLink
               to={to}
               className={({ isActive }) =>
                 cn(
-                  "flex w-full cursor-pointer items-center rounded-lg px-2 py-2 transition-colors",
+                  "flex w-full items-center rounded-lg px-2 py-2",
+                  "transition-colors duration-200",
                   isCollapsed ? "justify-center" : "justify-start gap-2",
+
                   isActive
-                    ? "bg-accent text-white"
-                    : "text hover:bg-hover hover:text-white",
+                    ? ["bg-accent", "text-primary dark:text-foreground"]
+                    : [
+                        "text-muted-foreground",
+                        "hover:bg-accent",
+                        "hover:text-accent-foreground",
+                      ],
                 )
               }
             >
               <Icon className="size-5 shrink-0" />
+
               {!isCollapsed && <span className="truncate">{label}</span>}
             </NavLink>
           </SidebarMenuItem>

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import type { Post } from "@/entities/post/model/types";
-// eslint-disable-next-line import-x/no-unresolved
 import noavatar from "@/shared/assets/images/noavatar.webp";
 import { routes } from "@/shared/config/routes";
 import { formatPostDate } from "@/shared/lib/createdAt";
@@ -21,10 +20,7 @@ export function PostMeta({ post }: Props) {
           <AvatarFallback>{post.shortName}</AvatarFallback>
         </Avatar>
       </Link>
-      <Link
-        to={userLink}
-        className="font-semibold text-lime-100 hover:underline"
-      >
+      <Link to={userLink} className="font-semibold hover:underline">
         {post.authorUserName}
       </Link>
       <time dateTime={post.createdAt} className="text-muted-foreground text-sm">

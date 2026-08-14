@@ -73,12 +73,11 @@ export function CreatePost() {
     (serverError instanceof Error ? serverError.message : null);
 
   return (
-    <Card className="w-full border bg-black">
+    <Card className="surface w-full">
       <CardContent className="py-4">
         <form onSubmit={handleSubmit}>
           <div className="flex gap-3">
             <Avatar>
-              {/* <AvatarImage src={user.avatarUrl} alt={user.userName} /> */}
               <AvatarFallback>
                 <PawPrint className="h-4 w-4" />
               </AvatarFallback>
@@ -109,7 +108,7 @@ export function CreatePost() {
                   type="submit"
                   size="sm"
                   disabled={!canSubmit}
-                  className="h-8 cursor-pointer gap-2"
+                  className="h-8 cursor-pointer gap-2 text-white"
                   aria-label="Send post"
                 >
                   {isPending ? (
