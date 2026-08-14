@@ -5,6 +5,7 @@ import { PostCommentButton } from "./post-comment-button";
 import { PostContext } from "./post-context";
 import { PostLikeButton } from "./post-like-button";
 import { PostMeta } from "./post-meta";
+import { Item, ItemContent, ItemFooter } from "@/shared/shadcn/ui/item";
 
 type Props = {
   post: Post;
@@ -30,6 +31,13 @@ export function PostCard({ post }: Props) {
           onEditCancel={() => setIsEditing(false)}
           onEditSuccess={() => setIsEditing(false)}
         />
+        <ItemFooter>
+          <footer className="text-muted-foreground flex items-center gap-1">
+            <PostLikeButton
+              postId={post.id}
+              liked={post.likedByCurrentUser}
+              likesCount={post.likesCount}
+            />
 
         <footer className="text-muted-foreground flex items-center gap-1">
           <PostLikeButton
