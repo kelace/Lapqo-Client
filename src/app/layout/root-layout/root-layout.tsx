@@ -6,15 +6,18 @@ import {
   SidebarTrigger,
 } from "@/shared/shadcn/ui/sidebar";
 import { ProfileSidebarSlot } from "../profile-sidebar-slot/profile-sidebar-slot";
+import { Header } from "@/widgets/header/ui/header";
 
 export function RootLayout() {
   return (
     <div className="h-screen w-full overflow-y-auto">
+      <Header/>
+      
       <SidebarProvider>
-        <div className="mx-auto flex w-full max-w-7xl">
+        <div className="mx-auto flex w-full mt-5">
           <AppSidebar />
-
-          <SidebarInset className="flex min-w-0 flex-1 flex-col p-3">
+          
+          <SidebarInset className="flex min-w-0 flex-1 flex-col p-3 pt-0">
             <SidebarTrigger className="lg:hidden" />
             <Outlet />
           </SidebarInset>

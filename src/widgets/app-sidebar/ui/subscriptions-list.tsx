@@ -21,7 +21,7 @@ export function SubscriptionsList({ isCollapsed }: Props) {
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel className="mb-4 bg-gray-500 text-[11px] font-medium tracking-wide uppercase">
+      <SidebarGroupLabel className="mb-4 bg-muted text-[11px] font-medium tracking-wide uppercase">
         <Users /> <span className="truncate pl-2">Your subscriptions</span>
       </SidebarGroupLabel>
 

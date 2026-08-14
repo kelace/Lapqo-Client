@@ -20,13 +20,13 @@ export function ProfileSidebar({ userName }: { userName?: string }) {
       <div className="flex flex-col items-center gap-8 p-8 pt-12">
         <div className="relative">
           <Avatar className="ring-background size-32 shadow-2xl ring-[6px] transition-transform duration-300 hover:scale-105">
-            <AvatarFallback className="from-primary/20 via-primary/10 to-background text-primary bg-linear-to-br text-3xl font-bold">
+            <AvatarFallback className="from-primary/20 via-primary/10 to-background text-color-white bg-linear-to-br text-3xl font-bold">
               {user.namePreview ?? <PawPrint className="size-8 opacity-70" />}
             </AvatarFallback>
           </Avatar>
 
           {isOwnProfile && (
-            <span className="bg-primary text-primary-foreground ring-background absolute -right-1 -bottom-1 flex h-6 items-center gap-1 rounded-full px-2.5 text-xs font-bold shadow-lg ring-[3px]">
+            <span className="bg-primary foreground ring-background absolute -right-1 -bottom-1 flex h-6 items-center gap-1 rounded-full px-2.5 text-xs font-bold shadow-lg ring-[3px]">
               <PawPrint className="size-4" />
               you
             </span>
