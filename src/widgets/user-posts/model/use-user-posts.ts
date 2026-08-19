@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { postsKeys } from "@/entities/post/api/postsKeys";
 import { getUserActivity } from "../api/get-user-activity";
 
-//  useUserActivity
+// useUserActivity
 // useUserPosts() => Post[]
 // useUserComments() => Comment[]
 

@@ -16,7 +16,7 @@ export function ProfileSidebar({ userName }: { userName?: string }) {
   const subscribersCount = user.subscribersCount ?? 0;
 
   return (
-    <aside className="surface sticky top-4 h-[calc(100vh-2rem)] w-80 overflow-y-auto backdrop-blur-xl">
+    <aside className="surface sticky top-20 z-1 h-[calc(100vh-8rem)] w-80 overflow-y-auto backdrop-blur-xl">
       <div className="flex flex-col items-center gap-6 p-8 pt-10">
         <div className="relative">
           <Avatar className="ring-background size-32 shadow-2xl">

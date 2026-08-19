@@ -1,18 +1,32 @@
 import { Link } from "react-router-dom";
+import { useUserByUsername } from "@/entities/user";
 import { getUserProfileRoute } from "@/shared/config/routes";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/shadcn/ui/avatar";
-import { SettingsBar } from "./settings-bar";
+import { SettingsBar } from "../settings-bar";
+import { SidebarAccountSkeleton } from "./sidebar-account-skeleton";
 
 type Props = {
-  user?: {
-    namePreview?: string;
-    userName?: string;
-  };
+  userName?: string;
   isCollapsed: boolean;
+  isAuthenticated: boolean;
 };
 
-export function SidebarAccountPanel({ user, isCollapsed }: Props) {
+export function SidebarAccount({
+  userName,
+  isCollapsed,
+  isAuthenticated,
+}: Props) {
+  const { data: user, isLoading } = useUserByUsername(userName);
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  if (isLoading) {
+    return <SidebarAccountSkeleton isCollapsed={isCollapsed} />;
+  }
+
   return (
     <div
       className={cn(
@@ -42,7 +56,7 @@ export function SidebarAccountPanel({ user, isCollapsed }: Props) {
         )}
       </Link>
 
-      {!isCollapsed && <SettingsBar />}
+      {/* {!isCollapsed && <SettingsBar />} */}
     </div>
   );
 }
