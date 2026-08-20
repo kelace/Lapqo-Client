@@ -1,66 +1,28 @@
 import { Outlet } from "react-router-dom";
-import { AppSidebar } from "@/widgets/app-sidebar";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/shared/shadcn/ui/sidebar";
-import { ScrollToTop } from "@/shared/ui/scroll-to-top/ScrollToTop";
+import { SidebarInset, SidebarProvider } from "@/shared/shadcn/ui/sidebar";
+import { AppSidebar } from "../ui/app-sidebar";
 import { Header } from "../ui/header/header";
-import { ProfileSidebarSlot } from "../ui/profile-sidebar-slot/profile-sidebar-slot";
-
-// export function RootLayout() {
-//   return (
-//     <div className="h-screen w-full overflow-y-auto pt-16">
-//       <header className="fixed inset-x-0 top-0 z-50 h-16 bg-black">
-//         header
-//       </header>
-
-//       <SidebarProvider>
-//         <div className="mx-auto flex min-h-screen w-full max-w-7xl">
-//           <AppSidebar />
-
-//           <SidebarInset className="flex min-h-screen flex-1 flex-col px-5">
-//             <SidebarTrigger className="lg:hidden" />
-
-//             <Outlet />
-//           </SidebarInset>
-
-//           <div className="pointer-events-none fixed inset-x-0 bottom-0 z-0 h-20 bg-linear-to-t from-(--feed-fade) via-(--feed-fade-strong) to-transparent" />
-
-//           <ProfileSidebarSlot />
-//         </div>
-//       </SidebarProvider>
-//     </div>
-//   );
-// }
+import { ProfileSidebar } from "../ui/profile-sidebar/profile-sidebar";
 
 export function RootLayout() {
   return (
     <div className="min-h-screen">
-      {/* Fixed header */}
-      <Header />
-      {/* Основна область під header */}
-      <div className="pt-20">
-        <SidebarProvider>
-          <div className="mx-auto flex h-full w-full max-w-7xl px-5">
-            {/* Лівий сайдбар */}
-            <AppSidebar />
+      <SidebarProvider>
+        <Header />
 
-            {/* Основний контент — ось тут має бути скрол */}
-            <SidebarInset className="flex min-h-screen flex-1 flex-col px-5">
-              <SidebarTrigger className="lg:hidden" />
-              <Outlet />
-            </SidebarInset>
+        <div className="mx-auto flex min-h-screen w-full max-w-7xl px-5">
+          <AppSidebar className="sticky top-20 h-[calc(100vh-8rem)]" />
 
-            {/* Правий сайдбар */}
-            <ProfileSidebarSlot />
-          </div>
-        </SidebarProvider>
-      </div>
+          <SidebarInset className="flex min-h-screen w-full flex-1 flex-col pt-20 sm:px-5">
+            <Outlet />
+          </SidebarInset>
 
-      {/* Градієнт внизу (якщо потрібен) */}
+          <ProfileSidebar className="sticky top-20 z-10 hidden h-[calc(100vh-8rem)] min-w-80 xl:block" />
+        </div>
+      </SidebarProvider>
+
       <div className="pointer-events-none fixed inset-x-0 bottom-0 z-0 h-20 bg-linear-to-t from-(--feed-fade) via-(--feed-fade-strong) to-transparent" />
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-0 h-30 bg-linear-to-b from-(--feed-fade) via-(--feed-fade-strong) to-transparent" />
     </div>
   );
 }

@@ -12,6 +12,8 @@ export function PostComments({ postId }: { postId: string }) {
     // error,
   } = usePostComments(postId);
 
+  console.log(postId);
+
   const loadMoreRef = useIntersctionObserver({
     hasNextPage,
     isFetchingNextPage,
@@ -21,7 +23,7 @@ export function PostComments({ postId }: { postId: string }) {
   const comments = data?.pages.flat() ?? [];
 
   if (status === "pending") return <div>CommentListSkeleton</div>;
-  if (status === "error") return <div>CommentListEror: </div>;
+  if (status === "error") return <div>CommentListEror </div>;
 
   return (
     <>

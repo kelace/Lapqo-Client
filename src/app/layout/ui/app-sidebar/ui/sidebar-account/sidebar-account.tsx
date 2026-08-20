@@ -3,7 +3,6 @@ import { useUserByUsername } from "@/entities/user";
 import { getUserProfileRoute } from "@/shared/config/routes";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/shadcn/ui/avatar";
-import { SettingsBar } from "../settings-bar";
 import { SidebarAccountSkeleton } from "./sidebar-account-skeleton";
 
 type Props = {
@@ -55,8 +54,6 @@ export function SidebarAccount({
           </div>
         )}
       </Link>
-
-      {/* {!isCollapsed && <SettingsBar />} */}
     </div>
   );
 }

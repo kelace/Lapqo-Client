@@ -7,7 +7,7 @@ type Props = {
 
 export function PostList({ posts }: Props) {
   return (
-    <ul className="space-y-4 py-3">
+    <ul className="space-y-4">
       {posts.map((post) => (
         <li key={post.id}>
           <PostCard post={post} />

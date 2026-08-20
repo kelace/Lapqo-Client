@@ -1,6 +1,6 @@
 // import { SearchButton } from "@/features/search-feed/ui";
 // import { SearchFeedDialog } from "@/features/search-feed/ui/SearchFeedDialog";
-import { PostEmpty, PostError, PostList, PostLoading } from "@/entities/post";
+import { PostEmpty, PostError, PostList, PostsSkeleton } from "@/entities/post";
 import { useIntersctionObserver } from "@/shared/hooks/use-intersction-observer/use-intersction-observer";
 import { useFeedPosts } from "../model/use-feed-posts";
 
@@ -20,7 +20,7 @@ export function FeedPosts() {
     fetchNextPage,
   });
 
-  if (status === "pending") return <PostLoading />;
+  if (status === "pending") return <PostsSkeleton />;
   if (status === "error") return <PostError error={error} />;
 
   const posts = data?.pages.flat() ?? [];
@@ -28,8 +28,7 @@ export function FeedPosts() {
 
   return (
     <div className="flex h-full flex-col">
-      {/* <SearchFeedDialog /> */}
-      <div className="flex-1 scrollbar-none overflow-y-auto">
+      <div className="flex-1">
         {hasPosts ? <PostList posts={posts} /> : <PostEmpty />}
       </div>
       <div ref={loadMoreRef} style={{ height: 50, textAlign: "center" }}>

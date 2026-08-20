@@ -1,4 +1,5 @@
 import { useAuthStore } from "@/app/store/auth";
+import { cn } from "@/shared/shadcn/lib/utils";
 import {
   Sidebar,
   SidebarContent,
@@ -8,7 +9,11 @@ import { useSidebarCollapsed } from "../lib/use-sidebar-collapsed";
 import { SidebarAccount } from "./sidebar-account/sidebar-account";
 import { SidebarBody } from "./sidebar-body/sidebar-body";
 
-export function AppSidebar() {
+type Props = {
+  className?: string;
+};
+
+export function AppSidebar({ className }: Props) {
   const authUser = useAuthStore((store) => store.currentUser);
   const userName = authUser?.name;
   const isCollapsed = useSidebarCollapsed();
@@ -18,7 +23,7 @@ export function AppSidebar() {
     <Sidebar
       collapsible="icon"
       variant="sidebar"
-      className="surface sticky top-20 h-[calc(100vh-8rem)] overflow-y-auto"
+      className={cn("surface overflow-y-auto", className)}
     >
       <SidebarHeader className="mb-3">
         <SidebarAccount

@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { PanelLeftIcon } from "lucide-react";
 import { Slot } from "radix-ui";
 import { useIsMobile } from "@/shared/shadcn/hooks/use-mobile";
 import { cn } from "@/shared/shadcn/lib/utils";
@@ -252,6 +251,7 @@ function Sidebar({
 function SidebarTrigger({
   className,
   onClick,
+  children,
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { toggleSidebar } = useSidebar();
@@ -262,14 +262,14 @@ function SidebarTrigger({
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon-sm"
-      className={cn(className)}
+      className={cn("focus-visible:ring-0 active:scale-100", className)}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
       }}
       {...props}
     >
-      <PanelLeftIcon />
+      {children}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

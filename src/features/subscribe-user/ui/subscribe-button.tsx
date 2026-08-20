@@ -27,7 +27,7 @@ export function SubscribeButton({ userId, isSubscribed }: Props) {
       disabled={isPending}
       onClick={handleSubscribe}
       variant="outline"
-      className="w-full cursor-pointer rounded-xl py-5"
+      className="cursor-pointer rounded-xl px-5 py-5"
     >
       <Bell />
       {isSubscribed ? "Following" : "Follow"}

@@ -1,6 +1,6 @@
+import { SubscriptionsList } from "@/entities/subscribe/ui/subscriptions-list";
 import { LoginPromo } from "../login-promo";
 import { SidebarNav } from "../navigation";
-import { SubscriptionsList } from "../subscriptions-list";
 
 type Props = {
   isAuthenticated: boolean;

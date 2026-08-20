@@ -11,11 +11,11 @@ export function PostDetail({ postId }: { postId: string }) {
 
   return (
     <>
-      <div className="flex h-full flex-col gap-2">
-        <header className="bg-background sticky top-0 z-10 pb-2">
+      <div className="flex h-full flex-col gap-4">
+        <header className="z-10">
           <PostCard post={data} />
         </header>
-        <section className="flex-1 scrollbar-none overflow-y-auto">
+        <section>
           <CommentForm postId={data.id} />
           <PostComments postId={data.id} />
         </section>

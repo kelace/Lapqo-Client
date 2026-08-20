@@ -6,4 +6,4 @@ export { PostList } from "./ui/post-list/post-list";
 
 export { PostError } from "./ui/states/post-error";
 export { PostEmpty } from "./ui/states/post-empty";
-export { PostLoading } from "./ui/states/post-loading";
+export { PostsSkeleton } from "./ui/states/posts-skeleton";

@@ -1,25 +1,8 @@
-import confetti from "canvas-confetti";
 import { Settings2 } from "lucide-react";
 import { SubscribeButton } from "@/features/subscribe-user";
 import { Button } from "@/shared/shadcn/ui/button";
 
-let lastLaunch = 0;
-
-export function launchConfetti() {
-  const now = Date.now();
-
-  if (now - lastLaunch < 1000) return;
-
-  lastLaunch = now;
-
-  confetti({
-    particleCount: 100,
-    spread: 70,
-    origin: { y: 0.6 },
-  });
-}
-
-export function ProfileAction({
+export function UserProfileAction({
   isOwnProfile,
   userId,
   isSubscribed,
@@ -32,7 +15,8 @@ export function ProfileAction({
     return (
       <Button
         variant="outline"
-        className="w-full cursor-pointer rounded-xl py-5"
+        className="cursor-cursor rounded-xl py-5"
+        disabled
       >
         <Settings2 />
         Edit profile

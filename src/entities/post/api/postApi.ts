@@ -18,9 +18,9 @@ export const postApi = {
   },
 
   update: async ({ id, content }: { id: string; content: string }) => {
-    const { data } = await api.patch("/posts", JSON.stringify(content), {
-      params: { id },
-      headers: { "Content-Type": "application/json" },
+    const { data } = await api.patch("/posts", {
+      id,
+      content,
     });
 
     return data;

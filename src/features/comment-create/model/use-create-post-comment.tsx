@@ -13,6 +13,9 @@ export function useCreatePostComment() {
       queryClient.invalidateQueries({
         queryKey: commentKeys.post(createdComment.postId),
       });
+      queryClient.invalidateQueries({
+        queryKey: commentKeys.all,
+      });
       queryClient.invalidateQueries({ queryKey: postsKeys.all });
     },
   });

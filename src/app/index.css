@@ -184,6 +184,7 @@ body {
   scrollbar-gutter: stable;
 }
 
+/* JUST CUSTOM MODAL */
 @keyframes modal-open {
   from {
     opacity: 0;
@@ -194,5 +195,55 @@ body {
   to {
     opacity: 1;
     transform: scaleY(1);
+  }
+}
+
+/* SCROLL UP */
+@keyframes signal-wave {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+    border-width: 1.5px;
+  }
+  40% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+    border-width: 0.5px;
+  }
+}
+
+.signal-wave {
+  animation: signal-wave 3.6s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+
+.signal-wave-1 {
+  animation-delay: 0s;
+}
+
+.signal-wave-2 {
+  animation-delay: 1.2s;
+}
+
+.signal-wave-3 {
+  animation-delay: 2.4s;
+}
+
+/* THEME SWITCH */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-new(root) {
+  clip-path: circle(0 at var(--theme-x) var(--theme-y));
+  animation: theme-reveal 800ms ease-in-out forwards;
+}
+
+@keyframes theme-reveal {
+  to {
+    clip-path: circle(150vmax at var(--theme-x) var(--theme-y));
   }
 }

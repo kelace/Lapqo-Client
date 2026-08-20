@@ -25,5 +25,9 @@ export function PostContext({
     );
   }
 
-  return <p className="text-sm leading-relaxed">{post.content}</p>;
+  return (
+    <p className="min-w-0 text-sm leading-relaxed wrap-anywhere">
+      {post.content}
+    </p>
+  );
 }
