@@ -2,7 +2,7 @@ import { UserRoundX } from "lucide-react";
 
 export function UserNotFound() {
   return (
-    <div className="flex min-h-80 flex-col items-center justify-center px-4 text-center">
+    <div className="z-10 flex min-h-80 flex-col items-center justify-center rounded-2xl border px-4 text-center">
       <div className="bg-muted mb-4 flex size-14 items-center justify-center rounded-full">
         <UserRoundX className="text-muted-foreground size-7" />
       </div>

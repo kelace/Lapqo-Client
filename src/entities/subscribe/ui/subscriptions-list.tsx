@@ -18,6 +18,7 @@ type Props = {
 
 export function SubscriptionsList({ isCollapsed }: Props) {
   const { data: subscriptions, isLoading } = useSubscribes();
+  console.log(subscriptions);
 
   return (
     <SidebarGroup>

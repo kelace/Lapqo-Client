@@ -239,7 +239,7 @@ body {
 
 ::view-transition-new(root) {
   clip-path: circle(0 at var(--theme-x) var(--theme-y));
-  animation: theme-reveal 800ms ease-in-out forwards;
+  animation: theme-reveal 500ms ease-in-out forwards;
 }
 
 @keyframes theme-reveal {

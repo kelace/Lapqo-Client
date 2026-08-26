@@ -1,7 +1,7 @@
 import { CommentForm } from "@/features/comment-create/ui/comment-form";
 import { PostComments } from "@/entities/comment/ui/post-comments";
+import { PostCard } from "@/entities/post";
 import { usePostById } from "@/entities/post/model/use-post-by-Id";
-import { PostCard } from "@/entities/post/ui/post-card/post-card";
 
 export function PostDetail({ postId }: { postId: string }) {
   const { data, isLoading, isError } = usePostById(postId!);
