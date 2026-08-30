@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: NodeTool@0
+- task: NodeTool@1
   inputs:
     versionSpec: '20.x'
   displayName: 'Install Node.js'
@@ -19,6 +19,8 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+  env:
+    VITE_API_URL: '$(api-url)'
 
 - task: AzureStaticWebApp@0
   inputs:
@@ -26,5 +28,3 @@ steps:
     skip_app_build: true
     skip_api_build: true
     azure_static_web_apps_api_token: '$(deployment-token)'
-  env:
-    VITE_API_URL: '$(api-url)'
