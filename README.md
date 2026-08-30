@@ -1,3 +1,4 @@
+[![Build Status](https://dev.azure.com/matetyson/lapqo/_apis/build/status%2Fkelace.Lapqo-Client?branchName=main)](https://dev.azure.com/matetyson/lapqo/_build/latest?definitionId=2&branchName=main)
 # Twitter Clone
 
 A full-stack social media application inspired by Twitter/X, built with React and TypeScript on the frontend and C# on the backend.
