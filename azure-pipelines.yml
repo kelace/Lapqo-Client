@@ -26,3 +26,5 @@ steps:
     skip_app_build: true
     skip_api_build: true
     azure_static_web_apps_api_token: '$(deployment-token)'
+  env:
+    VITE_API_URL: '$(api-url)'
