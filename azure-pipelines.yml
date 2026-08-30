@@ -15,20 +15,18 @@ steps:
     versionSpec: '20.x'
   displayName: 'Install Node.js'
 
-- script: |  
-    npm install
-  displayName: 'npm install'
+# - script: |  
+#     npm install
+#   displayName: 'npm install'
 
-- script: |  
-    npm install @azure/static-web-apps-cli --save-dev
-    npx swa build
-  displayName: 'swa build'
-  env:
-    VITE_API_URL: '$(api-url)'
+# - script: |  
+#     npm install @azure/static-web-apps-cli --save-dev
+#     npx swa build
+#   displayName: 'swa build'
+
 
 - task: AzureStaticWebApp@0
   inputs:
-    app_location: '/dist'
-    skip_app_build: true
-    skip_api_build: true
     azure_static_web_apps_api_token: '$(deployment-token)'
+  env:
+    VITE_API_URL: '$(api-url)'
