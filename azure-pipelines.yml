@@ -28,7 +28,7 @@ steps:
 - task: AzureStaticWebApp@0
   inputs:
     azure_static_web_apps_api_token: '$(deployment-token)'
-    app_location: '/build'
+    app_location: '/'
     output_location: '/dist'
   env:
     VITE_API_URL: '$(api-url)'
