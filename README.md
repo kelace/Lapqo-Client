@@ -1,7 +1,7 @@
 [![Build Status](https://dev.azure.com/matetyson/lapqo/_apis/build/status%2Fkelace.Lapqo-Client?branchName=main)](https://dev.azure.com/matetyson/lapqo/_build/latest?definitionId=2&branchName=main)
 # Twitter Clone
 
-A full-stack social media application inspired by Twitter/X, built with React and TypeScript on the frontend and C# on the backend.
+[Lapqo](https://lapqo.com) is a full-stack social media application inspired by Twitter/X, built with React and TypeScript on the frontend and C# on the backend.
 
 The project provides core social networking functionality such as creating and managing posts, comments, likes, subscriptions, user search, authentication, and responsive UI.
 
