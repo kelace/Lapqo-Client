@@ -1,5 +1,3 @@
-import type { boolean } from "zod";
-
 export type Me = {
   id: string;
   name: string;
