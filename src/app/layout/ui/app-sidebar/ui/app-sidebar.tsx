@@ -17,7 +17,7 @@ export function AppSidebar({ className }: Props) {
   const authUser = useAuthStore((store) => store.currentUser);
   const userName = authUser?.name;
   const isCollapsed = useSidebarCollapsed();
-  const isAuthenticated = useAuthStore((s) => Boolean(s.accessToken));
+  const isAuthenticated = useAuthStore((s) => s.isUserAuthenticated());
 
   return (
     <Sidebar

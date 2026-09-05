@@ -2,17 +2,16 @@ import { jwtDecode } from "jwt-decode";
 import { create } from "zustand";
 import type { AuthState, JWTPayload, Me } from "./types";
 
-// JWT parce get {id, currentUser}
 const parseCurrentUser = (accessToken: string): Me => {
   const payload = jwtDecode<JWTPayload>(accessToken);
 
   return {
     id: payload.sub,
     name: payload.name,
+    expires: payload.expires
   };
 };
 
-// get token from localStorage
 const getStoredAccessToken = (): string | null => {
   const token = localStorage.getItem("accessToken");
 
@@ -24,7 +23,6 @@ const getStoredAccessToken = (): string | null => {
   return token;
 };
 
-// get initial value current user
 const getInitialUser = (): Me | null => {
   const token = getStoredAccessToken();
   if (!token) return null;
@@ -41,6 +39,16 @@ export const useAuthStore = create<AuthState>((set) => ({
   accessToken: getStoredAccessToken(),
 
   currentUser: getInitialUser(),
+
+  isUserAuthenticated: () =>{
+    const user = getInitialUser();
+
+    if(!user || !user.expires || user.expires.getTime() <= Date.now()){
+      return false;
+    }
+
+    return true;
+  },
 
   setAuth: (accessToken) => {
     if (!accessToken) {
