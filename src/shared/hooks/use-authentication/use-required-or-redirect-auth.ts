@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "@/shared/stores/auth";
 import { routes } from "@/shared/config/routes";
+import { useIsUserAuthenticated } from "./use-is-user-authenticated";
 
-export function useRequireAuth() {
-  const isAuthenticated = useAuthStore((s) => Boolean(s.accessToken));
+//deprecated
+export function useRequireOrRedirectToAuth() {
+  const isAuthenticated = useIsUserAuthenticated();
   const navigate = useNavigate();
 
   return () => {

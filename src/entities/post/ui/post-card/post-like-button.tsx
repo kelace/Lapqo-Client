@@ -1,5 +1,5 @@
 import { Heart } from "lucide-react";
-import { useRequireAuth } from "@/app/routes/guards/use-required-auth";
+import { useRequireOrRedirectToAuth } from "@/shared/hooks/use-authentication/use-required-or-redirect-auth";
 import {
   usePostLike,
   usePostUnlike,
@@ -18,7 +18,7 @@ export function PostLikeButton({ postId, liked, likesCount }: Props) {
   const unlikeMutation = usePostUnlike();
 
   const isPending = likeMutation.isPending || unlikeMutation.isPending;
-  const requireAuth = useRequireAuth();
+  const requireAuth = useRequireOrRedirectToAuth();
 
   const handleLike = () => {
     if (requireAuth()) return;
