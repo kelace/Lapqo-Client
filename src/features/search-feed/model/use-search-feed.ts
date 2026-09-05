@@ -2,7 +2,6 @@ import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import { feedApi } from "@/entities/feed/api/feed-api";
 
 const PAGE_SIZE = 10;
-// 256: feed-keys, post-keys
 export const useSearchFeed = (query: string) => {
   return useInfiniteQuery({
     queryKey: ["feed", "search", query],

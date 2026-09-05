@@ -3,7 +3,6 @@ import { userApi } from "@/entities/user/api/userApi";
 
 const PAGE_SIZE = 10;
 
-// 256 fix keys
 export const useSearchUserPosts = (userName: string, query: string) => {
   return useInfiniteQuery({
     queryKey: ["user", "search", query, userName],

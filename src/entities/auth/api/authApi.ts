@@ -22,7 +22,3 @@ export const authApi = {
 
   revoke: () => api.post("/auth/revoke"),
 };
-
-// refresh: (refreshToken: string) => {
-//   return api.post("/auth/refresh", { refreshToken });
-// },

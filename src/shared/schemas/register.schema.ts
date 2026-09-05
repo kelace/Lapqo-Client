@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// src/features/auth/model/schemas/register.schema.ts
 export const registerSchema = z
   .object({
     name: z.string().min(2, "Name is too short"),

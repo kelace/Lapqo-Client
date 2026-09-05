@@ -31,7 +31,6 @@ const processQueue = (error: unknown, accessToken?: string) => {
   pendingRequests = [];
 };
 
-// request interceptor
 api.interceptors.request.use((config) => {
   const token = useAuthStore.getState().accessToken;
   if (token) config.headers.Authorization = `Bearer ${token}`;
@@ -39,7 +38,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// response interceptor
 api.interceptors.response.use(
   (response) => response,
 

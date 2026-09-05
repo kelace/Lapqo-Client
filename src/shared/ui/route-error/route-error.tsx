@@ -1,4 +1,3 @@
-// app/reouter/ui
 import { ArrowLeft, TriangleAlert } from "lucide-react";
 import { Button } from "@/shared/shadcn/ui/button";
 

@@ -9,7 +9,6 @@ export function PostComments({ postId }: { postId: string }) {
     hasNextPage,
     isFetchingNextPage,
     status,
-    // error,
   } = usePostComments(postId);
 
   console.log(postId);

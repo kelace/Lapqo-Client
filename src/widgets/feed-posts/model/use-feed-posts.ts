@@ -17,6 +17,5 @@ export const useFeedPosts = () => {
 
     initialPageParam: 0,
 
-    // select: (data) => data.pages.flat(),
   });
 };

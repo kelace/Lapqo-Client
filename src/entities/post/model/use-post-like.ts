@@ -32,8 +32,3 @@ export const usePostUnlike = () => {
     },
   });
 };
-
-// optimistic update
-// counters update
-// feed sync
-// notifications
