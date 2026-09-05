@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "@/app/store/auth";
+import { useAuthStore } from "@/shared/stores/auth";
 import { routes } from "@/shared/config/routes";
 
 export function useRequireAuth() {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useAuthStore } from "@/app/store/auth";
+import { useAuthStore } from "@/shared/stores/auth";
 import { ENV } from "@/shared/config/env/env";
 
 type RefreshResponseDto = {

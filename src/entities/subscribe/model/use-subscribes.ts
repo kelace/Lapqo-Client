@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useAuthStore } from "@/app/store/auth";
+import { useAuthStore } from "@/shared/stores/auth";
 import { subscribeApi } from "../api/subscribeApi";
 import { subscriptionKeys } from "../api/subscribeKeys";
 

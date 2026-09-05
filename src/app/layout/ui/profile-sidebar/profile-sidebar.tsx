@@ -1,5 +1,5 @@
 import { PawPrint } from "lucide-react";
-import { useAuthStore } from "@/app/store/auth";
+import { useAuthStore } from "@/shared/stores/auth";
 import { useActiveProfile } from "@/entities/user";
 import { useUserByUsername } from "@/entities/user/model/use-user-by-username";
 import { cn } from "@/shared/shadcn/lib/utils";

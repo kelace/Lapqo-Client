@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useAuthStore } from "@/app/store/auth";
+import { useAuthStore } from "@/shared/stores/auth";
 
 export function useActiveProfile() {
   const { name } = useParams();

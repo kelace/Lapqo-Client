@@ -1,4 +1,4 @@
-import { useAuthStore } from "@/app/store/auth";
+import { useAuthStore } from "@/shared/stores/auth";
 import { cn } from "@/shared/shadcn/lib/utils";
 import {
   Sidebar,
