@@ -58,6 +58,11 @@
 }
 
 :root {
+
+  /* --neutral-300: oklch(0.22 0 0);
+  --neutral-400: oklch(0.18 0 0);
+  --neutral-500: oklch(0.145 0 0); */
+
   --radius: 0.625rem;
   --surface: oklch(98% 0.008 290);
   --background: oklch(1 0 0);
@@ -107,6 +112,10 @@
 }
 
 .dark {
+  /* --neutral-300: oklch(0.22 0 0);
+  --neutral-400: oklch(0.18 0 0);
+  --neutral-500: oklch(0.145 0 0); */
+
   --feed-fade: oklch(0.145 0 0);
   --feed-fade-strong: oklch(0.145 0 0 / 0.9);
   --background: oklch(0.145 0 0);
@@ -172,16 +181,13 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 1.25rem;
-
-    box-shadow:
-      0 1px 2px rgb(0 0 0 / 20%),
-      0 8px 24px rgb(0 0 0 / 8%);
   }
 }
 
 body {
   font-family: "Geist", sans-serif;
   scrollbar-gutter: stable;
+  overflow: hidden;
 }
 
 /* JUST CUSTOM MODAL */

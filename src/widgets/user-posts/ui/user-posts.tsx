@@ -57,12 +57,12 @@ export function UserPosts() {
 
   return (
     <section className="flex h-full flex-col gap-2">
-      <header>
+      {/* <header>
         <UserProfile
           profileUserName={profileUserName}
           isOwnProfile={isOwnProfile}
         />
-      </header>
+      </header> */}
 
       {/* {!isOwnProfile && <SearchUserPosts />} */}
 

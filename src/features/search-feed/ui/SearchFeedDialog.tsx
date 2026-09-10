@@ -31,7 +31,7 @@ export function SearchFeedDialog() {
   const navitate = useNavigate();
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="inline-flex flex-col gap-4">
       <SearchButton
         onClick={() => setOpen(true)}
         placeholder="Search posts..."

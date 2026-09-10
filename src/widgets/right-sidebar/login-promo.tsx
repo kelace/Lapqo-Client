@@ -6,13 +6,13 @@ export function LoginPromo() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex h-full flex-col items-center px-8 py-10 text-center">
-      <div className="bg-primary/10 ring-primary/20 mb-8 flex size-30 items-center justify-center rounded-2xl ring-1">
+    <div className="flex flex-col items-center px-8 py-10 text-center">
+      {/* <div className="bg-primary/10 ring-primary/20 mb-8 flex size-30 items-center justify-center rounded-2xl ring-1">
         <PawPrint className="text-primary size-8" />
       </div>
       <h2 className="text-foreground text-2xl font-bold tracking-tight">
         Lapqo
-      </h2>
+      </h2> */}
 
       <p className="text-muted-foreground mt-3 mb-4 max-w-56 text-sm leading-relaxed">
         Welcome to Lapqo!
