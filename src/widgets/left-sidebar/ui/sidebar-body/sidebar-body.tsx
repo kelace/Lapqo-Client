@@ -1,5 +1,4 @@
 import { SubscriptionsList } from "@/entities/subscribe/ui/subscriptions-list";
-import { LoginPromo } from "../login-promo";
 import { SidebarNav } from "../navigation";
 
 type Props = {
@@ -8,11 +7,7 @@ type Props = {
   userName?: string;
 };
 
-export function SidebarBody({ isAuthenticated, isCollapsed, userName }: Props) {
-  if (!isAuthenticated) {
-    return <LoginPromo />;
-  }
-
+export function SidebarBody({ isCollapsed, userName }: Props) {
   return (
     <>
       <SidebarNav isCollapsed={isCollapsed} userName={userName} />

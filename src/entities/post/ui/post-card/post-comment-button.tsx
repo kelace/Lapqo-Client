@@ -7,9 +7,11 @@ import { Button } from "@/shared/shadcn/ui/button";
 type Props = {
   commentsCount: number;
   postId: string;
+  userName: string;
 };
 
-export function PostCommentButton({ commentsCount, postId }: Props) {
+export function PostCommentButton({ commentsCount, postId, userName }: Props) {
+  
   return (
     <Button
       variant="ghost"
@@ -23,7 +25,7 @@ export function PostCommentButton({ commentsCount, postId }: Props) {
         "active:scale-95",
       )}
     >
-      <Link to={routes.posts.detail(postId)}>
+      <Link to={routes.posts.detail(postId, userName)}>
         <MessageCircle className="h-4 w-4" />
         <span>{commentsCount}</span>
       </Link>

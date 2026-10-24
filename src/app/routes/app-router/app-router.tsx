@@ -21,10 +21,8 @@ export const AppRouter = () => {
           <Route index element={<Navigate to={routes.feed} replace />} />
           <Route path={routes.feed} element={<FeedPostsPage />} />
 
-          <Route element={<ProtectedRoute />}>
-            <Route path={routes.users.param} element={<UserPostsPage />} />
-            <Route path={routes.posts.param} element={<PostDetailPage />} />
-          </Route>
+          <Route path={routes.users.param} element={<UserPostsPage />} />
+          <Route path={routes.posts.param} element={<PostDetailPage />} />
         </Route>
 
         <Route path={routes.notFound} element={<NotFoundPage />} />

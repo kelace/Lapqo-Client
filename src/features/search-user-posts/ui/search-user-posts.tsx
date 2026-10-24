@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SearchFeedItem } from "@/entities/feed/ui/search-feed-item";
 import { SearchFeedItemSkeleton } from "@/entities/feed/ui/search-feed-item-skeleton";
-import { useActiveProfile } from "@/entities/user";
+import { useAuthenticatedProfile } from "@/entities/user";
 import { routes } from "@/shared/config/routes";
 import { useDebouncedSearch } from "@/shared/hooks";
 import { Button } from "@/shared/shadcn/ui/button";
@@ -22,7 +22,7 @@ import { useSearchUserPosts } from "../model/use-search-user-posts";
 export function SearchUserPosts() {
   const [open, setOpen] = useState(false);
   const { query, setQuery, debouncedQuery } = useDebouncedSearch();
-  const { profileUserName } = useActiveProfile();
+  const { profileUserName } = useAuthenticatedProfile();
 
   if (!profileUserName) return <RouteError />;
 
@@ -67,7 +67,7 @@ export function SearchUserPosts() {
                         className="mb-2 border"
                         onSelect={() => {
                           setOpen(false);
-                          navitate(routes.posts.detail(post.id));
+                          navitate(routes.posts.detail(post.id, post.authorUserName));
                         }}
                       >
                         <SearchFeedItem post={post} query={query} />

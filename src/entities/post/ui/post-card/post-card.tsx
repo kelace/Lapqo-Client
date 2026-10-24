@@ -40,6 +40,7 @@ export function PostCard({ post }: Props) {
           <PostCommentButton
             postId={post.id}
             commentsCount={post.commentsCount}
+            userName={post.authorUserName}
           />
         </footer>
       </div>
