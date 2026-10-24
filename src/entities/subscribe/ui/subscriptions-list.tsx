@@ -8,7 +8,6 @@ import {
 import { Users } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useSubscribes } from "@/entities/subscribe";
-import { userApi } from "@/entities/user/api/userApi";
 import { routes } from "@/shared/config/routes";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";

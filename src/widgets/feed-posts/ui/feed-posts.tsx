@@ -1,7 +1,6 @@
 import { PostEmpty, PostError, PostList, PostsSkeleton } from "@/entities/post";
 import { useIntersctionObserver } from "@/shared/hooks/use-intersction-observer/use-intersction-observer";
 import { useFeedPosts } from "../model/use-feed-posts";
-import { useEffect, useRef } from "react";
 
 export function FeedPosts() {
   const {

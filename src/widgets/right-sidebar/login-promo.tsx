@@ -1,4 +1,4 @@
-import { LogIn, PawPrint } from "lucide-react";
+import { LogIn } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { routes } from "@/shared/config/routes";
 
