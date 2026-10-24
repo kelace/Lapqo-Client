@@ -5,8 +5,8 @@ export const routes = {
   feed: "/feed",
   posts: {
     base: "/posts",
-    param: "/posts/:id",
-    detail: (id: string) => `/posts/${id}`,
+    param: "/:name/posts/:id",
+    detail: (id: string, userName: string) => `/${userName}/posts/${id}`,
   },
   users: {
     base: "/users",

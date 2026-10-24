@@ -14,7 +14,7 @@ export function Header() {
             to={routes.feed}
             className="hidden border px-3 py-1 text-xl font-black xl:block"
           >
-            Lapqo <span className="text-primary">.</span>
+            Lapqo <span className="text-primary">.</span> v0
           </Link>
 
           <SidebarTrigger className="group bg-accent relative flex size-9 cursor-pointer items-center justify-center rounded-none border xl:hidden">

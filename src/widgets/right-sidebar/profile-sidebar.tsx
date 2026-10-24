@@ -1,6 +1,6 @@
 import { PawPrint } from "lucide-react";
 import type { JSX } from "react/jsx-runtime";
-import { useActiveProfile } from "@/entities/user";
+import { useAuthenticatedProfile } from "@/entities/user";
 import { useUserByUsername } from "@/entities/user/model/use-user-by-username";
 import { useIsUserAuthenticated } from "@/shared/hooks/use-authentication/use-is-user-authenticated";
 import { cn } from "@/shared/shadcn/lib/utils";
@@ -14,7 +14,7 @@ type Props = {
 };
 
 export function ProfileSidebar({ className }: Props) {
-  const { isOwnProfile, profileUserName } = useActiveProfile();
+  const { isOwnProfile, profileUserName } = useAuthenticatedProfile();
   const { data: user, isLoading } = useUserByUsername(profileUserName);
 
   const isAuthenticated = useIsUserAuthenticated();

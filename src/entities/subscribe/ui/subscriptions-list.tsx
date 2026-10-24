@@ -1,6 +1,14 @@
+import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@/shared/shadcn/ui/item";
 import { Users } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useSubscribes } from "@/entities/subscribe";
+import { userApi } from "@/entities/user/api/userApi";
 import { routes } from "@/shared/config/routes";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
@@ -18,7 +26,6 @@ type Props = {
 
 export function SubscriptionsList({ isCollapsed }: Props) {
   const { data: subscriptions, isLoading } = useSubscribes();
-  console.log(subscriptions);
 
   return (
     <SidebarGroup>
@@ -64,12 +71,17 @@ export function SubscriptionsList({ isCollapsed }: Props) {
                   )
                 }
               >
-                <Avatar className="size-8">
-                  <AvatarFallback>{sub.namePreview}</AvatarFallback>
-                </Avatar>
-                {!isCollapsed && (
-                  <span className="truncate">{sub.userName}</span>
-                )}
+                <Item className="p-0 mb-3">
+                  <ItemMedia>
+                    <Avatar className="size-8">
+                      <AvatarFallback>{sub.namePreview}</AvatarFallback>
+                    </Avatar>
+                  </ItemMedia>
+                  <ItemContent>
+                    <ItemTitle>{sub.userName}</ItemTitle>
+                    <ItemDescription>{sub.previewContent}</ItemDescription>
+                  </ItemContent>
+                </Item>
               </NavLink>
             </SidebarMenuItem>
           ))}

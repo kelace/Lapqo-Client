@@ -1,15 +1,14 @@
 import { useMemo } from "react";
 import { Loader2 } from "lucide-react";
 import { PostEmpty, PostError, PostList, PostsSkeleton } from "@/entities/post";
-import { useActiveProfile } from "@/entities/user/model/use-active-profile";
+import { useAuthenticatedProfile } from "@/entities/user/model/use-authenticated-profile";
 import { useIntersctionObserver } from "@/shared/hooks/use-intersction-observer/use-intersction-observer";
 import { RouteError } from "@/shared/ui/route-error/route-error";
 import type { PostActivityItem } from "../model/types";
 import { useUserPosts } from "../model/use-user-posts";
-import { UserProfile } from "./user-profile";
 
 export function UserPosts() {
-  const { profileUserName, isOwnProfile } = useActiveProfile();
+  const { profileUserName, isOwnProfile } = useAuthenticatedProfile();
   if (!profileUserName) return <RouteError />;
 
   const {
@@ -68,7 +67,6 @@ export function UserPosts() {
 
       <div>
         {postsContent}
-
         <div
           ref={loadMoreRef}
           className="flex h-12 items-center justify-center"

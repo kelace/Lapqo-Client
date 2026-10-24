@@ -62,7 +62,7 @@ export function SearchFeedDialog() {
                         className="mb-2 border"
                         onSelect={() => {
                           setOpen(false);
-                          navitate(routes.posts.detail(post.id));
+                          navitate(routes.posts.detail(post.id, post.authorUserName));
                         }}
                       >
                         <SearchFeedItem post={post} query={query} />

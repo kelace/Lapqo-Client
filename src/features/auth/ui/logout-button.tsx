@@ -1,15 +1,18 @@
-import { LogOut } from "lucide-react";
+import { LogOut, LogIn } from "lucide-react";
 import { useModalStack } from "@/app/providers";
 import { useRequireOrRedirectToAuth } from "@/shared/hooks/use-authentication/use-required-or-redirect-auth";
 import { ConfirmModal } from "@/features/confirm-modal/ui";
 import { cn } from "@/shared/shadcn/lib/utils";
 import { useLogout } from "../model/use-logout";
+import { useIsUserAuthenticated } from "@/shared/hooks/use-authentication/use-is-user-authenticated";
 
 export function LogoutButton() {
   const { mutate: logout, isPending } = useLogout();
   const { openModal, closeModal } = useModalStack();
 
   const requireAuth = useRequireOrRedirectToAuth();
+
+  const isAuthenticated = useIsUserAuthenticated();
 
   const handleModalOpen = () => {
     if (requireAuth()) return;
@@ -43,7 +46,9 @@ export function LogoutButton() {
         "transition-colors",
       )}
     >
-      <LogOut size={18} />
+
+      {isAuthenticated ? <LogOut size={18}/>  : <LogIn size={18}/>}
+
     </button>
   );
 }
