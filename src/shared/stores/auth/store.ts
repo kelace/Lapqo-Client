@@ -8,7 +8,7 @@ const parseCurrentUser = (accessToken: string): Me => {
   return {
     id: payload.sub,
     name: payload.name,
-    expires: payload.expires
+    expires: payload.expires,
   };
 };
 
@@ -28,7 +28,14 @@ const getInitialUser = (): Me | null => {
   if (!token) return null;
 
   try {
-    return parseCurrentUser(token);
+    const user = parseCurrentUser(token);
+
+    if (!user || !user.expires || user.expires.getTime() <= Date.now()) {
+      return user;
+    }
+    
+    localStorage.removeItem("accessToken");
+    return null;
   } catch {
     localStorage.removeItem("accessToken");
     return null;
@@ -40,10 +47,10 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   currentUser: getInitialUser(),
 
-  isUserAuthenticated: () =>{
+  isUserAuthenticated: () => {
     const user = getInitialUser();
 
-    if(!user || !user.expires || user.expires.getTime() <= Date.now()){
+    if (!user || !user.expires || user.expires.getTime() <= Date.now()) {
       return false;
     }
 
