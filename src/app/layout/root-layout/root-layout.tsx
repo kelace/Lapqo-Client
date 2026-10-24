@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 import { SearchFeedDialog } from "@/features/search-feed/ui/SearchFeedDialog";
 import { useAuthenticatedProfile, useUserByUsername } from "@/entities/user";
-import { Avatar, AvatarFallback, AvatarImage } from "@/shared/shadcn/ui/avatar";
+import { Avatar, AvatarFallback } from "@/shared/shadcn/ui/avatar";
 import { SidebarProvider, useSidebar } from "@/shared/shadcn/ui/sidebar";
 import { Header } from "../../../widgets/header/header";
 import { AppSidebar } from "../../../widgets/left-sidebar";
@@ -53,7 +53,7 @@ export function RootLayout() {
                     </div>
                   </div>
                 </div>
-                <ProfileSidebar className="z-10 hidden h-[calc(100vh-8rem)] min-w-80 xl:block" />
+                <ProfileSidebar />
               </div>
             </SidebarProvider>
           </div>

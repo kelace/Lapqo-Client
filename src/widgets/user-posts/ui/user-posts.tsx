@@ -8,7 +8,7 @@ import type { PostActivityItem } from "../model/types";
 import { useUserPosts } from "../model/use-user-posts";
 
 export function UserPosts() {
-  const { profileUserName, isOwnProfile } = useAuthenticatedProfile();
+  const { profileUserName } = useAuthenticatedProfile();
   if (!profileUserName) return <RouteError />;
 
   const {
