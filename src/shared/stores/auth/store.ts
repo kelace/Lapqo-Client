@@ -31,11 +31,11 @@ const getInitialUser = (): Me | null => {
     const user = parseCurrentUser(token);
 
     if (!user || !user.expires || user.expires.getTime() <= Date.now()) {
-      return user;
+      localStorage.removeItem("accessToken");
+      return null;
     }
-    
-    localStorage.removeItem("accessToken");
-    return null;
+
+    return user;
   } catch {
     localStorage.removeItem("accessToken");
     return null;
